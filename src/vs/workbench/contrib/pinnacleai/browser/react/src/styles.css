@@ -1,0 +1,56 @@
+/*--------------------------------------------------------------------------------------
+ *  Copyright 2025 Glass Devtools, Inc. All rights reserved.
+ *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
+ *--------------------------------------------------------------------------------------*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+& {
+	--pinnacleai-bg-1: var(--vscode-input-background);
+	--pinnacleai-bg-1-alt: var(--vscode-badge-background);
+	--pinnacleai-bg-2: var(--vscode-sideBar-background);
+	--pinnacleai-bg-2-alt: color-mix(in srgb, var(--vscode-editor-background) 30%, var(--vscode-sideBar-background) 70%);
+	--pinnacleai-bg-2-hover: color-mix(in srgb, var(--vscode-editor-foreground) 2%, var(--vscode-sideBar-background) 98%);
+	--pinnacleai-bg-3: var(--vscode-editor-background);
+
+	--pinnacleai-fg-0: color-mix(in srgb, var(--vscode-tab-activeForeground) 90%, black 10%);
+	--pinnacleai-fg-1: var(--vscode-editor-foreground);
+	--pinnacleai-fg-2: var(--vscode-input-foreground);
+	--pinnacleai-fg-3: var(--vscode-input-placeholderForeground);
+	/* --pinnacleai-fg-4: var(--vscode-tab-inactiveForeground); */
+	--pinnacleai-fg-4: var(--vscode-list-deemphasizedForeground);
+
+	--pinnacleai-warning: var(--vscode-charts-yellow);
+
+	--pinnacleai-border-1: var(--vscode-commandCenter-activeBorder);
+	--pinnacleai-border-2: var(--vscode-commandCenter-border);
+	--pinnacleai-border-3: var(--vscode-commandCenter-inactiveBorder);
+	--pinnacleai-border-4: var(--vscode-editorGroup-border);
+
+	--pinnacleai-ring-color: #007FD4;
+	--pinnacleai-link-color: #007FD4;
+}
+
+.select-child-restyle select {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-right: 24px;
+}
+
+.pinnacleai-force-child-placeholder-pinnacleai-fg-1 ::placeholder {
+	color: var(--pinnacleai-fg-3);
+}
+
+* {
+	outline: none !important;
+}
+
+.inherit-bg-all-restyle > * {
+	background-color: inherit !important;
+}
+
+.bg-editor-style-override {
+	--vscode-sideBar-background: var(--vscode-editor-background);
+}

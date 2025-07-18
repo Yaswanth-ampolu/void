@@ -1,0 +1,204 @@
+/*--------------------------------------------------------------------------------------
+ *  Copyright 2025 Glass Devtools, Inc. All rights reserved.
+ *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
+ *--------------------------------------------------------------------------------------*/
+
+.monaco-editor .pinnacleai-sweepIdxBG {
+	background-color: var(--vscode-pinnacleai-sweepIdxBG);
+}
+
+.pinnacleai-sweepBG {
+	background-color: var(--vscode-pinnacleai-sweepBG);
+}
+
+.pinnacleai-highlightBG {
+	background-color: var(--vscode-pinnacleai-highlightBG);
+}
+
+.pinnacleai-greenBG {
+	background-color: var(--vscode-pinnacleai-greenBG);
+}
+
+.pinnacleai-redBG {
+	background-color: var(--vscode-pinnacleai-redBG);
+}
+
+
+/* Renamed from pinnacleai-watermark-button to pinnacleai-openfolder-button */
+.pinnacleai-openfolder-button {
+    padding: 8px 20px;
+    background-color: #306dce;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    outline: none !important;
+	box-shadow: none !important;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+.pinnacleai-openfolder-button:hover {
+    background-color: #2563eb;
+}
+.pinnacleai-openfolder-button:active {
+    background-color: #2563eb;
+}
+
+/* Added for Open SSH button with slightly darker color */
+.pinnacleai-openssh-button {
+    padding: 8px 20px;
+    background-color: #656565; /* Slightly darker than the #5a5a5a in the TS file */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    outline: none !important;
+	box-shadow: none !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.pinnacleai-openssh-button:hover {
+    background-color: #474747; /* Darker on hover */
+}
+.pinnacleai-openssh-button:active {
+    background-color: #474747;
+}
+
+
+.pinnacleai-settings-watermark-button {
+	margin: 8px 0;
+	padding: 8px 20px;
+	background-color: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	border: none;
+	border-radius: 4px;
+	outline: none !important;
+	box-shadow: none !important;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.pinnacleai-settings-watermark-button:hover {
+	filter: brightness(1.1);
+}
+
+.pinnacleai-settings-watermark-button:active {
+	filter: brightness(1.1);
+}
+
+.pinnacleai-link {
+	color: #3b82f6;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.pinnacleai-link:hover {
+	opacity: 80%;
+}
+
+/* styles for all containers used by pinnacleai */
+.pinnacleai-scope {
+	--scrollbar-vertical-width: 8px;
+	--scrollbar-horizontal-height: 6px;
+}
+
+/* Target both pinnacleai-scope and all its descendants with scrollbars */
+.pinnacleai-scope,
+.pinnacleai-scope * {
+	scrollbar-width: thin !important;
+	scrollbar-color: var(--pinnacleai-bg-1) var(--pinnacleai-bg-3) !important;
+	/* For Firefox */
+}
+
+.pinnacleai-scope::-webkit-scrollbar,
+.pinnacleai-scope *::-webkit-scrollbar {
+	width: var(--scrollbar-vertical-width) !important;
+	height: var(--scrollbar-horizontal-height) !important;
+	background-color: var(--pinnacleai-bg-3) !important;
+}
+
+.pinnacleai-scope::-webkit-scrollbar-thumb,
+.pinnacleai-scope *::-webkit-scrollbar-thumb {
+	background-color: var(--pinnacleai-bg-1) !important;
+	border-radius: 4px !important;
+	border: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.pinnacleai-scope::-webkit-scrollbar-thumb:hover,
+.pinnacleai-scope *::-webkit-scrollbar-thumb:hover {
+	background-color: var(--pinnacleai-bg-1) !important;
+	filter: brightness(1.1) !important;
+}
+
+.pinnacleai-scope::-webkit-scrollbar-thumb:active,
+.pinnacleai-scope *::-webkit-scrollbar-thumb:active {
+	background-color: var(--pinnacleai-bg-1) !important;
+	filter: brightness(1.2) !important;
+}
+
+.pinnacleai-scope::-webkit-scrollbar-track,
+.pinnacleai-scope *::-webkit-scrollbar-track {
+	background-color: var(--pinnacleai-bg-3) !important;
+	border: none !important;
+}
+
+.pinnacleai-scope::-webkit-scrollbar-corner,
+.pinnacleai-scope *::-webkit-scrollbar-corner {
+	background-color: var(--pinnacleai-bg-3) !important;
+}
+
+/* Add pinnacleai-scrollable-element styles to match */
+.pinnacleai-scrollable-element {
+	background-color: var(--vscode-editor-background);
+	--scrollbar-vertical-width: 14px;
+	--scrollbar-horizontal-height: 6px;
+	overflow: auto;
+	/* Ensure scrollbars are shown when needed */
+}
+
+.pinnacleai-scrollable-element,
+.pinnacleai-scrollable-element * {
+	scrollbar-width: thin !important;
+	/* For Firefox */
+	scrollbar-color: var(--pinnacleai-bg-1) var(--pinnacleai-bg-3) !important;
+	/* For Firefox */
+}
+
+.pinnacleai-scrollable-element::-webkit-scrollbar,
+.pinnacleai-scrollable-element *::-webkit-scrollbar {
+	width: var(--scrollbar-vertical-width) !important;
+	height: var(--scrollbar-horizontal-height) !important;
+	background-color: var(--pinnacleai-bg-3) !important;
+}
+
+.pinnacleai-scrollable-element::-webkit-scrollbar-thumb,
+.pinnacleai-scrollable-element *::-webkit-scrollbar-thumb {
+	background-color: var(--pinnacleai-bg-1) !important;
+	border-radius: 4px !important;
+	border: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.pinnacleai-scrollable-element::-webkit-scrollbar-thumb:hover,
+.pinnacleai-scrollable-element *::-webkit-scrollbar-thumb:hover {
+	background-color: var(--pinnacleai-bg-1) !important;
+	filter: brightness(1.1) !important;
+}
+
+.pinnacleai-scrollable-element::-webkit-scrollbar-thumb:active,
+.pinnacleai-scrollable-element *::-webkit-scrollbar-thumb:active {
+	background-color: var(--pinnacleai-bg-1) !important;
+	filter: brightness(1.2) !important;
+}
+
+.pinnacleai-scrollable-element::-webkit-scrollbar-track,
+.pinnacleai-scrollable-element *::-webkit-scrollbar-track {
+	background-color: var(--pinnacleai-bg-3) !important;
+	border: none !important;
+}
+
+.pinnacleai-scrollable-element::-webkit-scrollbar-corner,
+.pinnacleai-scrollable-element *::-webkit-scrollbar-corner {
+	background-color: var(--pinnacleai-bg-3) !important;
+} 
