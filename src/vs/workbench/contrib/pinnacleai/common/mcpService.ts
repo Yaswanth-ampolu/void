@@ -17,7 +17,7 @@ import { IMainProcessService } from '../../../../platform/ipc/common/mainProcess
 import { MCPServerOfName, MCPConfigFileJSON, MCPServer, MCPToolCallParams, RawMCPToolCall, MCPServerEventResponse } from './mcpServiceTypes.js';
 import { Event, Emitter } from '../../../../base/common/event.js';
 import { InternalToolInfo } from './prompt/prompts.js';
-import { IPinnacleAISettingsService } from './pinnacleaiSettingsService.js';
+import { IPinnacleSettingsService } from './pinnacleaiSettingsService.js';
 import { MCPUserStateOfName } from './pinnacleaiSettingsTypes.js';
 
 
@@ -81,7 +81,7 @@ class MCPService extends Disposable implements IMCPService {
 		@IProductService private readonly productService: IProductService,
 		@IEditorService private readonly editorService: IEditorService,
 		@IMainProcessService private readonly mainProcessService: IMainProcessService,
-		@IPinnacleAISettingsService private readonly pinnacleaiSettingsService: IPinnacleAISettingsService,
+		@IPinnacleSettingsService private readonly pinnacleaiSettingsService: IPinnacleSettingsService,
 	) {
 		super();
 		this.channel = this.mainProcessService.getChannel('pinnacleai-channel-mcp')
@@ -357,4 +357,4 @@ class MCPService extends Disposable implements IMCPService {
 	// }
 }
 
-registerSingleton(IMCPService, MCPService, InstantiationType.Eager); 
+registerSingleton(IMCPService, MCPService, InstantiationType.Eager);

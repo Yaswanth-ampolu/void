@@ -11,9 +11,9 @@ import { IEditorContribution } from '../../../../editor/common/editorCommon.js';
 import { Selection } from '../../../../editor/common/core/selection.js';
 import { RunOnceScheduler } from '../../../../base/common/async.js';
 import * as dom from '../../../../base/browser/dom.js';
-import { mountPinnacleAISelectionHelper } from './react/out/pinnacleai-editor-widgets-tsx/index.js';
+import { mountPinnacleAiSelectionHelper } from './react/out/pinnacleai-editor-widgets-tsx/index.js';
 import { IInstantiationService } from '../../../../platform/instantiation/common/instantiation.js';
-import { IPinnacleAISettingsService } from '../common/pinnacleaiSettingsService.js';
+import { IPinnacleSettingsService } from '../common/pinnacleaiSettingsService.js';
 import { EditorOption } from '../../../../editor/common/config/editorOptions.js';
 import { getLengthOfTextPx } from './editCodeService.js';
 
@@ -43,7 +43,7 @@ export class SelectionHelperContribution extends Disposable implements IEditorCo
 	constructor(
 		private readonly _editor: ICodeEditor,
 		@IInstantiationService private readonly _instantiationService: IInstantiationService,
-		@IPinnacleAISettingsService private readonly _pinnacleaiSettingsService: IPinnacleAISettingsService
+		@IPinnacleSettingsService private readonly _pinnacleaiSettingsService: IPinnacleSettingsService
 	) {
 		super();
 
@@ -63,13 +63,15 @@ export class SelectionHelperContribution extends Disposable implements IEditorCo
 			if (this._reactComponentDisposable) {
 				this._reactComponentDisposable.dispose();
 			}
-			const res = mountPinnacleAISelectionHelper(content, accessor);
+			const res = mountPinnacleAiSelectionHelper(content, accessor);
 			if (!res) return;
 
 			this._reactComponentDisposable = res;
 			this._rerender = res.rerender;
 
-			this._register(this._reactComponentDisposable);
+			if (this._reactComponentDisposable) {
+				this._register(this._reactComponentDisposable);
+			}
 
 
 		});
@@ -279,4 +281,4 @@ export class SelectionHelperContribution extends Disposable implements IEditorCo
 }
 
 // Register the contribution
-registerEditorContribution(SelectionHelperContribution.ID, SelectionHelperContribution, EditorContributionInstantiation.Eager); 
+registerEditorContribution(SelectionHelperContribution.ID, SelectionHelperContribution, EditorContributionInstantiation.Eager);

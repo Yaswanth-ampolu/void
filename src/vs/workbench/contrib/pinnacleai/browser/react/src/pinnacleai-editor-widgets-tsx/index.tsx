@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------*/
 
 import { mountFnGenerator } from '../util/mountFnGenerator.js'
-import { VoidCommandBarMain } from './PinnacleAiCommandBar.js'
-import { VoidSelectionHelperMain } from './PinnacleAiSelectionHelper.js'
+import { PinnacleAiCommandBarMain } from './PinnacleAiCommandBar.js'
+import { PinnacleAiSelectionHelperMain } from './PinnacleAiSelectionHelper.js'
 
-export const mountVoidCommandBar = mountFnGenerator(VoidCommandBarMain)
+export const mountPinnacleAiCommandBar = mountFnGenerator(PinnacleAiCommandBarMain)
 
-export const mountVoidSelectionHelper = mountFnGenerator(VoidSelectionHelperMain)
+export const mountPinnacleAiSelectionHelper = mountFnGenerator(PinnacleAiSelectionHelperMain)
 

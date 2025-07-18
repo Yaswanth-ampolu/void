@@ -11,7 +11,7 @@ import { ISCMService } from '../../scm/common/scm.js'
 import { ProxyChannel } from '../../../../base/parts/ipc/common/ipc.js'
 import { IPinnacleAISCMService } from '../common/pinnacleaiSCMTypes.js'
 import { IMainProcessService } from '../../../../platform/ipc/common/mainProcessService.js'
-import { IPinnacleAISettingsService } from '../common/pinnacleaiSettingsService.js'
+import { IPinnacleSettingsService } from '../common/pinnacleaiSettingsService.js'
 import { IConvertToLLMMessageService } from './convertToLLMMessageService.js'
 import { ILLMMessageService } from '../common/sendLLMMessageService.js'
 import { ModelSelection, OverridesOfModel, ModelSelectionOptions } from '../common/pinnacleaiSettingsTypes.js'
@@ -52,7 +52,7 @@ class GenerateCommitMessageService extends Disposable implements IGenerateCommit
 	constructor(
 		@ISCMService private readonly scmService: ISCMService,
 		@IMainProcessService mainProcessService: IMainProcessService,
-		@IPinnacleAISettingsService private readonly pinnacleaiSettingsService: IPinnacleAISettingsService,
+		@IPinnacleSettingsService private readonly pinnacleaiSettingsService: IPinnacleSettingsService,
 		@IConvertToLLMMessageService private readonly convertToLLMMessageService: IConvertToLLMMessageService,
 		@ILLMMessageService private readonly llmMessageService: ILLMMessageService,
 		@IContextKeyService private readonly contextKeyService: IContextKeyService,
@@ -227,4 +227,4 @@ class LoadingGenerateCommitMessageAction extends Action2 {
 
 registerAction2(GenerateCommitMessageAction)
 registerAction2(LoadingGenerateCommitMessageAction)
-registerSingleton(IGenerateCommitMessageService, GenerateCommitMessageService, InstantiationType.Delayed) 
+registerSingleton(IGenerateCommitMessageService, GenerateCommitMessageService, InstantiationType.Delayed)

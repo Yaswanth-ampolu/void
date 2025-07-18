@@ -23,7 +23,7 @@ import { URI } from '../../../../base/common/uri.js';
 import { ContextKeyExpr } from '../../../../platform/contextkey/common/contextkey.js';
 
 
-import { mountPinnacleAISettings } from './react/out/pinnacleai-settings-tsx/index.js'
+import { mountPinnacleAiSettings } from './react/out/pinnacleai-settings-tsx/index.js'
 import { Codicon } from '../../../../base/common/codicons.js';
 import { toDisposable } from '../../../../base/common/lifecycle.js';
 
@@ -90,7 +90,7 @@ class PinnacleAISettingsPane extends EditorPane {
 
 		// Mount React into the scrollable content
 		this.instantiationService.invokeFunction(accessor => {
-			const disposeFn = mountPinnacleAISettings(settingsElt, accessor)?.dispose;
+			const disposeFn = mountPinnacleAiSettings(settingsElt, accessor)?.dispose;
 			this._register(toDisposable(() => disposeFn?.()))
 
 			// setTimeout(() => { // this is a complete hack and I don't really understand how scrollbar works here
@@ -205,4 +205,4 @@ MenuRegistry.appendMenuItem(MenuId.GlobalActivity, {
 		title: nls.localize('pinnacleaiSettingsActionGear', "PinnacleAI\'s Settings")
 	},
 	order: 1
-}); 
+});

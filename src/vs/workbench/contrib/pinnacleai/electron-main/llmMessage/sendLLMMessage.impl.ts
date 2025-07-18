@@ -692,7 +692,7 @@ const toGeminiFunctionDecl = (toolInfo: InternalToolInfo) => {
 			properties: Object.entries(params).reduce((acc, [key, value]) => {
 				acc[key] = {
 					type: Type.STRING,
-					description: value.description
+					description: (value as { description: string }).description
 				};
 				return acc;
 			}, {} as Record<string, Schema>)

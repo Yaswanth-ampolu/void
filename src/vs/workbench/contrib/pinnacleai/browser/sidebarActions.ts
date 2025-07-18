@@ -84,7 +84,7 @@ registerAction2(class extends Action2 {
 			title: localize2('pinnacleaiCmdL', 'Pinnacleai: Add Selection to Chat'),
 			keybinding: {
 				primary: KeyMod.CtrlCmd | KeyCode.KeyL,
-				weight: KeybindingWeight.PinnacleaiExtension
+				weight: KeybindingWeight.PinnacleAIExtension
 			}
 		});
 	}
@@ -152,7 +152,7 @@ registerAction2(class extends Action2 {
 			title: 'New Chat',
 			keybinding: {
 				primary: KeyMod.CtrlCmd | KeyMod.Shift | KeyCode.KeyL,
-				weight: KeybindingWeight.PinnacleaiExtension,
+				weight: KeybindingWeight.PinnacleAIExtension,
 			},
 			icon: { id: 'add' },
 			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', PINNACLEAI_VIEW_ID), }],

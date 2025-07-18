@@ -10,10 +10,10 @@ import { IEncryptionService } from '../../../../platform/encryption/common/encry
 import { registerSingleton, InstantiationType } from '../../../../platform/instantiation/common/extensions.js';
 import { createDecorator } from '../../../../platform/instantiation/common/instantiation.js';
 import { IStorageService, StorageScope, StorageTarget } from '../../../../platform/storage/common/storage.js';
-import { IMetricsService } from './metricsService.js';
+
 import { defaultProviderSettings, getModelCapabilities, ModelOverrides } from './modelCapabilities.js';
 import { PINNACLEAI_SETTINGS_STORAGE_KEY } from './storageKeys.js';
-import { defaultSettingsOfProvider, FeatureName, ProviderName, ModelSelectionOfFeature, SettingsOfProvider, SettingName, providerNames, ModelSelection, modelSelectionsEqual, featureNames, PinnacleStatefulModelInfo, GlobalSettings, GlobalSettingName, defaultGlobalSettings, ModelSelectionOptions, OptionsOfModelSelection, ChatMode, OverridesOfModel, defaultOverridesOfModel, MCPUserStateOfName as MCPUserStateOfName, MCPUserState } from './pinnacleaiSettingsTypes.js';
+import { defaultSettingsOfProvider, FeatureName, ProviderName, ModelSelectionOfFeature, SettingsOfProvider, SettingName, providerNames, ModelSelection, modelSelectionsEqual, featureNames, PinnacleAIStatefulModelInfo, GlobalSettings, GlobalSettingName, defaultGlobalSettings, ModelSelectionOptions, OptionsOfModelSelection, ChatMode, OverridesOfModel, defaultOverridesOfModel, MCPUserStateOfName as MCPUserStateOfName, MCPUserState } from './pinnacleaiSettingsTypes.js';
 
 
 // name is the name in the dropdown
@@ -84,10 +84,10 @@ export interface IPinnacleSettingsService {
 
 
 
-const _modelsWithSwappedInNewModels = (options: { existingModels: PinnacleStatefulModelInfo[], models: string[], type: 'autodetected' | 'default' }) => {
+const _modelsWithSwappedInNewModels = (options: { existingModels: PinnacleAIStatefulModelInfo[], models: string[], type: 'autodetected' | 'default' }) => {
 	const { existingModels, models, type } = options
 
-	const existingModelsMap: Record<string, PinnacleStatefulModelInfo> = {}
+	const existingModelsMap: Record<string, PinnacleAIStatefulModelInfo> = {}
 	for (const existingModel of existingModels) {
 		existingModelsMap[existingModel.modelName] = existingModel
 	}
@@ -240,7 +240,6 @@ class PinnacleSettingsService extends Disposable implements IPinnacleSettingsSer
 	constructor(
 		@IStorageService private readonly _storageService: IStorageService,
 		@IEncryptionService private readonly _encryptionService: IEncryptionService,
-		@IMetricsService private readonly _metricsService: IMetricsService,
 		// could have used this, but it's clearer the way it is (+ slightly different eg StorageTarget.USER)
 		// @ISecretStorageService private readonly _secretStorageService: ISecretStorageService,
 	) {
@@ -396,14 +395,17 @@ class PinnacleSettingsService extends Disposable implements IPinnacleSettingsSer
 	}
 
 	setOptionsOfModelSelection = async (featureName: FeatureName, providerName: ProviderName, modelName: string, newVal: Partial<ModelSelectionOptions>) => {
+		const currentOptions = this.state.optionsOfModelSelection[featureName] as any
+		const modelKey = `${providerName}/${modelName}`
+
 		const newState: PinnacleSettingsState = {
 			...this.state,
 			optionsOfModelSelection: {
 				...this.state.optionsOfModelSelection,
 				[featureName]: {
-					...this.state.optionsOfModelSelection[featureName],
-					[`${providerName}/${modelName}`]: {
-						...this.state.optionsOfModelSelection[featureName][`${providerName}/${modelName}`],
+					...currentOptions,
+					[modelKey]: {
+						...(currentOptions[modelKey] || {}),
 						...newVal,
 					},
 				},
@@ -527,7 +529,7 @@ class PinnacleSettingsService extends Disposable implements IPinnacleSettingsSer
 		const currentModels = this.state.settingsOfProvider[providerName]?.models ?? []
 		const modelToDelete = currentModels.find(m => m.modelName === modelName)
 		if (!modelToDelete) return false
-		if (modelToDelete.type !== 'user') return false
+		if (modelToDelete.type !== 'custom') return false
 
 		const newModels = currentModels.filter(m => m.modelName !== modelName)
 
@@ -593,4 +595,4 @@ class PinnacleSettingsService extends Disposable implements IPinnacleSettingsSer
 	}
 }
 
-registerSingleton(IPinnacleSettingsService, PinnacleSettingsService, InstantiationType.Eager); 
+registerSingleton(IPinnacleSettingsService, PinnacleSettingsService, InstantiationType.Eager);

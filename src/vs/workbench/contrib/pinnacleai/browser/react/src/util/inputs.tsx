@@ -1723,7 +1723,7 @@ export const PinnacleButtonBgDarken = ({ children, disabled, onClick, className 
 	>{children}</button>
 }
 
-// export const VoidScrollableElt = ({ options, children }: { options: ScrollableElementCreationOptions, children: React.ReactNode }) => {
+// export const PinnacleScrollableElt = ({ options, children }: { options: ScrollableElementCreationOptions, children: React.ReactNode }) => {
 // 	const instanceRef = useRef<DomScrollableElement | null>(null);
 // 	const [childrenPortal, setChildrenPortal] = useState<React.ReactNode | null>(null)
 
@@ -1750,7 +1750,7 @@ export const PinnacleButtonBgDarken = ({ children, disabled, onClick, className 
 // 	</>
 // }
 
-// export const VoidSelectBox = <T,>({ onChangeSelection, initVal, selectBoxRef, options }: {
+// export const PinnacleAiSelectBox = <T,>({ onChangeSelection, initVal, selectBoxRef, options }: {
 // 	initVal: T;
 // 	selectBoxRef: React.MutableRefObject<SelectBox | null>;
 // 	options: readonly { text: string, value: T }[];
@@ -1793,7 +1793,7 @@ export const PinnacleButtonBgDarken = ({ children, disabled, onClick, className 
 
 
 
-// export const VoidCheckBox = ({ onChangeChecked, initVal, label, checkboxRef, }: {
+// export const PinnacleCheckBox = ({ onChangeChecked, initVal, label, checkboxRef, }: {
 // 	onChangeChecked: (checked: boolean) => void;
 // 	initVal: boolean;
 // 	checkboxRef: React.MutableRefObject<ObjectSettingCheckboxWidget | null>;

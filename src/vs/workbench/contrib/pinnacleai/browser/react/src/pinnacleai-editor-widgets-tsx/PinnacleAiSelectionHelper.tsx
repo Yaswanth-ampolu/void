@@ -7,45 +7,47 @@
 import { useAccessor, useActiveURI, useIsDark, useSettingsState } from '../util/services.js';
 
 import '../styles.css'
-import { VOID_CTRL_K_ACTION_ID, VOID_CTRL_L_ACTION_ID } from '../../../actionIDs.js';
+import { PINNACLEAI_CTRL_K_ACTION_ID, PINNACLEAI_CTRL_L_ACTION_ID } from '../../../actionIDs.js';
 import { Circle, MoreVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { VoidSelectionHelperProps } from '../../../../../void/browser/voidSelectionHelperWidget.js';
-import { VOID_OPEN_SETTINGS_ACTION_ID } from '../../../voidSettingsPane.js';
+import { PinnacleAISelectionHelperProps } from '../../../../../../contrib/pinnacleai/browser/pinnacleaiSelectionHelperWidget.js';
+
+// Define the constant directly
+const PINNACLEAI_OPEN_SETTINGS_ACTION_ID = 'workbench.action.openPinnacleAISettings';
 
 
-export const VoidSelectionHelperMain = (props: VoidSelectionHelperProps) => {
+export const PinnacleAiSelectionHelperMain = (props: PinnacleAISelectionHelperProps) => {
 
 	const isDark = useIsDark()
 
 	return <div
-		className={`@@void-scope ${isDark ? 'dark' : ''}`}
+		className={`@@pinnacleai-scope ${isDark ? 'dark' : ''}`}
 	>
-		<VoidSelectionHelper {...props} />
+		<PinnacleAiSelectionHelper {...props} />
 	</div>
 }
 
 
 
-const VoidSelectionHelper = ({ rerenderKey }: VoidSelectionHelperProps) => {
+const PinnacleAiSelectionHelper = ({ rerenderKey }: PinnacleAISelectionHelperProps) => {
 
 
 	const accessor = useAccessor()
 	const keybindingService = accessor.get('IKeybindingService')
 	const commandService = accessor.get('ICommandService')
 
-	const ctrlLKeybind = keybindingService.lookupKeybinding(VOID_CTRL_L_ACTION_ID)
-	const ctrlKKeybind = keybindingService.lookupKeybinding(VOID_CTRL_K_ACTION_ID)
+	const ctrlLKeybind = keybindingService.lookupKeybinding(PINNACLEAI_CTRL_L_ACTION_ID)
+	const ctrlKKeybind = keybindingService.lookupKeybinding(PINNACLEAI_CTRL_K_ACTION_ID)
 
-	const dividerHTML = <div className='w-[0.5px] bg-void-border-3'></div>
+	const dividerHTML = <div className='w-[0.5px] bg-pinnacleai-border-3'></div>
 
 	const [reactRerenderCount, setReactRerenderKey] = useState(rerenderKey)
 	const [clickState, setClickState] = useState<'init' | 'clickedOption' | 'clickedMore'>('init')
 
 	useEffect(() => {
 		const disposable = commandService.onWillExecuteCommand(e => {
-			if (e.commandId === VOID_CTRL_L_ACTION_ID || e.commandId === VOID_CTRL_K_ACTION_ID) {
+			if (e.commandId === PINNACLEAI_CTRL_L_ACTION_ID || e.commandId === PINNACLEAI_CTRL_K_ACTION_ID) {
 				setClickState('clickedOption')
 			}
 		});
@@ -79,7 +81,7 @@ const VoidSelectionHelper = ({ rerenderKey }: VoidSelectionHelperProps) => {
 					cursor-pointer
 				'
 				onClick={() => {
-					commandService.executeCommand(VOID_CTRL_L_ACTION_ID)
+					commandService.executeCommand(PINNACLEAI_CTRL_L_ACTION_ID)
 					setClickState('clickedOption');
 				}}
 			>
@@ -99,7 +101,7 @@ const VoidSelectionHelper = ({ rerenderKey }: VoidSelectionHelperProps) => {
 					cursor-pointer
 				'
 				onClick={() => {
-					commandService.executeCommand(VOID_CTRL_K_ACTION_ID)
+					commandService.executeCommand(PINNACLEAI_CTRL_K_ACTION_ID)
 					setClickState('clickedOption');
 				}}
 			>
@@ -133,7 +135,7 @@ const VoidSelectionHelper = ({ rerenderKey }: VoidSelectionHelperProps) => {
 				cursor-pointer
 			'
 			onClick={() => {
-				commandService.executeCommand(VOID_OPEN_SETTINGS_ACTION_ID);
+				commandService.executeCommand(PINNACLEAI_OPEN_SETTINGS_ACTION_ID);
 				setClickState('clickedOption');
 			}}
 		>
@@ -159,7 +161,7 @@ const VoidSelectionHelper = ({ rerenderKey }: VoidSelectionHelperProps) => {
 		pointer-events-auto select-none
 		z-[1000]
 		rounded-sm shadow-md flex flex-nowrap text-nowrap
-		border border-void-border-3 bg-void-bg-2
+		border border-pinnacleai-border-3 bg-pinnacleai-bg-2
 		transition-all duration-200
 	'>
 		{clickState === 'init' ? defaultHTML

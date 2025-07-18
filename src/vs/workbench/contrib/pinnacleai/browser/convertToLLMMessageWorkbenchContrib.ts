@@ -7,14 +7,14 @@ import { Disposable } from '../../../../base/common/lifecycle.js';
 import { URI } from '../../../../base/common/uri.js';
 import { IWorkspaceContextService } from '../../../../platform/workspace/common/workspace.js';
 import { IWorkbenchContribution, registerWorkbenchContribution2, WorkbenchPhase } from '../../../common/contributions.js';
-import { IPinnacleaiModelService } from '../common/pinnacleaiModelService.js';
+import { IPinnacleAIModelService } from '../common/pinnacleaiModelService.js';
 
 class ConvertContribWorkbenchContribution extends Disposable implements IWorkbenchContribution {
 	static readonly ID = 'workbench.contrib.pinnacleai.convertcontrib'
 	_serviceBrand: undefined;
 
 	constructor(
-		@IPinnacleaiModelService private readonly pinnacleaiModelService: IPinnacleaiModelService,
+		@IPinnacleAIModelService private readonly pinnacleaiModelService: IPinnacleAIModelService,
 		@IWorkspaceContextService private readonly workspaceContext: IWorkspaceContextService,
 	) {
 		super()

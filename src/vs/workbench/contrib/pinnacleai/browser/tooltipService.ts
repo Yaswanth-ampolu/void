@@ -7,7 +7,7 @@ import { Disposable, toDisposable } from '../../../../base/common/lifecycle.js';
 import { IInstantiationService } from '../../../../platform/instantiation/common/instantiation.js';
 import { IWorkbenchContribution, registerWorkbenchContribution2, WorkbenchPhase } from '../../../common/contributions.js';
 import { ServicesAccessor } from '../../../../editor/browser/editorExtensions.js';
-import { mountPinnacleAITooltip } from './react/out/pinnacleai-tooltip/index.js';
+import { mountPinnacleAiTooltip } from './react/out/pinnacleai-tooltip/index.js';
 import { h, getActiveWindow } from '../../../../base/browser/dom.js';
 
 // Tooltip contribution that mounts the component at startup
@@ -35,7 +35,7 @@ export class TooltipContribution extends Disposable implements IWorkbenchContrib
 
 			// Mount the React component
 			this.instantiationService.invokeFunction((accessor: ServicesAccessor) => {
-				const result = mountPinnacleAITooltip(tooltipContainer, accessor);
+				const result = mountPinnacleAiTooltip(tooltipContainer, accessor);
 				if (result && typeof result.dispose === 'function') {
 					this._register(toDisposable(result.dispose));
 				}
@@ -52,4 +52,4 @@ export class TooltipContribution extends Disposable implements IWorkbenchContrib
 }
 
 // Register the contribution to be initialized during the AfterRestored phase
-registerWorkbenchContribution2(TooltipContribution.ID, TooltipContribution, WorkbenchPhase.AfterRestored); 
+registerWorkbenchContribution2(TooltipContribution.ID, TooltipContribution, WorkbenchPhase.AfterRestored);

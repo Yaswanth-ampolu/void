@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------*/
 
 import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react'; // Added useRef import just in case it was missed, though likely already present
-import { ProviderName, SettingName, displayInfoOfSettingName, providerNames, VoidStatefulModelInfo, customSettingNamesOfProvider, RefreshableProviderName, refreshableProviderNames, displayInfoOfProviderName, nonlocalProviderNames, localProviderNames, GlobalSettingName, featureNames, displayInfoOfFeatureName, isProviderNameDisabled, FeatureName, hasDownloadButtonsOnModelsProviderNames, subTextMdOfProviderName } from '../../../../common/voidSettingsTypes.js'
+import { ProviderName, SettingName, displayInfoOfSettingName, providerNames, PinnacleAIStatefulModelInfo, customSettingNamesOfProvider, RefreshableProviderName, refreshableProviderNames, displayInfoOfProviderName, nonlocalProviderNames, localProviderNames, GlobalSettingName, featureNames, displayInfoOfFeatureName, isProviderNameDisabled, FeatureName, hasDownloadButtonsOnModelsProviderNames, subTextMdOfProviderName } from '../../../../common/pinnacleaiSettingsTypes.js'
 import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js'
-import { VoidButtonBgDarken, VoidCustomDropdownBox, VoidInputBox2, VoidSimpleInputBox, VoidSwitch } from '../util/inputs.js'
+import { PinnacleButtonBgDarken, PinnacleCustomDropdownBox, PinnacleInputBox2, PinnacleSimpleInputBox, PinnacleSwitch } from '../util/inputs.js'
 import { useAccessor, useIsDark, useRefreshModelListener, useRefreshModelState, useSettingsState } from '../util/services.js'
 import { X, RefreshCw, Loader2, Check, Asterisk, Plus } from 'lucide-react'
 import { URI } from '../../../../../../../base/common/uri.js'
@@ -34,7 +34,7 @@ type Tab =
 
 const ButtonLeftTextRightOption = ({ text, leftButton }: { text: string, leftButton?: React.ReactNode }) => {
 
-	return <div className='flex items-center text-void-fg-3 px-3 py-0.5 rounded-sm overflow-hidden gap-2'>
+	return <div className='flex items-center text-pinnacleai-fg-3 px-3 py-0.5 rounded-sm overflow-hidden gap-2'>
 		{leftButton ? leftButton : null}
 		<span>
 			{text}
@@ -182,7 +182,7 @@ const ConfirmButton = ({ children, onConfirm, className }: { children: React.Rea
 	}, [confirm]);
 	return (
 		<div ref={ref} className={`inline-block`}>
-			<VoidButtonBgDarken className={className} onClick={() => {
+			<PinnacleButtonBgDarken className={className} onClick={() => {
 				if (!confirm) {
 					setConfirm(true);
 				} else {
@@ -191,7 +191,7 @@ const ConfirmButton = ({ children, onConfirm, className }: { children: React.Rea
 				}
 			}}>
 				{confirm ? `Confirm Reset` : children}
-			</VoidButtonBgDarken>
+			</PinnacleButtonBgDarken>
 		</div>
 	);
 };
@@ -218,7 +218,7 @@ const SimpleModelSettingsDialog = ({
 	const accessor = useAccessor();
 	const settingsState = useSettingsState();
 	const mouseDownInsideModal = useRef(false); // Ref to track mousedown origin
-	const settingsStateService = accessor.get('IVoidSettingsService');
+	const settingsStateService = accessor.get('IPinnacleSettingsService');
 
 	// current overrides and defaults
 	const defaultModelCapabilities = getModelCapabilities(providerName, modelName, undefined);
@@ -281,7 +281,7 @@ const SimpleModelSettingsDialog = ({
 		onClose();
 	};
 
-	const sourcecodeOverridesLink = `https://github.com/voideditor/void/blob/2e5ecb291d33afbe4565921664fb7e183189c1c5/src/vs/workbench/contrib/void/common/modelCapabilities.ts#L146-L172`
+	const sourcecodeOverridesLink = `https://github.com/pinnacleai/pinnacleai/blob/2e5ecb291d33afbe4565921664fb7e183189c1c5/src/vs/workbench/contrib/pinnacleai/common/modelCapabilities.ts#L146-L172`
 
 	return (
 		<div // Backdrop
@@ -298,7 +298,7 @@ const SimpleModelSettingsDialog = ({
 		>
 			{/* MODAL */}
 			<div
-				className="bg-void-bg-1 rounded-md p-4 max-w-xl w-full shadow-xl overflow-y-auto max-h-[90vh]"
+				className="bg-pinnacleai-bg-1 rounded-md p-4 max-w-xl w-full shadow-xl overflow-y-auto max-h-[90vh]"
 				onClick={(e) => e.stopPropagation()} // Keep stopping propagation for normal clicks inside
 				onMouseDown={(e) => {
 					mouseDownInsideModal.current = true;
@@ -311,36 +311,36 @@ const SimpleModelSettingsDialog = ({
 					</h3>
 					<button
 						onClick={onClose}
-						className="text-void-fg-3 hover:text-void-fg-1"
+						className="text-pinnacleai-fg-3 hover:text-pinnacleai-fg-1"
 					>
 						<X className="size-5" />
 					</button>
 				</div>
 
 				{/* Display model recognition status */}
-				<div className="text-sm text-void-fg-3 mb-4">
-					{type === 'default' ? `${modelName} comes packaged with Void, so you shouldn't need to change these settings.`
+				<div className="text-sm text-pinnacleai-fg-3 mb-4">
+					{type === 'default' ? `${modelName} comes packaged with PinnacleAI, so you shouldn't need to change these settings.`
 						: isUnrecognizedModel
-							? `Model not recognized by Void.`
-							: `Void recognizes ${modelName} ("${recognizedModelName}").`}
+							? `Model not recognized by PinnacleAI.`
+							: `PinnacleAI recognizes ${modelName} ("${recognizedModelName}").`}
 				</div>
 
 
 				{/* override toggle */}
 				<div className="flex items-center gap-2 mb-4">
-					<VoidSwitch size='xs' value={overrideEnabled} onChange={setOverrideEnabled} />
-					<span className="text-void-fg-3 text-sm">Override model defaults</span>
+					<PinnacleSwitch size='xs' value={overrideEnabled} onChange={setOverrideEnabled} />
+					<span className="text-pinnacleai-fg-3 text-sm">Override model defaults</span>
 				</div>
 
 				{/* Informational link */}
-				{overrideEnabled && <div className="text-sm text-void-fg-3 mb-4">
+				{overrideEnabled && <div className="text-sm text-pinnacleai-fg-3 mb-4">
 					<ChatMarkdownRender string={`See the [sourcecode](${sourcecodeOverridesLink}) for a reference on how to set this JSON (advanced).`} chatMessageLocation={undefined} />
 				</div>}
 
 				<textarea
 					key={overrideEnabled + ''}
 					ref={textAreaRef}
-					className={`w-full min-h-[200px] p-2 rounded-sm border border-void-border-2 bg-void-bg-2 resize-none font-mono text-sm ${!overrideEnabled ? 'text-void-fg-3' : ''}`}
+					className={`w-full min-h-[200px] p-2 rounded-sm border border-pinnacleai-border-2 bg-pinnacleai-bg-2 resize-none font-mono text-sm ${!overrideEnabled ? 'text-pinnacleai-fg-3' : ''}`}
 					defaultValue={overrideEnabled && currentOverrides ? JSON.stringify(currentOverrides, null, 2) : placeholder}
 					placeholder={placeholder}
 					readOnly={!overrideEnabled}
@@ -351,15 +351,15 @@ const SimpleModelSettingsDialog = ({
 
 
 				<div className="flex justify-end gap-2 mt-4">
-					<VoidButtonBgDarken onClick={onClose} className="px-3 py-1">
+					<PinnacleButtonBgDarken onClick={onClose} className="px-3 py-1">
 						Cancel
-					</VoidButtonBgDarken>
-					<VoidButtonBgDarken
+					</PinnacleButtonBgDarken>
+					<PinnacleButtonBgDarken
 						onClick={onSave}
 						className="px-3 py-1 bg-[#0e70c0] text-white"
 					>
 						Save
-					</VoidButtonBgDarken>
+					</PinnacleButtonBgDarken>
 				</div>
 			</div>
 		</div>
@@ -371,7 +371,7 @@ const SimpleModelSettingsDialog = ({
 
 export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderName[] }) => {
 	const accessor = useAccessor()
-	const settingsStateService = accessor.get('IVoidSettingsService')
+	const settingsStateService = accessor.get('IPinnacleSettingsService')
 	const settingsState = useSettingsState()
 
 	// State to track which model's settings dialog is open
@@ -389,7 +389,7 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 	const [errorString, setErrorString] = useState('');
 
 	// a dump of all the enabled providers' models
-	const modelDump: (VoidStatefulModelInfo & { providerName: ProviderName, providerEnabled: boolean })[] = []
+	const modelDump: (PinnacleAIStatefulModelInfo & { providerName: ProviderName, providerEnabled: boolean })[] = []
 
 	// Use either filtered providers or all providers
 	const providersToShow = filteredProviders || providerNames;
@@ -452,9 +452,9 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 
 
 			const detailAboutModel = type === 'autodetected' ?
-				<Asterisk size={14} className="inline-block align-text-top brightness-115 stroke-[2] text-[#0e70c0]" data-tooltip-id='void-tooltip' data-tooltip-place='right' data-tooltip-content='Detected locally' />
+				<Asterisk size={14} className="inline-block align-text-top brightness-115 stroke-[2] text-[#0e70c0]" data-tooltip-id='pinnacleai-tooltip' data-tooltip-place='right' data-tooltip-content='Detected locally' />
 				: type === 'custom' ?
-					<Asterisk size={14} className="inline-block align-text-top brightness-115 stroke-[2] text-[#0e70c0]" data-tooltip-id='void-tooltip' data-tooltip-place='right' data-tooltip-content='Custom model' />
+					<Asterisk size={14} className="inline-block align-text-top brightness-115 stroke-[2] text-[#0e70c0]" data-tooltip-id='pinnacleai-tooltip' data-tooltip-place='right' data-tooltip-content='Custom model' />
 					: undefined
 
 			const hasOverrides = !!settingsState.overridesOfModel?.[providerName]?.[modelName]
@@ -477,12 +477,12 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 						<div className="w-5 flex items-center justify-center">
 							<button
 								onClick={() => { setOpenSettingsModel({ modelName, providerName, type }) }}
-								data-tooltip-id='void-tooltip'
+								data-tooltip-id='pinnacleai-tooltip'
 								data-tooltip-place='right'
 								data-tooltip-content='Advanced Settings'
 								className={`${hasOverrides ? '' : 'opacity-0 group-hover:opacity-100'} transition-opacity`}
 							>
-								<Plus size={12} className="text-void-fg-3 opacity-50" />
+								<Plus size={12} className="text-pinnacleai-fg-3 opacity-50" />
 							</button>
 						</div>
 					)}
@@ -492,13 +492,13 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 
 
 					{/* Switch */}
-					<VoidSwitch
+					<PinnacleSwitch
 						value={value}
 						onChange={() => { settingsStateService.toggleModelHidden(providerName, modelName); }}
 						disabled={disabled}
 						size='sm'
 
-						data-tooltip-id='void-tooltip'
+						data-tooltip-id='pinnacleai-tooltip'
 						data-tooltip-place='right'
 						data-tooltip-content={tooltipName}
 					/>
@@ -507,12 +507,12 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 					<div className={`w-5 flex items-center justify-center`}>
 						{type === 'default' || type === 'autodetected' ? null : <button
 							onClick={() => { settingsStateService.deleteModel(providerName, modelName); }}
-							data-tooltip-id='void-tooltip'
+							data-tooltip-id='pinnacleai-tooltip'
 							data-tooltip-place='right'
 							data-tooltip-content='Delete'
 							className={`${hasOverrides ? '' : 'opacity-0 group-hover:opacity-100'} transition-opacity`}
 						>
-							<X size={12} className="text-void-fg-3 opacity-50" />
+							<X size={12} className="text-pinnacleai-fg-3 opacity-50" />
 						</button>}
 					</div>
 				</div>
@@ -530,21 +530,21 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 
 					{/* Provider dropdown */}
 					<ErrorBoundary>
-						<VoidCustomDropdownBox
+						<PinnacleCustomDropdownBox
 							options={providersToShow}
 							selectedOption={userChosenProviderName}
 							onChangeOption={(pn) => setUserChosenProviderName(pn)}
 							getOptionDisplayName={(pn) => pn ? displayInfoOfProviderName(pn).title : 'Provider Name'}
 							getOptionDropdownName={(pn) => pn ? displayInfoOfProviderName(pn).title : 'Provider Name'}
 							getOptionsEqual={(a, b) => a === b}
-							className="max-w-32 mx-2 w-full resize-none bg-void-bg-1 text-void-fg-1 placeholder:text-void-fg-3 border border-void-border-2 focus:border-void-border-1 py-1 px-2 rounded"
+							className="max-w-32 mx-2 w-full resize-none bg-pinnacleai-bg-1 text-pinnacleai-fg-1 placeholder:text-pinnacleai-fg-3 border border-pinnacleai-border-2 focus:border-pinnacleai-border-1 py-1 px-2 rounded"
 							arrowTouchesText={false}
 						/>
 					</ErrorBoundary>
 
 					{/* Model name input */}
 					<ErrorBoundary>
-						<VoidSimpleInputBox
+						<PinnacleSimpleInputBox
 							value={modelName}
 							compact={true}
 							onChangeValue={setModelName}
@@ -571,7 +571,7 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 							setModelName('');
 							setUserChosenProviderName(null);
 						}}
-						className='text-void-fg-4'
+						className='text-pinnacleai-fg-4'
 					>
 						<X className='size-4' />
 					</button>
@@ -585,7 +585,7 @@ export const ModelDump = ({ filteredProviders }: { filteredProviders?: ProviderN
 			</div>
 		) : (
 			<div
-				className="text-void-fg-4 flex flex-nowrap text-nowrap items-center hover:brightness-110 cursor-pointer mt-4"
+				className="text-pinnacleai-fg-4 flex flex-nowrap text-nowrap items-center hover:brightness-110 cursor-pointer mt-4"
 				onClick={() => setIsAddModelOpen(true)}
 			>
 				<div className="flex items-center gap-1">
@@ -613,7 +613,7 @@ const ProviderSetting = ({ providerName, settingName, subTextMd }: { providerNam
 	const { title: settingTitle, placeholder, isPasswordField } = displayInfoOfSettingName(providerName, settingName)
 
 	const accessor = useAccessor()
-	const voidSettingsService = accessor.get('IVoidSettingsService')
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 	const settingsState = useSettingsState()
 
 	const settingValue = settingsState.settingsOfProvider[providerName][settingName] as string // this should always be a string in this component
@@ -624,12 +624,12 @@ const ProviderSetting = ({ providerName, settingName, subTextMd }: { providerNam
 
 	// Create a stable callback reference using useCallback with proper dependencies
 	const handleChangeValue = useCallback((newVal: string) => {
-		voidSettingsService.setSettingOfProvider(providerName, settingName, newVal)
-	}, [voidSettingsService, providerName, settingName]);
+		pinnacleaiSettingsService.setSettingOfProvider(providerName, settingName, newVal)
+	}, [pinnacleaiSettingsService, providerName, settingName]);
 
 	return <ErrorBoundary>
 		<div className='my-1'>
-			<VoidSimpleInputBox
+			<PinnacleSimpleInputBox
 				value={settingValue}
 				onChangeValue={handleChangeValue}
 				placeholder={`${settingTitle} (${placeholder})`}
@@ -644,14 +644,14 @@ const ProviderSetting = ({ providerName, settingName, subTextMd }: { providerNam
 }
 
 // const OldSettingsForProvider = ({ providerName, showProviderTitle }: { providerName: ProviderName, showProviderTitle: boolean }) => {
-// 	const voidSettingsState = useSettingsState()
+// 	const pinnacleaiSettingsState = useSettingsState()
 
-// 	const needsModel = isProviderNameDisabled(providerName, voidSettingsState) === 'addModel'
+// 	const needsModel = isProviderNameDisabled(providerName, pinnacleaiSettingsState) === 'addModel'
 
 // 	// const accessor = useAccessor()
-// 	// const voidSettingsService = accessor.get('IVoidSettingsService')
+// 	// const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 
-// 	// const { enabled } = voidSettingsState.settingsOfProvider[providerName]
+// 	// const { enabled } = pinnacleaiSettingsState.settingsOfProvider[providerName]
 // 	const settingNames = customSettingNamesOfProvider(providerName)
 
 // 	const { title: providerTitle } = displayInfoOfProviderName(providerName)
@@ -662,13 +662,13 @@ const ProviderSetting = ({ providerName, settingName, subTextMd }: { providerNam
 // 			{showProviderTitle && <h3 className='text-xl truncate'>{providerTitle}</h3>}
 
 // 			{/* enable provider switch */}
-// 			{/* <VoidSwitch
+// 			{/* <PinnacleSwitch
 // 				value={!!enabled}
 // 				onChange={
 // 					useCallback(() => {
-// 						const enabledRef = voidSettingsService.state.settingsOfProvider[providerName].enabled
-// 						voidSettingsService.setSettingOfProvider(providerName, 'enabled', !enabledRef)
-// 					}, [voidSettingsService, providerName])}
+// 						const enabledRef = pinnacleaiSettingsService.state.settingsOfProvider[providerName].enabled
+// 						pinnacleaiSettingsService.setSettingOfProvider(providerName, 'enabled', !enabledRef)
+// 					}, [pinnacleaiSettingsService, providerName])}
 // 				size='sm+'
 // 			/> */}
 // 		</div>
@@ -690,14 +690,14 @@ const ProviderSetting = ({ providerName, settingName, subTextMd }: { providerNam
 
 
 export const SettingsForProvider = ({ providerName, showProviderTitle, showProviderSuggestions }: { providerName: ProviderName, showProviderTitle: boolean, showProviderSuggestions: boolean }) => {
-	const voidSettingsState = useSettingsState()
+	const pinnacleaiSettingsState = useSettingsState()
 
-	const needsModel = isProviderNameDisabled(providerName, voidSettingsState) === 'addModel'
+	const needsModel = isProviderNameDisabled(providerName, pinnacleaiSettingsState) === 'addModel'
 
 	// const accessor = useAccessor()
-	// const voidSettingsService = accessor.get('IVoidSettingsService')
+	// const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 
-	// const { enabled } = voidSettingsState.settingsOfProvider[providerName]
+	// const { enabled } = pinnacleaiSettingsState.settingsOfProvider[providerName]
 	const settingNames = customSettingNamesOfProvider(providerName)
 
 	const { title: providerTitle } = displayInfoOfProviderName(providerName)
@@ -708,13 +708,13 @@ export const SettingsForProvider = ({ providerName, showProviderTitle, showProvi
 			{showProviderTitle && <h3 className='text-xl truncate'>{providerTitle}</h3>}
 
 			{/* enable provider switch */}
-			{/* <VoidSwitch
+			{/* <PinnacleSwitch
 				value={!!enabled}
 				onChange={
 					useCallback(() => {
-						const enabledRef = voidSettingsService.state.settingsOfProvider[providerName].enabled
-						voidSettingsService.setSettingOfProvider(providerName, 'enabled', !enabledRef)
-					}, [voidSettingsService, providerName])}
+						const enabledRef = pinnacleaiSettingsService.state.settingsOfProvider[providerName].enabled
+						pinnacleaiSettingsService.setSettingOfProvider(providerName, 'enabled', !enabledRef)
+					}, [pinnacleaiSettingsService, providerName])}
 				size='sm+'
 			/> */}
 		</div>
@@ -742,7 +742,7 @@ export const SettingsForProvider = ({ providerName, showProviderTitle, showProvi
 }
 
 
-export const VoidProviderSettings = ({ providerNames }: { providerNames: ProviderName[] }) => {
+export const PinnacleAiProviderSettings = ({ providerNames }: { providerNames: ProviderName[] }) => {
 	return <>
 		{providerNames.map(providerName =>
 			<SettingsForProvider key={providerName} providerName={providerName} showProviderTitle={true} showProviderSuggestions={true} />
@@ -756,20 +756,20 @@ export const AutoDetectLocalModelsToggle = () => {
 	const settingName: GlobalSettingName = 'autoRefreshModels'
 
 	const accessor = useAccessor()
-	const voidSettingsService = accessor.get('IVoidSettingsService')
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 	const metricsService = accessor.get('IMetricsService')
 
-	const voidSettingsState = useSettingsState()
+	const pinnacleaiSettingsState = useSettingsState()
 
 	// right now this is just `enabled_autoRefreshModels`
-	const enabled = voidSettingsState.globalSettings[settingName]
+	const enabled = pinnacleaiSettingsState.globalSettings[settingName]
 
 	return <ButtonLeftTextRightOption
-		leftButton={<VoidSwitch
+		leftButton={<PinnacleSwitch
 			size='xxs'
 			value={enabled}
 			onChange={(newVal) => {
-				voidSettingsService.setGlobalSetting(settingName, newVal)
+				pinnacleaiSettingsService.setGlobalSetting(settingName, newVal)
 				metricsService.capture('Click', { action: 'Autorefresh Toggle', settingName, enabled: newVal })
 			}}
 		/>}
@@ -781,33 +781,33 @@ export const AutoDetectLocalModelsToggle = () => {
 
 export const AIInstructionsBox = () => {
 	const accessor = useAccessor()
-	const voidSettingsService = accessor.get('IVoidSettingsService')
-	const voidSettingsState = useSettingsState()
-	return <VoidInputBox2
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
+	const pinnacleaiSettingsState = useSettingsState()
+	return <PinnacleInputBox2
 		className='min-h-[81px] p-3 rounded-sm'
-		initValue={voidSettingsState.globalSettings.aiInstructions}
+		initValue={pinnacleaiSettingsState.globalSettings.aiInstructions}
 		placeholder={`Do not change my indentation or delete my comments. When writing TS or JS, do not add ;'s. Write new code using Rust if possible. `}
 		multiline
 		onChangeText={(newText) => {
-			voidSettingsService.setGlobalSetting('aiInstructions', newText)
+			pinnacleaiSettingsService.setGlobalSetting('aiInstructions', newText)
 		}}
 	/>
 }
 
 const FastApplyMethodDropdown = () => {
 	const accessor = useAccessor()
-	const voidSettingsService = accessor.get('IVoidSettingsService')
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 
 	const options = useMemo(() => [true, false], [])
 
 	const onChangeOption = useCallback((newVal: boolean) => {
-		voidSettingsService.setGlobalSetting('enableFastApply', newVal)
-	}, [voidSettingsService])
+		pinnacleaiSettingsService.setGlobalSetting('enableFastApply', newVal)
+	}, [pinnacleaiSettingsService])
 
-	return <VoidCustomDropdownBox
-		className='text-xs text-void-fg-3 bg-void-bg-1 border border-void-border-1 rounded p-0.5 px-1'
+	return <PinnacleCustomDropdownBox
+		className='text-xs text-pinnacleai-fg-3 bg-pinnacleai-bg-1 border border-pinnacleai-border-1 rounded p-0.5 px-1'
 		options={options}
-		selectedOption={voidSettingsService.state.globalSettings.enableFastApply}
+		selectedOption={pinnacleaiSettingsService.state.globalSettings.enableFastApply}
 		onChangeOption={onChangeOption}
 		getOptionDisplayName={(val) => val ? 'Fast Apply' : 'Slow Apply'}
 		getOptionDropdownName={(val) => val ? 'Fast Apply' : 'Slow Apply'}
@@ -819,27 +819,27 @@ const FastApplyMethodDropdown = () => {
 
 
 export const OllamaSetupInstructions = ({ sayWeAutoDetect }: { sayWeAutoDetect?: boolean }) => {
-	return <div className='prose-p:my-0 prose-ol:list-decimal prose-p:py-0 prose-ol:my-0 prose-ol:py-0 prose-span:my-0 prose-span:py-0 text-void-fg-3 text-sm list-decimal select-text'>
+	return <div className='prose-p:my-0 prose-ol:list-decimal prose-p:py-0 prose-ol:my-0 prose-ol:py-0 prose-span:my-0 prose-span:py-0 text-pinnacleai-fg-3 text-sm list-decimal select-text'>
 		<div className=''><ChatMarkdownRender string={`Ollama Setup Instructions`} chatMessageLocation={undefined} /></div>
 		<div className=' pl-6'><ChatMarkdownRender string={`1. Download [Ollama](https://ollama.com/download).`} chatMessageLocation={undefined} /></div>
 		<div className=' pl-6'><ChatMarkdownRender string={`2. Open your terminal.`} chatMessageLocation={undefined} /></div>
 		<div
 			className='pl-6 flex items-center w-fit'
-			data-tooltip-id='void-tooltip-ollama-settings'
+			data-tooltip-id='pinnacleai-tooltip-ollama-settings'
 		>
 			<ChatMarkdownRender string={`3. Run \`ollama pull your_model\` to install a model.`} chatMessageLocation={undefined} />
 		</div>
-		{sayWeAutoDetect && <div className=' pl-6'><ChatMarkdownRender string={`Void automatically detects locally running models and enables them.`} chatMessageLocation={undefined} /></div>}
+		{sayWeAutoDetect && <div className=' pl-6'><ChatMarkdownRender string={`PinnacleAI automatically detects locally running models and enables them.`} chatMessageLocation={undefined} /></div>}
 	</div>
 }
 
 
 const RedoOnboardingButton = ({ className }: { className?: string }) => {
 	const accessor = useAccessor()
-	const voidSettingsService = accessor.get('IVoidSettingsService')
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 	return <div
-		className={`text-void-fg-4 flex flex-nowrap text-nowrap items-center hover:brightness-110 cursor-pointer ${className}`}
-		onClick={() => { voidSettingsService.setGlobalSetting('isOnboardingComplete', false) }}
+		className={`text-pinnacleai-fg-4 flex flex-nowrap text-nowrap items-center hover:brightness-110 cursor-pointer ${className}`}
+		onClick={() => { pinnacleaiSettingsService.setGlobalSetting('isOnboardingComplete', false) }}
 	>
 		See onboarding screen?
 	</div>
@@ -854,25 +854,25 @@ const RedoOnboardingButton = ({ className }: { className?: string }) => {
 
 export const ToolApprovalTypeSwitch = ({ approvalType, size, desc }: { approvalType: ToolApprovalType, size: "xxs" | "xs" | "sm" | "sm+" | "md", desc: string }) => {
 	const accessor = useAccessor()
-	const voidSettingsService = accessor.get('IVoidSettingsService')
-	const voidSettingsState = useSettingsState()
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
+	const pinnacleaiSettingsState = useSettingsState()
 	const metricsService = accessor.get('IMetricsService')
 
 	const onToggleAutoApprove = useCallback((approvalType: ToolApprovalType, newValue: boolean) => {
-		voidSettingsService.setGlobalSetting('autoApprove', {
-			...voidSettingsService.state.globalSettings.autoApprove,
+		pinnacleaiSettingsService.setGlobalSetting('autoApprove', {
+			...pinnacleaiSettingsService.state.globalSettings.autoApprove,
 			[approvalType]: newValue
 		})
 		metricsService.capture('Tool Auto-Accept Toggle', { enabled: newValue })
-	}, [voidSettingsService, metricsService])
+	}, [pinnacleaiSettingsService, metricsService])
 
 	return <>
-		<VoidSwitch
+		<PinnacleSwitch
 			size={size}
-			value={voidSettingsState.globalSettings.autoApprove[approvalType] ?? false}
+			value={pinnacleaiSettingsState.globalSettings.autoApprove[approvalType] ?? false}
 			onChange={(newVal) => onToggleAutoApprove(approvalType, newVal)}
 		/>
-		<span className="text-void-fg-3 text-xs">{desc}</span>
+		<span className="text-pinnacleai-fg-3 text-xs">{desc}</span>
 	</>
 }
 
@@ -905,13 +905,13 @@ export const OneClickSwitchButton = ({ fromEditor = 'VS Code', className = '' }:
 	}
 
 	return <>
-		<VoidButtonBgDarken className={`max-w-48 p-4 ${className}`} disabled={transferState.type !== 'done'} onClick={onClick}>
+		<PinnacleButtonBgDarken className={`max-w-48 p-4 ${className}`} disabled={transferState.type !== 'done'} onClick={onClick}>
 			{transferState.type === 'done' ? `Transfer from ${fromEditor}`
 				: transferState.type === 'loading' ? <span className='text-nowrap flex flex-nowrap'>Transferring<IconLoading /></span>
 					: transferState.type === 'justfinished' ? <AnimatedCheckmarkButton text='Settings Transferred' className='bg-none' />
 						: null
 			}
-		</VoidButtonBgDarken>
+		</PinnacleButtonBgDarken>
 		{transferState.type === 'done' && transferState.error ? <WarningBox text={transferState.error} /> : null}
 	</>
 }
@@ -924,13 +924,13 @@ const MCPServerComponent = ({ name, server }: { name: string, server: MCPServer 
 	const accessor = useAccessor();
 	const mcpService = accessor.get('IMCPService');
 
-	const voidSettings = useSettingsState()
-	const isOn = voidSettings.mcpUserStateOfName[name]?.isOn
+	const pinnacleaiSettings = useSettingsState()
+	const isOn = pinnacleaiSettings.mcpUserStateOfName[name]?.isOn
 
 	const removeUniquePrefix = (name: string) => name.split('_').slice(1).join('_')
 
 	return (
-		<div className="border border-void-border-2 bg-void-bg-1 py-3 px-4 rounded-sm my-2">
+		<div className="border border-pinnacleai-border-2 bg-pinnacleai-bg-1 py-3 px-4 rounded-sm my-2">
 			<div className="flex items-center justify-between">
 				{/* Left side - status and name */}
 				<div className="flex items-center gap-2">
@@ -939,16 +939,16 @@ const MCPServerComponent = ({ name, server }: { name: string, server: MCPServer 
 						${server.status === 'success' ? 'bg-green-500'
 							: server.status === 'error' ? 'bg-red-500'
 								: server.status === 'loading' ? 'bg-yellow-500'
-									: server.status === 'offline' ? 'bg-void-fg-3'
+									: server.status === 'offline' ? 'bg-pinnacleai-fg-3'
 										: ''}
 					`}></div>
 
 					{/* Server name */}
-					<div className="text-sm font-medium text-void-fg-1">{name}</div>
+					<div className="text-sm font-medium text-pinnacleai-fg-1">{name}</div>
 				</div>
 
 				{/* Right side - power toggle switch */}
-				<VoidSwitch
+				<PinnacleSwitch
 					value={isOn ?? false}
 					size='xs'
 					disabled={server.status === 'error'}
@@ -964,17 +964,17 @@ const MCPServerComponent = ({ name, server }: { name: string, server: MCPServer 
 							(server.tools ?? []).map((tool: { name: string; description?: string }) => (
 								<span
 									key={tool.name}
-									className="px-2 py-0.5 bg-void-bg-2 text-void-fg-3 rounded-sm text-xs"
+									className="px-2 py-0.5 bg-pinnacleai-bg-2 text-pinnacleai-fg-3 rounded-sm text-xs"
 
-									data-tooltip-id='void-tooltip'
+									data-tooltip-id='pinnacleai-tooltip'
 									data-tooltip-content={tool.description || ''}
-									data-tooltip-class-name='void-max-w-[300px]'
+									data-tooltip-class-name='pinnacleai-max-w-[300px]'
 								>
 									{removeUniquePrefix(tool.name)}
 								</span>
 							))
 						) : (
-							<span className="text-xs text-void-fg-3">No tools available</span>
+							<span className="text-xs text-pinnacleai-fg-3">No tools available</span>
 						)}
 					</div>
 				</div>
@@ -983,8 +983,8 @@ const MCPServerComponent = ({ name, server }: { name: string, server: MCPServer 
 			{/* Command badge */}
 			{isOn && server.command && (
 				<div className="mt-3">
-					<div className="text-xs text-void-fg-3 mb-1">Command:</div>
-					<div className="px-2 py-1 bg-void-bg-2 text-xs font-mono overflow-x-auto whitespace-nowrap text-void-fg-2 rounded-sm">
+					<div className="text-xs text-pinnacleai-fg-3 mb-1">Command:</div>
+					<div className="px-2 py-1 bg-pinnacleai-bg-2 text-xs font-mono overflow-x-auto whitespace-nowrap text-pinnacleai-fg-2 rounded-sm">
 						{server.command}
 					</div>
 				</div>
@@ -1006,14 +1006,14 @@ const MCPServersList = () => {
 
 	let content: React.ReactNode
 	if (mcpServiceState.error) {
-		content = <div className="text-void-fg-3 text-sm mt-2">
+		content = <div className="text-pinnacleai-fg-3 text-sm mt-2">
 			{mcpServiceState.error}
 		</div>
 	}
 	else {
 		const entries = Object.entries(mcpServiceState.mcpServerOfName)
 		if (entries.length === 0) {
-			content = <div className="text-void-fg-3 text-sm mt-2">
+			content = <div className="text-pinnacleai-fg-3 text-sm mt-2">
 				No servers found
 			</div>
 		}
@@ -1048,7 +1048,7 @@ export const Settings = () => {
 	const environmentService = accessor.get('IEnvironmentService')
 	const nativeHostService = accessor.get('INativeHostService')
 	const settingsState = useSettingsState()
-	const voidSettingsService = accessor.get('IVoidSettingsService')
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 	const chatThreadsService = accessor.get('IChatThreadService')
 	const notificationService = accessor.get('INotificationService')
 	const mcpService = accessor.get('IMCPService')
@@ -1059,12 +1059,12 @@ export const Settings = () => {
 		if (t === 'Chats') {
 			// Export chat threads
 			dataStr = JSON.stringify(chatThreadsService.state, null, 2)
-			downloadName = 'void-chats.json'
+			downloadName = 'pinnacleai-chats.json'
 		}
 		else if (t === 'Settings') {
 			// Export user settings
-			dataStr = JSON.stringify(voidSettingsService.state, null, 2)
-			downloadName = 'void-settings.json'
+			dataStr = JSON.stringify(pinnacleaiSettingsService.state, null, 2)
+			downloadName = 'pinnacleai-settings.json'
 		}
 		else {
 			dataStr = ''
@@ -1102,7 +1102,7 @@ export const Settings = () => {
 					chatThreadsService.dangerousSetState(json as any)
 				}
 				else if (t === 'Settings') {
-					voidSettingsService.dangerousSetState(json as any)
+					pinnacleaiSettingsService.dangerousSetState(json as any)
 				}
 
 				notificationService.info(`${t} imported successfully!`)
@@ -1118,7 +1118,7 @@ export const Settings = () => {
 
 
 	return (
-		<div className={`@@void-scope ${isDark ? 'dark' : ''}`} style={{ height: '100%', width: '100%', overflow: 'auto' }}>
+		<div className={`@@pinnacleai-scope ${isDark ? 'dark' : ''}`} style={{ height: '100%', width: '100%', overflow: 'auto' }}>
 			<div className="flex flex-col md:flex-row w-full gap-6 max-w-[900px] mx-auto mb-32" style={{ minHeight: '80vh' }}>
 				{/* ──────────────  SIDEBAR  ────────────── */}
 
@@ -1140,7 +1140,7 @@ export const Settings = () => {
           py-2 px-4 rounded-md text-left transition-all duration-200
           ${selectedSection === tab
 										? 'bg-[#0e70c0]/80 text-white font-medium shadow-sm'
-										: 'bg-void-bg-2 hover:bg-void-bg-2/80 text-void-fg-1'}
+										: 'bg-pinnacleai-bg-2 hover:bg-pinnacleai-bg-2/80 text-pinnacleai-fg-1'}
         `}
 							>
 								{label}
@@ -1156,7 +1156,7 @@ export const Settings = () => {
 
 					<div className='max-w-3xl'>
 
-						<h1 className='text-2xl w-full'>{`Void's Settings`}</h1>
+						<h1 className='text-2xl w-full'>{`PinnacleAI\'s Settings`}</h1>
 
 						<div className='w-full h-[1px] my-2' />
 
@@ -1184,13 +1184,13 @@ export const Settings = () => {
 							<div className={shouldShowTab('localProviders') ? `` : 'hidden'}>
 								<ErrorBoundary>
 									<h2 className={`text-3xl mb-2`}>Local Providers</h2>
-									<h3 className={`text-void-fg-3 mb-2`}>{`Void can access any model that you host locally. We automatically detect your local models by default.`}</h3>
+									<h3 className={`text-pinnacleai-fg-3 mb-2`}>{`PinnacleAI can access any model that you host locally. We automatically detect your local models by default.`}</h3>
 
 									<div className='opacity-80 mb-4'>
 										<OllamaSetupInstructions sayWeAutoDetect={true} />
 									</div>
 
-									<VoidProviderSettings providerNames={localProviderNames} />
+									<PinnacleAiProviderSettings providerNames={localProviderNames} />
 								</ErrorBoundary>
 							</div>
 
@@ -1198,9 +1198,9 @@ export const Settings = () => {
 							<div className={shouldShowTab('providers') ? `` : 'hidden'}>
 								<ErrorBoundary>
 									<h2 className={`text-3xl mb-2`}>Other Providers</h2>
-									<h3 className={`text-void-fg-3 mb-2`}>{`Void can access models from Anthropic, OpenAI, OpenRouter, and more.`}</h3>
+									<h3 className={`text-pinnacleai-fg-3 mb-2`}>{`PinnacleAI can access models from Anthropic, OpenAI, OpenRouter, and more.`}</h3>
 
-									<VoidProviderSettings providerNames={nonlocalProviderNames} />
+									<PinnacleAiProviderSettings providerNames={nonlocalProviderNames} />
 								</ErrorBoundary>
 							</div>
 
@@ -1213,16 +1213,16 @@ export const Settings = () => {
 										<ErrorBoundary>
 											{/* FIM */}
 											<div>
-												<h4 className={`text-base`}>{displayInfoOfFeatureName('Autocomplete')}</h4>
-												<div className='text-sm italic text-void-fg-3 mt-1'>
+												<h4 className={`text-base`}>{displayInfoOfFeatureName('Autocomplete').title}</h4>
+												<div className='text-sm italic text-pinnacleai-fg-3 mt-1'>
 													<span>
 														Experimental.{' '}
 													</span>
 													<span
 														className='hover:brightness-110'
-														data-tooltip-id='void-tooltip'
+														data-tooltip-id='pinnacleai-tooltip'
 														data-tooltip-content='We recommend using the largest qwen2.5-coder model you can with Ollama (try qwen2.5-coder:3b).'
-														data-tooltip-class-name='void-max-w-[20px]'
+														data-tooltip-class-name='pinnacleai-max-w-[20px]'
 													>
 														Only works with FIM models.*
 													</span>
@@ -1232,19 +1232,19 @@ export const Settings = () => {
 													{/* Enable Switch */}
 													<ErrorBoundary>
 														<div className='flex items-center gap-x-2 my-2'>
-															<VoidSwitch
+															<PinnacleSwitch
 																size='xs'
 																value={settingsState.globalSettings.enableAutocomplete}
-																onChange={(newVal) => voidSettingsService.setGlobalSetting('enableAutocomplete', newVal)}
+																onChange={(newVal) => pinnacleaiSettingsService.setGlobalSetting('enableAutocomplete', newVal)}
 															/>
-															<span className='text-void-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.enableAutocomplete ? 'Enabled' : 'Disabled'}</span>
+															<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.enableAutocomplete ? 'Enabled' : 'Disabled'}</span>
 														</div>
 													</ErrorBoundary>
 
 													{/* Model Dropdown */}
 													<ErrorBoundary>
 														<div className={`my-2 ${!settingsState.globalSettings.enableAutocomplete ? 'hidden' : ''}`}>
-															<ModelDropdown featureName={'Autocomplete'} className='text-xs text-void-fg-3 bg-void-bg-1 border border-void-border-1 rounded p-0.5 px-1' />
+															<ModelDropdown featureName={'Autocomplete'} className='text-xs text-pinnacleai-fg-3 bg-pinnacleai-bg-1 border border-pinnacleai-border-1 rounded p-0.5 px-1' />
 														</div>
 													</ErrorBoundary>
 
@@ -1257,23 +1257,23 @@ export const Settings = () => {
 										<ErrorBoundary>
 
 											<div className='w-full'>
-												<h4 className={`text-base`}>{displayInfoOfFeatureName('Apply')}</h4>
-												<div className='text-sm italic text-void-fg-3 mt-1'>Settings that control the behavior of the Apply button.</div>
+												<h4 className={`text-base`}>{displayInfoOfFeatureName('Apply').title}</h4>
+												<div className='text-sm italic text-pinnacleai-fg-3 mt-1'>Settings that control the behavior of the Apply button.</div>
 
 												<div className='my-2'>
 													{/* Sync to Chat Switch */}
 													<div className='flex items-center gap-x-2 my-2'>
-														<VoidSwitch
+														<PinnacleSwitch
 															size='xs'
 															value={settingsState.globalSettings.syncApplyToChat}
-															onChange={(newVal) => voidSettingsService.setGlobalSetting('syncApplyToChat', newVal)}
+															onChange={(newVal) => pinnacleaiSettingsService.setGlobalSetting('syncApplyToChat', newVal)}
 														/>
-														<span className='text-void-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.syncApplyToChat ? 'Same as Chat model' : 'Different model'}</span>
+														<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.syncApplyToChat ? 'Same as Chat model' : 'Different model'}</span>
 													</div>
 
 													{/* Model Dropdown */}
 													<div className={`my-2 ${settingsState.globalSettings.syncApplyToChat ? 'hidden' : ''}`}>
-														<ModelDropdown featureName={'Apply'} className='text-xs text-void-fg-3 bg-void-bg-1 border border-void-border-1 rounded p-0.5 px-1' />
+														<ModelDropdown featureName={'Apply'} className='text-xs text-pinnacleai-fg-3 bg-pinnacleai-bg-1 border border-pinnacleai-border-1 rounded p-0.5 px-1' />
 													</div>
 												</div>
 
@@ -1294,7 +1294,7 @@ export const Settings = () => {
 										{/* Tools Section */}
 										<div>
 											<h4 className={`text-base`}>Tools</h4>
-											<div className='text-sm italic text-void-fg-3 mt-1'>{`Tools are functions that LLMs can call. Some tools require user approval.`}</div>
+											<div className='text-sm italic text-pinnacleai-fg-3 mt-1'>{`Tools are functions that LLMs can call. Some tools require user approval.`}</div>
 
 											<div className='my-2'>
 												{/* Auto Accept Switch */}
@@ -1311,24 +1311,24 @@ export const Settings = () => {
 												<ErrorBoundary>
 
 													<div className='flex items-center gap-x-2 my-2'>
-														<VoidSwitch
+														<PinnacleSwitch
 															size='xs'
 															value={settingsState.globalSettings.includeToolLintErrors}
-															onChange={(newVal) => voidSettingsService.setGlobalSetting('includeToolLintErrors', newVal)}
+															onChange={(newVal) => pinnacleaiSettingsService.setGlobalSetting('includeToolLintErrors', newVal)}
 														/>
-														<span className='text-void-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.includeToolLintErrors ? 'Fix lint errors' : `Fix lint errors`}</span>
+														<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.includeToolLintErrors ? 'Fix lint errors' : `Fix lint errors`}</span>
 													</div>
 												</ErrorBoundary>
 
 												{/* Auto Accept LLM Changes Switch */}
 												<ErrorBoundary>
 													<div className='flex items-center gap-x-2 my-2'>
-														<VoidSwitch
+														<PinnacleSwitch
 															size='xs'
 															value={settingsState.globalSettings.autoAcceptLLMChanges}
-															onChange={(newVal) => voidSettingsService.setGlobalSetting('autoAcceptLLMChanges', newVal)}
+															onChange={(newVal) => pinnacleaiSettingsService.setGlobalSetting('autoAcceptLLMChanges', newVal)}
 														/>
-														<span className='text-void-fg-3 text-xs pointer-events-none'>Auto-accept LLM changes</span>
+														<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>Auto-accept LLM changes</span>
 													</div>
 												</ErrorBoundary>
 											</div>
@@ -1338,18 +1338,18 @@ export const Settings = () => {
 
 										<div className='w-full'>
 											<h4 className={`text-base`}>Editor</h4>
-											<div className='text-sm italic text-void-fg-3 mt-1'>{`Settings that control the visibility of Void suggestions in the code editor.`}</div>
+											<div className='text-sm italic text-pinnacleai-fg-3 mt-1'>{`Settings that control the visibility of PinnacleAI suggestions in the code editor.`}</div>
 
 											<div className='my-2'>
 												{/* Auto Accept Switch */}
 												<ErrorBoundary>
 													<div className='flex items-center gap-x-2 my-2'>
-														<VoidSwitch
+														<PinnacleSwitch
 															size='xs'
 															value={settingsState.globalSettings.showInlineSuggestions}
-															onChange={(newVal) => voidSettingsService.setGlobalSetting('showInlineSuggestions', newVal)}
+															onChange={(newVal) => pinnacleaiSettingsService.setGlobalSetting('showInlineSuggestions', newVal)}
 														/>
-														<span className='text-void-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.showInlineSuggestions ? 'Show suggestions on select' : 'Show suggestions on select'}</span>
+														<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.showInlineSuggestions ? 'Show suggestions on select' : 'Show suggestions on select'}</span>
 													</div>
 												</ErrorBoundary>
 											</div>
@@ -1359,23 +1359,23 @@ export const Settings = () => {
 										<ErrorBoundary>
 
 											<div className='w-full'>
-												<h4 className={`text-base`}>{displayInfoOfFeatureName('SCM')}</h4>
-												<div className='text-sm italic text-void-fg-3 mt-1'>Settings that control the behavior of the commit message generator.</div>
+												<h4 className={`text-base`}>{displayInfoOfFeatureName('SCM').title}</h4>
+												<div className='text-sm italic text-pinnacleai-fg-3 mt-1'>Settings that control the behavior of the commit message generator.</div>
 
 												<div className='my-2'>
 													{/* Sync to Chat Switch */}
 													<div className='flex items-center gap-x-2 my-2'>
-														<VoidSwitch
+														<PinnacleSwitch
 															size='xs'
 															value={settingsState.globalSettings.syncSCMToChat}
-															onChange={(newVal) => voidSettingsService.setGlobalSetting('syncSCMToChat', newVal)}
+															onChange={(newVal) => pinnacleaiSettingsService.setGlobalSetting('syncSCMToChat', newVal)}
 														/>
-														<span className='text-void-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.syncSCMToChat ? 'Same as Chat model' : 'Different model'}</span>
+														<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>{settingsState.globalSettings.syncSCMToChat ? 'Same as Chat model' : 'Different model'}</span>
 													</div>
 
 													{/* Model Dropdown */}
 													<div className={`my-2 ${settingsState.globalSettings.syncSCMToChat ? 'hidden' : ''}`}>
-														<ModelDropdown featureName={'SCM'} className='text-xs text-void-fg-3 bg-void-bg-1 border border-void-border-1 rounded p-0.5 px-1' />
+														<ModelDropdown featureName={'SCM'} className='text-xs text-pinnacleai-fg-3 bg-pinnacleai-bg-1 border border-pinnacleai-border-1 rounded p-0.5 px-1' />
 													</div>
 												</div>
 
@@ -1391,7 +1391,7 @@ export const Settings = () => {
 								<div>
 									<ErrorBoundary>
 										<h2 className='text-3xl mb-2'>One-Click Switch</h2>
-										<h4 className='text-void-fg-3 mb-4'>{`Transfer your editor settings into Void.`}</h4>
+										<h4 className='text-pinnacleai-fg-3 mb-4'>{`Transfer your editor settings into PinnacleAI.`}</h4>
 
 										<div className='flex flex-col gap-2'>
 											<OneClickSwitchButton className='w-48' fromEditor="VS Code" />
@@ -1404,30 +1404,30 @@ export const Settings = () => {
 								{/* Import/Export section */}
 								<div>
 									<h2 className='text-3xl mb-2'>Import/Export</h2>
-									<h4 className='text-void-fg-3 mb-4'>{`Transfer Void's settings and chats in and out of Void.`}</h4>
+									<h4 className='text-pinnacleai-fg-3 mb-4'>{`Transfer PinnacleAI\'s settings and chats in and out of PinnacleAI.`}</h4>
 									<div className='flex flex-col gap-8'>
 										{/* Settings Subcategory */}
 										<div className='flex flex-col gap-2 max-w-48 w-full'>
 											<input key={2 * s} ref={fileInputSettingsRef} type='file' accept='.json' className='hidden' onChange={handleUpload('Settings')} />
-											<VoidButtonBgDarken className='px-4 py-1 w-full' onClick={() => { fileInputSettingsRef.current?.click() }}>
+											<PinnacleButtonBgDarken className='px-4 py-1 w-full' onClick={() => { fileInputSettingsRef.current?.click() }}>
 												Import Settings
-											</VoidButtonBgDarken>
-											<VoidButtonBgDarken className='px-4 py-1 w-full' onClick={() => onDownload('Settings')}>
+											</PinnacleButtonBgDarken>
+											<PinnacleButtonBgDarken className='px-4 py-1 w-full' onClick={() => onDownload('Settings')}>
 												Export Settings
-											</VoidButtonBgDarken>
-											<ConfirmButton className='px-4 py-1 w-full' onConfirm={() => { voidSettingsService.resetState(); }}>
+											</PinnacleButtonBgDarken>
+											<ConfirmButton className='px-4 py-1 w-full' onConfirm={() => { pinnacleaiSettingsService.resetState(); }}>
 												Reset Settings
 											</ConfirmButton>
 										</div>
 										{/* Chats Subcategory */}
 										<div className='flex flex-col gap-2 w-full max-w-48'>
 											<input key={2 * s + 1} ref={fileInputChatsRef} type='file' accept='.json' className='hidden' onChange={handleUpload('Chats')} />
-											<VoidButtonBgDarken className='px-4 py-1 w-full' onClick={() => { fileInputChatsRef.current?.click() }}>
+											<PinnacleButtonBgDarken className='px-4 py-1 w-full' onClick={() => { fileInputChatsRef.current?.click() }}>
 												Import Chats
-											</VoidButtonBgDarken>
-											<VoidButtonBgDarken className='px-4 py-1 w-full' onClick={() => onDownload('Chats')}>
+											</PinnacleButtonBgDarken>
+											<PinnacleButtonBgDarken className='px-4 py-1 w-full' onClick={() => onDownload('Chats')}>
 												Export Chats
-											</VoidButtonBgDarken>
+											</PinnacleButtonBgDarken>
 											<ConfirmButton className='px-4 py-1 w-full' onConfirm={() => { chatThreadsService.resetState(); }}>
 												Reset Chats
 											</ConfirmButton>
@@ -1440,22 +1440,22 @@ export const Settings = () => {
 								{/* Built-in Settings section */}
 								<div>
 									<h2 className={`text-3xl mb-2`}>Built-in Settings</h2>
-									<h4 className={`text-void-fg-3 mb-4`}>{`IDE settings, keyboard settings, and theme customization.`}</h4>
+									<h4 className={`text-pinnacleai-fg-3 mb-4`}>{`IDE settings, keyboard settings, and theme customization.`}</h4>
 
 									<ErrorBoundary>
 										<div className='flex flex-col gap-2 justify-center max-w-48 w-full'>
-											<VoidButtonBgDarken className='px-4 py-1' onClick={() => { commandService.executeCommand('workbench.action.openSettings') }}>
+											<PinnacleButtonBgDarken className='px-4 py-1' onClick={() => { commandService.executeCommand('workbench.action.openSettings') }}>
 												General Settings
-											</VoidButtonBgDarken>
-											<VoidButtonBgDarken className='px-4 py-1' onClick={() => { commandService.executeCommand('workbench.action.openGlobalKeybindings') }}>
+											</PinnacleButtonBgDarken>
+											<PinnacleButtonBgDarken className='px-4 py-1' onClick={() => { commandService.executeCommand('workbench.action.openGlobalKeybindings') }}>
 												Keyboard Settings
-											</VoidButtonBgDarken>
-											<VoidButtonBgDarken className='px-4 py-1' onClick={() => { commandService.executeCommand('workbench.action.selectTheme') }}>
+											</PinnacleButtonBgDarken>
+											<PinnacleButtonBgDarken className='px-4 py-1' onClick={() => { commandService.executeCommand('workbench.action.selectTheme') }}>
 												Theme Settings
-											</VoidButtonBgDarken>
-											<VoidButtonBgDarken className='px-4 py-1' onClick={() => { nativeHostService.showItemInFolder(environmentService.logsHome.fsPath) }}>
+											</PinnacleButtonBgDarken>
+											<PinnacleButtonBgDarken className='px-4 py-1' onClick={() => { nativeHostService.showItemInFolder(environmentService.logsHome.fsPath) }}>
 												Open Logs
-											</VoidButtonBgDarken>
+											</PinnacleButtonBgDarken>
 										</div>
 									</ErrorBoundary>
 								</div>
@@ -1464,10 +1464,10 @@ export const Settings = () => {
 								{/* AI Instructions section */}
 								<div className='max-w-[600px]'>
 									<h2 className={`text-3xl mb-2`}>AI Instructions</h2>
-									<h4 className={`text-void-fg-3 mb-4`}>
+									<h4 className={`text-pinnacleai-fg-3 mb-4`}>
 										<ChatMarkdownRender inPTag={true} string={`
 System instructions to include with all AI requests.
-Alternatively, place a \`.voidrules\` file in the root of your workspace.
+Alternatively, place a \`.pinnacleairules\` file in the root of your workspace.
 								`} chatMessageLocation={undefined} />
 									</h4>
 									<ErrorBoundary>
@@ -1477,20 +1477,20 @@ Alternatively, place a \`.voidrules\` file in the root of your workspace.
 									<div className='my-4'>
 										<ErrorBoundary>
 											<div className='flex items-center gap-x-2'>
-												<VoidSwitch
+												<PinnacleSwitch
 													size='xs'
 													value={!!settingsState.globalSettings.disableSystemMessage}
 													onChange={(newValue) => {
-														voidSettingsService.setGlobalSetting('disableSystemMessage', newValue);
+														pinnacleaiSettingsService.setGlobalSetting('disableSystemMessage', newValue);
 													}}
 												/>
-												<span className='text-void-fg-3 text-xs pointer-events-none'>
+												<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>
 													{'Disable system message'}
 												</span>
 											</div>
 										</ErrorBoundary>
-										<div className='text-void-fg-3 text-xs mt-1'>
-											{`When disabled, Void will not include anything in the system message except for content you specified above.`}
+										<div className='text-pinnacleai-fg-3 text-xs mt-1'>
+											{`When disabled, PinnacleAI will not include anything in the system message except for content you specified above.`}
 										</div>
 									</div>
 								</div>
@@ -1502,15 +1502,15 @@ Alternatively, place a \`.voidrules\` file in the root of your workspace.
 							<div className={shouldShowTab('mcp') ? `` : 'hidden'}>
 								<ErrorBoundary>
 									<h2 className='text-3xl mb-2'>MCP</h2>
-									<h4 className={`text-void-fg-3 mb-4`}>
+									<h4 className={`text-pinnacleai-fg-3 mb-4`}>
 										<ChatMarkdownRender inPTag={true} string={`
 Use Model Context Protocol to provide Agent mode with more tools.
 							`} chatMessageLocation={undefined} />
 									</h4>
 									<div className='my-2'>
-										<VoidButtonBgDarken className='px-4 py-1 w-full max-w-48' onClick={async () => { await mcpService.revealMCPConfigFile() }}>
+										<PinnacleButtonBgDarken className='px-4 py-1 w-full max-w-48' onClick={async () => { await mcpService.revealMCPConfigFile() }}>
 											Add MCP Server
-										</VoidButtonBgDarken>
+										</PinnacleButtonBgDarken>
 									</div>
 
 									<ErrorBoundary>

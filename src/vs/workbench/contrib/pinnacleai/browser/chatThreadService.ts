@@ -1837,3 +1837,5 @@ We only need to do it for files that were edited since `from`, ie files between 
 }
 
 registerSingleton(IChatThreadService, ChatThreadService, InstantiationType.Eager);
+
+// Remove invalid re-exports - these should be imported directly from the source files

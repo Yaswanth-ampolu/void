@@ -19,16 +19,14 @@ import { IUndoRedoElement, IUndoRedoService, UndoRedoElementType } from '../../.
 import { RenderOptions } from '../../../../editor/browser/widget/diffEditor/components/diffEditorViewZones/renderLines.js';
 // import { IModelService } from '../../../../editor/common/services/model.js';
 
-import * as dom from '../../../../base/browser/dom.js';
 import { Widget } from '../../../../base/browser/ui/widget.js';
 import { URI } from '../../../../base/common/uri.js';
 import { IConsistentEditorItemService, IConsistentItemService } from './helperServices/consistentItemService.js';
-import { pinnacleaiPrefixAndSuffix, ctrlKStream_userMessage, ctrlKStream_systemMessage, defaultQuickEditFimTags, rewriteCode_systemMessage, rewriteCode_userMessage, searchReplaceGivenDescription_systemMessage, searchReplaceGivenDescription_userMessage, tripleTick, } from '../common/prompt/prompts.js';
-import { IPinnacleaiCommandBarService } from './pinnacleaiCommandBarService.js';
+import { pinnaclePrefixAndSuffix, ctrlKStream_userMessage, ctrlKStream_systemMessage, defaultQuickEditFimTags, rewriteCode_systemMessage, rewriteCode_userMessage, searchReplaceGivenDescription_systemMessage, searchReplaceGivenDescription_userMessage, tripleTick, } from '../common/prompt/prompts.js';
 import { IKeybindingService } from '../../../../platform/keybinding/common/keybinding.js';
 import { PINNACLEAI_ACCEPT_DIFF_ACTION_ID, PINNACLEAI_REJECT_DIFF_ACTION_ID } from './actionIDs.js';
 
-import { mountCtrlK } from './react/out/quick-edit-tsx/index.js'
+import { mountPinnacleAiQuickEdit } from './react/out/quick-edit-tsx/index.js'
 import { QuickEditPropsType } from './quickEditActions.js';
 import { IModelContentChangedEvent } from '../../../../editor/common/textModelEvents.js';
 import { extractCodeFromFIM, extractCodeFromRegular, ExtractedSearchReplaceBlock, extractSearchReplaceBlocks } from '../common/helpers/extractCodeFromResult.js';
@@ -39,12 +37,12 @@ import { ILLMMessageService } from '../common/sendLLMMessageService.js';
 import { LLMChatMessage } from '../common/sendLLMMessageTypes.js';
 import { IMetricsService } from '../common/metricsService.js';
 import { IEditCodeService, AddCtrlKOpts, StartApplyingOpts, CallBeforeStartApplyingOpts, } from './editCodeServiceInterface.js';
-import { IPinnacleaiSettingsService } from '../common/pinnacleaiSettingsService.js';
+import { IPinnacleSettingsService } from '../common/pinnacleaiSettingsService.js';
 import { FeatureName } from '../common/pinnacleaiSettingsTypes.js';
-import { IPinnacleaiModelService } from '../common/pinnacleaiModelService.js';
+import { IPinnacleAIModelService } from '../common/pinnacleaiModelService.js';
 import { deepClone } from '../../../../base/common/objects.js';
 import { acceptBg, acceptBorder, buttonFontSize, buttonTextColor, rejectBg, rejectBorder } from '../common/helpers/colors.js';
-import { DiffArea, Diff, CtrlKZone, PinnacleaiFileSnapshot, DiffAreaSnapshotEntry, diffAreaSnapshotKeys, DiffZone, TrackingZone, ComputedDiff } from '../common/editCodeServiceTypes.js';
+import { DiffArea, Diff, CtrlKZone, PinnacleAIFileSnapshot, DiffAreaSnapshotEntry, diffAreaSnapshotKeys, DiffZone, TrackingZone, ComputedDiff } from '../common/editCodeServiceTypes.js';
 import { IConvertToLLMMessageService } from './convertToLLMMessageService.js';
 // import { isMacintosh } from '../../../../base/common/platform.js';
 // import { PINNACLEAI_OPEN_SETTINGS_ACTION_ID } from './pinnacleaiSettingsPane.js';
@@ -192,9 +190,9 @@ class EditCodeService extends Disposable implements IEditCodeService {
 		@IMetricsService private readonly _metricsService: IMetricsService,
 		@INotificationService private readonly _notificationService: INotificationService,
 		// @ICommandService private readonly _commandService: ICommandService,
-		@IPinnacleaiSettingsService private readonly _settingsService: IPinnacleaiSettingsService,
+		@IPinnacleSettingsService private readonly _settingsService: IPinnacleSettingsService,
 		// @IFileService private readonly _fileService: IFileService,
-		@IPinnacleaiModelService private readonly _pinnacleaiModelService: IPinnacleaiModelService,
+		@IPinnacleAIModelService private readonly _pinnacleaiModelService: IPinnacleAIModelService,
 		@IConvertToLLMMessageService private readonly _convertToLLMMessageService: IConvertToLLMMessageService,
 	) {
 		super();
@@ -217,7 +215,7 @@ class EditCodeService extends Disposable implements IEditCodeService {
 			this._register(
 				model.onDidChangeContent(e => {
 					// it's as if we just called _write, now all we need to do is realign and refresh
-				if (this.weAreWriting) return
+					if (this.weAreWriting) return
 					const uri = model.uri
 					this._onUserChangeContent(uri, e)
 				})
@@ -406,7 +404,7 @@ class EditCodeService extends Disposable implements IEditCodeService {
 			// mount react
 			let disposeFn: (() => void) | undefined = undefined
 			this._instantiationService.invokeFunction(accessor => {
-				disposeFn = mountCtrlK(domNode, accessor, {
+				disposeFn = mountPinnacleAiQuickEdit(domNode, accessor, {
 
 					diffareaid: ctrlKZone.diffareaid,
 
@@ -663,7 +661,7 @@ class EditCodeService extends Disposable implements IEditCodeService {
 
 
 
-	private _getCurrentPinnacleaiFileSnapshot = (uri: URI): PinnacleaiFileSnapshot => {
+	private _getCurrentPinnacleaiFileSnapshot = (uri: URI): PinnacleAIFileSnapshot => {
 		const { model } = this._pinnacleaiModelService.getModel(uri)
 		const snapshottedDiffAreaOfId: Record<string, DiffAreaSnapshotEntry> = {}
 
@@ -687,7 +685,7 @@ class EditCodeService extends Disposable implements IEditCodeService {
 	}
 
 
-	private _restorePinnacleaiFileSnapshot = async (uri: URI, snapshot: PinnacleaiFileSnapshot) => {
+	private _restorePinnacleaiFileSnapshot = async (uri: URI, snapshot: PinnacleAIFileSnapshot) => {
 		// for each diffarea in this uri, stop streaming if currently streaming
 		for (const diffareaid in this.diffAreaOfId) {
 			const diffArea = this.diffAreaOfId[diffareaid]
@@ -738,8 +736,8 @@ class EditCodeService extends Disposable implements IEditCodeService {
 
 
 	private _addToHistory(uri: URI, opts?: { onWillUndo?: () => void }) {
-		const beforeSnapshot: PinnacleaiFileSnapshot = this._getCurrentPinnacleaiFileSnapshot(uri)
-		let afterSnapshot: PinnacleaiFileSnapshot | null = null
+		const beforeSnapshot: PinnacleAIFileSnapshot = this._getCurrentPinnacleaiFileSnapshot(uri)
+		let afterSnapshot: PinnacleAIFileSnapshot | null = null
 
 		const elt: IUndoRedoElement = {
 			type: UndoRedoElementType.Resource,
@@ -764,7 +762,7 @@ class EditCodeService extends Disposable implements IEditCodeService {
 	}
 
 
-	public restorePinnacleaiFileSnapshot(uri: URI, snapshot: PinnacleaiFileSnapshot): void {
+	public restorePinnacleaiFileSnapshot(uri: URI, snapshot: PinnacleAIFileSnapshot): void {
 		this._restorePinnacleaiFileSnapshot(uri, snapshot)
 	}
 
@@ -1408,7 +1406,7 @@ class EditCodeService extends Disposable implements IEditCodeService {
 
 			const startLine = startRange === 'fullFile' ? 1 : startRange[0]
 			const endLine = startRange === 'fullFile' ? model.getLineCount() : startRange[1]
-			const { prefix, suffix } = pinnacleaiPrefixAndSuffix({ fullFileStr: originalFileCode, startLine, endLine })
+			const { prefix, suffix } = pinnaclePrefixAndSuffix({ fullFileStr: originalFileCode, startLine, endLine })
 			const userContent = ctrlKStream_userMessage({ selection: originalCode, instructions: instructions, prefix, suffix, fimTags: quickEditFIMTags, language })
 
 			const { messages: a, separateSystemMessage: b } = this._convertToLLMMessageService.prepareLLMSimpleMessages({
@@ -1538,27 +1536,27 @@ class EditCodeService extends Disposable implements IEditCodeService {
 							{ shouldRealignDiffAreas: true }
 						)
 
-					onDone()
-					resMessageDonePromise()
-				},
-				onError: (e) => {
-					onError(e)
-				},
-				onAbort: () => {
-					if (weAreAborting) return
-					// stop the loop to free up the promise, but don't modify state (already handled by whatever stopped it)
-					aborted = true
-					resMessageDonePromise()
-				},
-			})
-			// should never happen, just for safety
-			if (streamRequestIdRef.current === null) { return }
+						onDone()
+						resMessageDonePromise()
+					},
+					onError: (e) => {
+						onError(e)
+					},
+					onAbort: () => {
+						if (weAreAborting) return
+						// stop the loop to free up the promise, but don't modify state (already handled by whatever stopped it)
+						aborted = true
+						resMessageDonePromise()
+					},
+				})
+				// should never happen, just for safety
+				if (streamRequestIdRef.current === null) { return }
 
-			await messageDonePromise
-			if (aborted) {
-				throw new Error(`Edit was interrupted by the user.`)
-			}
-		} // end while
+				await messageDonePromise
+				if (aborted) {
+					throw new Error(`Edit was interrupted by the user.`)
+				}
+			} // end while
 		} // end writeover
 
 		const applyDonePromise = new Promise<void>((res, rej) => { runWriteover().then(res).catch(rej) })
@@ -1866,7 +1864,7 @@ class EditCodeService extends Disposable implements IEditCodeService {
 								currStreamingBlockNum = 0
 								latestStreamLocationMutable = null
 								shouldUpdateOrigStreamStyle = true
-							oldBlocks = []
+								oldBlocks = []
 								for (const trackingZone of addedTrackingZoneOfBlockNum)
 									this._deleteTrackingZone(trackingZone)
 								addedTrackingZoneOfBlockNum.splice(0, Infinity)
@@ -2135,6 +2133,38 @@ class EditCodeService extends Disposable implements IEditCodeService {
 		onFinishEdit()
 	}
 
+	isCtrlKZoneStreaming({ diffareaid }: { diffareaid: number }) {
+		const ctrlKZone = this.diffAreaOfId[diffareaid]
+		if (!ctrlKZone) return false
+		if (ctrlKZone.type !== 'CtrlKZone') return false
+		return !!ctrlKZone._linkedStreamingDiffZone
+	}
+
+	// diffareaid of the ctrlKZone (even though the stream state is dictated by the linked diffZone)
+	interruptCtrlKStreaming({ diffareaid }: { diffareaid: number }) {
+		const ctrlKZone = this.diffAreaOfId[diffareaid]
+		if (ctrlKZone?.type !== 'CtrlKZone') return
+		if (!ctrlKZone._linkedStreamingDiffZone) return
+
+		const linkedStreamingDiffZone = this.diffAreaOfId[ctrlKZone._linkedStreamingDiffZone]
+		if (!linkedStreamingDiffZone) return
+		if (linkedStreamingDiffZone.type !== 'DiffZone') return
+
+		this._stopIfStreaming(linkedStreamingDiffZone)
+		this._undoHistory(linkedStreamingDiffZone._URI)
+	}
+
+	interruptURIStreaming({ uri }: { uri: URI }) {
+		if (!this._uriIsStreaming(uri)) return
+		this._undoHistory(uri)
+		// brute force for now is OK
+		for (const diffareaid of this.diffAreasOfURI[uri.fsPath] || []) {
+			const diffArea = this.diffAreaOfId[diffareaid]
+			if (diffArea?.type !== 'DiffZone') continue
+			this._stopIfStreaming(diffArea)
+		}
+	}
+
 }
 
 registerSingleton(IEditCodeService, EditCodeService, InstantiationType.Eager);
@@ -2169,8 +2199,8 @@ class AcceptRejectInlineWidget extends Widget implements IOverlayWidget {
 		this._domNode.style.cursor = 'pointer';
 		this._domNode.style.userSelect = 'none';
 		this._domNode.style.webkitUserSelect = 'none';
-		this._domNode.style.msUserSelect = 'none';
-		this._domNode.style.MozUserSelect = 'none';
+		(this._domNode.style as any).msUserSelect = 'none';
+		(this._domNode.style as any).MozUserSelect = 'none';
 
 		const createButton = (text: string, keybindingId: string, onClick: () => void, isAccept: boolean) => {
 			const button = document.createElement('div');

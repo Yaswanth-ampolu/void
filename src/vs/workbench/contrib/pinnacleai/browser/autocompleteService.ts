@@ -8,7 +8,8 @@ import { ILanguageFeaturesService } from '../../../../editor/common/services/lan
 import { createDecorator } from '../../../../platform/instantiation/common/instantiation.js';
 import { EndOfLinePreference, ITextModel } from '../../../../editor/common/model.js';
 import { Position } from '../../../../editor/common/core/position.js';
-import { InlineCompletion,
+import {
+	InlineCompletion,
 } from '../../../../editor/common/languages.js';
 import { Range } from '../../../../editor/common/core/range.js';
 import { IEditorService } from '../../../services/editor/common/editorService.js';
@@ -19,7 +20,7 @@ import { extractCodeFromRegular } from '../common/helpers/extractCodeFromResult.
 import { registerWorkbenchContribution2, WorkbenchPhase } from '../../../common/contributions.js';
 import { ILLMMessageService } from '../common/sendLLMMessageService.js';
 import { isWindows } from '../../../../base/common/platform.js';
-import { IPinnacleaiSettingsService } from '../common/pinnacleaiSettingsService.js';
+import { IPinnacleSettingsService } from '../common/pinnacleaiSettingsService.js';
 import { FeatureName } from '../common/pinnacleaiSettingsTypes.js';
 import { IConvertToLLMMessageService } from './convertToLLMMessageService.js';
 // import { IContextGatheringService } from './contextGatheringService.js';
@@ -893,7 +894,7 @@ export class AutocompleteService extends Disposable implements IAutocompleteServ
 		@ILLMMessageService private readonly _llmMessageService: ILLMMessageService,
 		@IEditorService private readonly _editorService: IEditorService,
 		@IModelService private readonly _modelService: IModelService,
-		@IPinnacleaiSettingsService private readonly _settingsService: IPinnacleaiSettingsService,
+		@IPinnacleSettingsService private readonly _settingsService: IPinnacleSettingsService,
 		@IConvertToLLMMessageService private readonly _convertToLLMMessageService: IConvertToLLMMessageService
 		// @IContextGatheringService private readonly _contextGatheringService: IContextGatheringService,
 	) {

@@ -11,41 +11,41 @@ import { useIsDark } from '../util/services.js';
 /**
  * Creates a configured global tooltip component with consistent styling
  * To use:
- * 1. Mount a Tooltip with some id eg id='void-tooltip'
- * 2. Add data-tooltip-id="void-tooltip" and data-tooltip-content="Your tooltip text" to any element
+ * 1. Mount a Tooltip with some id eg id='pinnacleai-tooltip'
+ * 2. Add data-tooltip-id="pinnacleai-tooltip" and data-tooltip-content="Your tooltip text" to any element
  */
-export const VoidTooltip = () => {
+export const PinnacleAiTooltip = () => {
 
 
 	const isDark = useIsDark()
 
 	return (
 
-		// use native colors so we don't have to worry about @@void-scope styles
-		// --void-bg-1: var(--vscode-input-background);
-		// --void-bg-1-alt: var(--vscode-badge-background);
-		// --void-bg-2: var(--vscode-sideBar-background);
-		// --void-bg-2-alt: color-mix(in srgb, var(--vscode-sideBar-background) 30%, var(--vscode-editor-background) 70%);
-		// --void-bg-3: var(--vscode-editor-background);
+		// use native colors so we don't have to worry about @@pinnacleai-scope styles
+		// --pinnacleai-bg-1: var(--vscode-input-background);
+		// --pinnacleai-bg-1-alt: var(--vscode-badge-background);
+		// --pinnacleai-bg-2: var(--vscode-sideBar-background);
+		// --pinnacleai-bg-2-alt: color-mix(in srgb, var(--vscode-sideBar-background) 30%, var(--vscode-editor-background) 70%);
+		// --pinnacleai-bg-3: var(--vscode-editor-background);
 
-		// --void-fg-0: color-mix(in srgb, var(--vscode-tab-activeForeground) 90%, black 10%);
-		// --void-fg-1: var(--vscode-editor-foreground);
-		// --void-fg-2: var(--vscode-input-foreground);
-		// --void-fg-3: var(--vscode-input-placeholderForeground);
-		// /* --void-fg-4: var(--vscode-tab-inactiveForeground); */
-		// --void-fg-4: var(--vscode-list-deemphasizedForeground);
+		// --pinnacleai-fg-0: color-mix(in srgb, var(--vscode-tab-activeForeground) 90%, black 10%);
+		// --pinnacleai-fg-1: var(--vscode-editor-foreground);
+		// --pinnacleai-fg-2: var(--vscode-input-foreground);
+		// --pinnacleai-fg-3: var(--vscode-input-placeholderForeground);
+		// /* --pinnacleai-fg-4: var(--vscode-tab-inactiveForeground); */
+		// --pinnacleai-fg-4: var(--vscode-list-deemphasizedForeground);
 
-		// --void-warning: var(--vscode-charts-yellow);
+		// --pinnacleai-warning: var(--vscode-charts-yellow);
 
-		// --void-border-1: var(--vscode-commandCenter-activeBorder);
-		// --void-border-2: var(--vscode-commandCenter-border);
-		// --void-border-3: var(--vscode-commandCenter-inactiveBorder);
-		// --void-border-4: var(--vscode-editorGroup-border);
+		// --pinnacleai-border-1: var(--vscode-commandCenter-activeBorder);
+		// --pinnacleai-border-2: var(--vscode-commandCenter-border);
+		// --pinnacleai-border-3: var(--vscode-commandCenter-inactiveBorder);
+		// --pinnacleai-border-4: var(--vscode-editorGroup-border);
 
 		<>
 			<style>
 				{`
-				#void-tooltip, #void-tooltip-orange, #void-tooltip-green, #void-tooltip-ollama-settings, #void-tooltip-provider-info {
+				#pinnacleai-tooltip, #pinnacleai-tooltip-orange, #pinnacleai-tooltip-green, #pinnacleai-tooltip-ollama-settings, #pinnacleai-tooltip-provider-info {
 					font-size: 12px;
 					padding: 0px 8px;
 					border-radius: 6px;
@@ -54,22 +54,22 @@ export const VoidTooltip = () => {
 					word-wrap: break-word;
 				}
 
-				#void-tooltip {
+				#pinnacleai-tooltip {
 					background-color: var(--vscode-editor-background);
 					color: var(--vscode-input-foreground);
 				}
 
-				#void-tooltip-orange {
+				#pinnacleai-tooltip-orange {
 					background-color: #F6762A;
 					color: white;
 				}
 
-				#void-tooltip-green {
+				#pinnacleai-tooltip-green {
 					background-color: #228B22;
 					color: white;
 				}
 
-				#void-tooltip-ollama-settings, #void-tooltip-provider-info {
+				#pinnacleai-tooltip-ollama-settings, #pinnacleai-tooltip-provider-info {
 					background-color: var(--vscode-editor-background);
 					color: var(--vscode-input-foreground);
 				}
@@ -82,26 +82,26 @@ export const VoidTooltip = () => {
 
 
 			<Tooltip
-				id="void-tooltip"
+				id="pinnacleai-tooltip"
 				// border='1px solid var(--vscode-editorGroup-border)'
 				border='1px solid rgba(100,100,100,.2)'
 				opacity={1}
 				delayShow={50}
 			/>
 			<Tooltip
-				id="void-tooltip-orange"
+				id="pinnacleai-tooltip-orange"
 				border='1px solid rgba(200,200,200,.3)'
 				opacity={1}
 				delayShow={50}
 			/>
 			<Tooltip
-				id="void-tooltip-green"
+				id="pinnacleai-tooltip-green"
 				border='1px solid rgba(200,200,200,.3)'
 				opacity={1}
 				delayShow={50}
 			/>
 			<Tooltip
-				id="void-tooltip-ollama-settings"
+				id="pinnacleai-tooltip-ollama-settings"
 				border='1px solid rgba(100,100,100,.2)'
 				opacity={1}
 				openEvents={{ mouseover: true, click: true, focus: true }}
@@ -127,7 +127,7 @@ export const VoidTooltip = () => {
 			</Tooltip>
 
 			<Tooltip
-				id="void-tooltip-provider-info"
+				id="pinnacleai-tooltip-provider-info"
 				border='1px solid rgba(100,100,100,.2)'
 				opacity={1}
 				delayShow={50}

@@ -9,11 +9,11 @@ import { ChatMessage } from '../common/chatThreadServiceTypes.js';
 import { getIsReasoningEnabledState, getReservedOutputTokenSpace, getModelCapabilities } from '../common/modelCapabilities.js';
 import { reParsedToolXMLString, chat_systemMessage } from '../common/prompt/prompts.js';
 import { AnthropicLLMChatMessage, AnthropicReasoning, GeminiLLMChatMessage, LLMChatMessage, LLMFIMMessage, OpenAILLMChatMessage, RawToolParamsObj } from '../common/sendLLMMessageTypes.js';
-import { IPinnacleaiSettingsService } from '../common/pinnacleaiSettingsService.js';
+import { IPinnacleSettingsService } from '../common/pinnacleaiSettingsService.js';
 import { ChatMode, FeatureName, ModelSelection, ProviderName } from '../common/pinnacleaiSettingsTypes.js';
 import { IDirectoryStrService } from '../common/directoryStrService.js';
 import { ITerminalToolService } from './terminalToolService.js';
-import { IPinnacleaiModelService } from '../common/pinnacleaiModelService.js';
+import { IPinnacleAIModelService } from '../common/pinnacleaiModelService.js';
 import { URI } from '../../../../base/common/uri.js';
 import { EndOfLinePreference } from '../../../../editor/common/model.js';
 import { ToolName } from '../common/toolsServiceTypes.js';
@@ -538,8 +538,8 @@ class ConvertToLLMMessageService extends Disposable implements IConvertToLLMMess
 		@IEditorService private readonly editorService: IEditorService,
 		@IDirectoryStrService private readonly directoryStrService: IDirectoryStrService,
 		@ITerminalToolService private readonly terminalToolService: ITerminalToolService,
-		@IPinnacleaiSettingsService private readonly pinnacleaiSettingsService: IPinnacleaiSettingsService,
-		@IPinnacleaiModelService private readonly pinnacleaiModelService: IPinnacleaiModelService,
+		@IPinnacleSettingsService private readonly pinnacleaiSettingsService: IPinnacleSettingsService,
+		@IPinnacleAIModelService private readonly pinnacleaiModelService: IPinnacleAIModelService,
 		@IMCPService private readonly mcpService: IMCPService,
 	) {
 		super()

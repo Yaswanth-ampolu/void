@@ -11,7 +11,7 @@ import { Widget } from '../../../../base/browser/ui/widget.js';
 import { IOverlayWidget, ICodeEditor, OverlayWidgetPositionPreference } from '../../../../editor/browser/editorBrowser.js';
 import { Emitter, Event } from '../../../../base/common/event.js';
 import { ICodeEditorService } from '../../../../editor/browser/services/codeEditorService.js';
-import { mountPinnacleAICommandBar } from './react/out/pinnacleai-editor-widgets-tsx/index.js'
+import { mountPinnacleAiCommandBar } from './react/out/pinnacleai-editor-widgets-tsx/index.js'
 import { deepClone } from '../../../../base/common/objects.js';
 import { InstantiationType, registerSingleton } from '../../../../platform/instantiation/common/extensions.js';
 import { IEditCodeService } from './editCodeServiceInterface.js';
@@ -72,7 +72,7 @@ const defaultState: NonNullable<CommandBarStateType> = {
 	sortedDiffIds: [],
 	isStreaming: false,
 	diffIdx: null,
-} 
+}
 
 export class PinnacleAICommandBarService extends Disposable implements IPinnacleAICommandBarService {
 	_serviceBrand: undefined;
@@ -529,7 +529,7 @@ class AcceptRejectAllFloatingWidget extends Widget implements IOverlayWidget {
 
 		this.instantiationService.invokeFunction(accessor => {
 			const uri = editor.getModel()?.uri || null
-			const res = mountPinnacleAICommandBar(root, accessor, { uri, editor } satisfies PinnacleAICommandBarProps)
+			const res = mountPinnacleAiCommandBar(root, accessor, { uri, editor } satisfies PinnacleAICommandBarProps)
 			if (!res) return
 			this._register(toDisposable(() => res.dispose?.()))
 			this._register(editor.onWillChangeModel((model) => {
@@ -561,7 +561,7 @@ class AcceptRejectAllFloatingWidget extends Widget implements IOverlayWidget {
 }
 
 
-registerSingleton(IPinnacleAICommandBarService, PinnacleAICommandBarService, InstantiationType.Delayed); // delayed is needed here :( 
+registerSingleton(IPinnacleAICommandBarService, PinnacleAICommandBarService, InstantiationType.Delayed); // delayed is needed here :(
 
 
 registerAction2(class extends Action2 {
@@ -865,4 +865,4 @@ registerAction2(class extends Action2 {
 		metricsService.capture('Reject All Files', { keyboard: true });
 		commandBarService.acceptOrRejectAllFiles({ behavior: 'reject' });
 	}
-}); 
+});

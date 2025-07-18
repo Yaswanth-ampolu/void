@@ -226,6 +226,53 @@ const getReactAccessor = (accessor: ServicesAccessor) => {
 		IExtensionTransferService: accessor.get(IExtensionTransferService),
 		IMCPService: accessor.get(IMCPService),
 
+		// Add string-based accessors for React components
+		get: (id: string) => {
+			switch (id) {
+				case 'IPinnacleAICommandBarService': return accessor.get(IPinnacleAICommandBarService);
+				case 'IChatThreadService': return accessor.get(IChatThreadService);
+				case 'ITerminalToolService': return accessor.get(ITerminalToolService);
+				case 'IPinnacleAIModelService': return accessor.get(IPinnacleAIModelService);
+				case 'IPinnacleSettingsService': return accessor.get(IPinnacleSettingsService);
+				case 'ILLMMessageService': return accessor.get(ILLMMessageService);
+				case 'IRefreshModelService': return accessor.get(IRefreshModelService);
+				case 'IExtensionTransferService': return accessor.get(IExtensionTransferService);
+				case 'IMetricsService': return accessor.get(IMetricsService);
+				case 'IEditCodeService': return accessor.get(IEditCodeService);
+				case 'IToolsService': return accessor.get(IToolsService);
+				case 'IConvertToLLMMessageService': return accessor.get(IConvertToLLMMessageService);
+				case 'IMCPService': return accessor.get(IMCPService);
+				case 'IModelService': return accessor.get(IModelService);
+				case 'IClipboardService': return accessor.get(IClipboardService);
+				case 'IContextViewService': return accessor.get(IContextViewService);
+				case 'IContextMenuService': return accessor.get(IContextMenuService);
+				case 'IFileService': return accessor.get(IFileService);
+				case 'IHoverService': return accessor.get(IHoverService);
+				case 'IThemeService': return accessor.get(IThemeService);
+				case 'IInstantiationService': return accessor.get(IInstantiationService);
+				case 'ICodeEditorService': return accessor.get(ICodeEditorService);
+				case 'ICommandService': return accessor.get(ICommandService);
+				case 'IContextKeyService': return accessor.get(IContextKeyService);
+				case 'INotificationService': return accessor.get(INotificationService);
+				case 'IAccessibilityService': return accessor.get(IAccessibilityService);
+				case 'ILanguageConfigurationService': return accessor.get(ILanguageConfigurationService);
+				case 'ILanguageDetectionService': return accessor.get(ILanguageDetectionService);
+				case 'ILanguageFeaturesService': return accessor.get(ILanguageFeaturesService);
+				case 'IKeybindingService': return accessor.get(IKeybindingService);
+				case 'ISearchService': return accessor.get(ISearchService);
+				case 'IExplorerService': return accessor.get(IExplorerService);
+				case 'IEnvironmentService': return accessor.get(IEnvironmentService);
+				case 'IConfigurationService': return accessor.get(IConfigurationService);
+				case 'IPathService': return accessor.get(IPathService);
+				case 'ILanguageService': return accessor.get(ILanguageService);
+				case 'IWorkspaceContextService': return accessor.get(IWorkspaceContextService);
+				case 'INativeHostService': return accessor.get(INativeHostService);
+				case 'ITerminalService': return accessor.get(ITerminalService);
+				case 'IExtensionManagementService': return accessor.get(IExtensionManagementService);
+				default: throw new Error(`Unknown service: ${id}`);
+			}
+		}
+
 	} as const
 	return reactAccessor
 }

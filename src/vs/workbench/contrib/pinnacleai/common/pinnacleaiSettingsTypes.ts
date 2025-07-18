@@ -5,7 +5,7 @@
 
 import { defaultModelsOfProvider, defaultProviderSettings, ModelOverrides } from './modelCapabilities.js';
 import { ToolApprovalType } from './toolsServiceTypes.js';
-import { PinnacleAISettingsState } from './pinnacleaiSettingsService.js'
+import { PinnacleSettingsState } from './pinnacleaiSettingsService.js'
 
 
 type UnionOfKeys<T> = T extends T ? keyof T : never;
@@ -199,29 +199,15 @@ export const displayInfoOfSettingName = (providerName: ProviderName, settingName
 	else if (settingName === 'azureApiVersion') {
 		return { title: 'API Version', placeholder: defaultProviderSettings.microsoftAzure.azureApiVersion }
 	}
-	else if (settingName === 'azureDeploymentName') {
-		return { title: 'Deployment Name', placeholder: defaultProviderSettings.microsoftAzure.azureDeploymentName }
-	}
-	else if (settingName === 'azureResourceName') {
-		return { title: 'Resource Name', placeholder: defaultProviderSettings.microsoftAzure.azureResourceName }
-	}
 	else if (settingName === 'project') {
-		return { title: 'Project', placeholder: defaultProviderSettings.googleVertex.project }
-	}
-	else if (settingName === 'model') {
-		return { title: 'Model', placeholder: defaultProviderSettings.googleVertex.model }
-	}
-	else if (settingName === 'deploymentId') {
-		return { title: 'Deployment ID', placeholder: defaultProviderSettings.awsBedrock.deploymentId }
-	}
-	else if (settingName === 'accessKeyId') {
-		return { title: 'Access Key ID', placeholder: defaultProviderSettings.awsBedrock.accessKeyId }
-	}
-	else if (settingName === 'secretAccessKey') {
-		return { title: 'Secret Access Key', placeholder: defaultProviderSettings.awsBedrock.secretAccessKey, isPasswordField: true }
-	}
-	else if (settingName === 'sessionToken') {
-		return { title: 'Session Token', placeholder: defaultProviderSettings.awsBedrock.sessionToken, isPasswordField: true }
+		return {
+			title: providerName === 'microsoftAzure' ? 'Resource'
+				: providerName === 'googleVertex' ? 'Project'
+					: '',
+			placeholder: providerName === 'microsoftAzure' ? 'my-resource'
+				: providerName === 'googleVertex' ? 'my-project'
+					: ''
+		}
 	}
 	else if (settingName === 'models') {
 		return { title: 'Models', placeholder: 'models' }
@@ -233,7 +219,16 @@ export const displayInfoOfSettingName = (providerName: ProviderName, settingName
 }
 
 
-export const featureNames = ['Chat', 'SCM', 'Autocomplete', 'Apply', 'Tools'] as const
+export const featureNames = ['Chat', 'Ctrl+K', 'Autocomplete', 'Apply', 'SCM'] as const
+
+const defaultCustomSettings: Record<CustomSettingName, undefined> = {
+	apiKey: undefined,
+	endpoint: undefined,
+	region: undefined,
+	project: undefined,
+	azureApiVersion: undefined,
+	headersJSON: undefined,
+}
 
 const modelInfoOfDefaultModelNames = (defaultModelNames: string[]): { models: PinnacleAIStatefulModelInfo[] } => {
 	return {
@@ -247,100 +242,100 @@ const modelInfoOfDefaultModelNames = (defaultModelNames: string[]): { models: Pi
 
 export const defaultSettingsOfProvider: SettingsOfProvider = {
 	anthropic: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.anthropic,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.anthropic),
+		_didFillInProviderSettings: undefined,
 	},
 	openAI: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.openAI,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.openAI),
+		_didFillInProviderSettings: undefined,
 	},
 	deepseek: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.deepseek,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.deepseek),
+		_didFillInProviderSettings: undefined,
 	},
 	openRouter: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.openRouter,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.openRouter),
+		_didFillInProviderSettings: undefined,
 	},
 	gemini: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.gemini,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.gemini),
+		_didFillInProviderSettings: undefined,
 	},
 	groq: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.groq,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.groq),
+		_didFillInProviderSettings: undefined,
 	},
 	ollama: {
-		endpoint: defaultProviderSettings.ollama.endpoint,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.ollama,
 		...modelInfoOfDefaultModelNames([]),
+		_didFillInProviderSettings: undefined,
 	},
 	vLLM: {
-		endpoint: defaultProviderSettings.vLLM.endpoint,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.vLLM,
 		...modelInfoOfDefaultModelNames([]),
+		_didFillInProviderSettings: undefined,
 	},
 	liteLLM: {
-		apiKey: '',
-		endpoint: defaultProviderSettings.liteLLM.endpoint,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.liteLLM,
 		...modelInfoOfDefaultModelNames([]),
+		_didFillInProviderSettings: undefined,
 	},
 	lmStudio: {
-		endpoint: defaultProviderSettings.lmStudio.endpoint,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.lmStudio,
 		...modelInfoOfDefaultModelNames([]),
+		_didFillInProviderSettings: undefined,
 	},
 	openAICompatible: {
-		apiKey: '',
-		endpoint: defaultProviderSettings.openAICompatible.endpoint,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.openAICompatible,
 		...modelInfoOfDefaultModelNames([]),
+		_didFillInProviderSettings: undefined,
 	},
 	xAI: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.xAI,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.xAI),
+		_didFillInProviderSettings: undefined,
 	},
 	mistral: {
-		apiKey: '',
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.mistral,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.mistral),
+		_didFillInProviderSettings: undefined,
 	},
 	googleVertex: {
-		apiKey: '',
-		endpoint: defaultProviderSettings.googleVertex.endpoint,
-		region: defaultProviderSettings.googleVertex.region,
-		project: defaultProviderSettings.googleVertex.project,
-		model: defaultProviderSettings.googleVertex.model,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.googleVertex,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.googleVertex),
+		_didFillInProviderSettings: undefined,
 	},
 	microsoftAzure: {
-		apiKey: '',
-		endpoint: defaultProviderSettings.microsoftAzure.endpoint,
-		azureApiVersion: defaultProviderSettings.microsoftAzure.azureApiVersion,
-		azureDeploymentName: defaultProviderSettings.microsoftAzure.azureDeploymentName,
-		azureResourceName: defaultProviderSettings.microsoftAzure.azureResourceName,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.microsoftAzure,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.microsoftAzure),
+		_didFillInProviderSettings: undefined,
 	},
 	awsBedrock: {
-		apiKey: '',
-		endpoint: defaultProviderSettings.awsBedrock.endpoint,
-		region: defaultProviderSettings.awsBedrock.region,
-		deploymentId: defaultProviderSettings.awsBedrock.deploymentId,
-		accessKeyId: defaultProviderSettings.awsBedrock.accessKeyId,
-		secretAccessKey: defaultProviderSettings.awsBedrock.secretAccessKey,
-		sessionToken: defaultProviderSettings.awsBedrock.sessionToken,
-		_didFillInProviderSettings: undefined,
+		...defaultCustomSettings,
+		...defaultProviderSettings.awsBedrock,
 		...modelInfoOfDefaultModelNames(defaultModelsOfProvider.awsBedrock),
+		_didFillInProviderSettings: undefined,
 	},
 }
 
@@ -380,10 +375,10 @@ export const displayInfoOfFeatureName = (featureName: FeatureName) => {
 			desc: 'Used for applying code edits (Ctrl+K)',
 		}
 	}
-	else if (featureName === 'Tools') {
+	else if (featureName === 'Ctrl+K') {
 		return {
-			title: 'Tools',
-			desc: 'Used for tools',
+			title: 'Quick Edit',
+			desc: 'Used for quick edits (Ctrl+K)',
 		}
 	}
 	throw new Error(`displayInfoOfFeatureName: Unknown feature name: "${featureName}"`)
@@ -397,32 +392,38 @@ export const isRefreshableProviderName = (providerName: ProviderName): providerN
 	return refreshableProviderNames.includes(providerName as RefreshableProviderName)
 }
 
+export const hasDownloadButtonsOnModelsProviderNames = ['ollama'] as const satisfies ProviderName[]
 
-export const isProviderNameDisabled = (providerName: ProviderName, settingsState: PinnacleAISettingsState) => {
-	const settings = settingsState.settingsOfProvider[providerName]
-	if (!settings) return true
 
-	// disabled if no models
-	return settings.models.filter(m => !m.isHidden).length === 0
+export const isProviderNameDisabled = (providerName: ProviderName, settingsState: PinnacleSettingsState) => {
+	const settingsAtProvider = settingsState.settingsOfProvider[providerName]
+	const isAutodetected = (refreshableProviderNames as readonly string[]).includes(providerName)
+
+	const isDisabled = settingsAtProvider.models.length === 0
+	if (isDisabled) {
+		return isAutodetected ? 'providerNotAutoDetected' : (!settingsAtProvider._didFillInProviderSettings ? 'notFilledIn' : 'addModel')
+	}
+	return false
 }
 
-export const isFeatureNameDisabled = (featureName: FeatureName, settingsState: PinnacleAISettingsState) => {
-	const modelSelection = settingsState.modelSelectionOfFeature[featureName]
-	if (!modelSelection) return true
+export const isFeatureNameDisabled = (featureName: FeatureName, settingsState: PinnacleSettingsState) => {
+	// if has a selected provider, check if it's enabled
+	const selectedProvider = settingsState.modelSelectionOfFeature[featureName]
 
-	const { providerName, modelName } = modelSelection
+	if (selectedProvider) {
+		const { providerName } = selectedProvider
+		return isProviderNameDisabled(providerName, settingsState)
+	}
 
-	// disabled if provider is disabled
-	if (isProviderNameDisabled(providerName, settingsState)) return true
+	// if there are any models they can turn on, tell them that
+	const canTurnOnAModel = !!providerNames.find(providerName => settingsState.settingsOfProvider[providerName].models.filter(m => m.isHidden).length !== 0)
+	if (canTurnOnAModel) return 'needToEnableModel'
 
-	// disabled if model is hidden
-	const settings = settingsState.settingsOfProvider[providerName]
-	if (!settings) return true
+	// if there are any providers filled in, then they just need to add a model
+	const anyFilledIn = !!providerNames.find(providerName => settingsState.settingsOfProvider[providerName]._didFillInProviderSettings)
+	if (anyFilledIn) return 'addModel'
 
-	const model = settings.models.find(m => m.modelName === modelName)
-	if (!model) return true
-
-	return model.isHidden
+	return 'addProvider'
 }
 
 
@@ -494,7 +495,7 @@ export const defaultOptionsOfModelSelection: OptionsOfModelSelection = {
 	SCM: {},
 	Autocomplete: {},
 	Apply: {},
-	Tools: {},
+	'Ctrl+K': {},
 }
 
 export type OverridesOfModel = {
@@ -528,4 +529,4 @@ export interface MCPUserStateOfName {
 
 export interface MCPUserState {
 	isOn: boolean;
-} 
+}

@@ -6,6 +6,9 @@
 	"compilerOptions": {
 		"strict": true,
 		"exactOptionalPropertyTypes": false,
+		"experimentalDecorators": true,
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
 
 		"jsx": "react-jsx",
 		"moduleResolution": "NodeNext",
@@ -16,6 +19,11 @@
 		// this is just for type checking, so src/ is the correct dir
 		"./src/**/*.ts",
 		"./src/**/*.tsx"
+	],
+	"exclude": [
+		// Exclude VSCode service files that shouldn't be part of React build
+		"../terminalToolService.ts",
+		"../**/*.ts"
 	],
 	"plugins": [
       {

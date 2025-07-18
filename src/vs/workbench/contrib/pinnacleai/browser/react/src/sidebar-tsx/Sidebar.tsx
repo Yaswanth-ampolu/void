@@ -15,15 +15,15 @@ export const Sidebar = ({ className }: { className: string }) => {
 
 	const isDark = useIsDark()
 	return <div
-		className={`@@void-scope ${isDark ? 'dark' : ''}`}
+		className={`@@pinnacleai-scope ${isDark ? 'dark' : ''}`}
 		style={{ width: '100%', height: '100%' }}
 	>
 		<div
 			// default background + text styles for sidebar
 			className={`
 				w-full h-full
-				bg-void-bg-2
-				text-void-fg-1
+				bg-pinnacleai-bg-2
+				text-pinnacleai-fg-1
 			`}
 		>
 

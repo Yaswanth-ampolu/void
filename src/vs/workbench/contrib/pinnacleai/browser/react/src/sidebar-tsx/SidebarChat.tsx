@@ -13,30 +13,28 @@ import { ChatMarkdownRender, ChatMessageLocation, getApplyBoxId } from '../markd
 import { URI } from '../../../../../../../base/common/uri.js';
 import { IDisposable } from '../../../../../../../base/common/lifecycle.js';
 import { ErrorDisplay } from './ErrorDisplay.js';
-import { BlockCode, TextAreaFns, VoidCustomDropdownBox, VoidInputBox2, VoidSlider, VoidSwitch, VoidDiffEditor } from '../util/inputs.js';
-import { ModelDropdown, } from '../void-settings-tsx/ModelDropdown.js';
+import { BlockCode, TextAreaFns, PinnacleCustomDropdownBox, PinnacleInputBox2, PinnacleSlider, PinnacleSwitch, PinnacleDiffEditor } from '../util/inputs.js';
+import { ModelDropdown, } from '../pinnacleai-settings-tsx/ModelDropdown.js';
 import { PastThreadsList } from './SidebarThreadSelector.js';
-import { VOID_CTRL_L_ACTION_ID } from '../../../actionIDs.js';
-import { VOID_OPEN_SETTINGS_ACTION_ID } from '../../../voidSettingsPane.js';
-import { ChatMode, displayInfoOfProviderName, FeatureName, isFeatureNameDisabled } from '../../../../../../../workbench/contrib/void/common/voidSettingsTypes.js';
+import { PINNACLEAI_CTRL_L_ACTION_ID } from '../../../actionIDs.js';
+import { PINNACLEAI_OPEN_SETTINGS_ACTION_ID } from '../../../pinnacleaiSettingsPane.js';
+import { ChatMode, displayInfoOfProviderName, FeatureName, isFeatureNameDisabled } from '../../../../../../../workbench/contrib/pinnacleai/common/pinnacleaiSettingsTypes.js';
 import { ICommandService } from '../../../../../../../platform/commands/common/commands.js';
-import { WarningBox } from '../void-settings-tsx/WarningBox.js';
+import { WarningBox } from '../pinnacleai-settings-tsx/WarningBox.js';
 import { getModelCapabilities, getIsReasoningEnabledState } from '../../../../common/modelCapabilities.js';
 import { AlertTriangle, File, Ban, Check, ChevronRight, Dot, FileIcon, Pencil, Undo, Undo2, X, Flag, Copy as CopyIcon, Info, CirclePlus, Ellipsis, CircleEllipsis, Folder, ALargeSmall, TypeOutline, Text } from 'lucide-react';
 import { ChatMessage, CheckpointEntry, StagingSelectionItem, ToolMessage } from '../../../../common/chatThreadServiceTypes.js';
 import { approvalTypeOfBuiltinToolName, BuiltinToolCallParams, BuiltinToolName, ToolName, LintErrorItem, ToolApprovalType, toolApprovalTypes } from '../../../../common/toolsServiceTypes.js';
+import { builtinToolNames, isABuiltinToolName, MAX_FILE_CHARS_PAGE, MAX_TERMINAL_INACTIVE_TIME } from '../../../../common/prompt/prompts.js';
 import { CopyButton, EditToolAcceptRejectButtonsHTML, IconShell1, JumpToFileButton, JumpToTerminalButton, StatusIndicator, StatusIndicatorForApplyButton, useApplyStreamState, useEditToolStreamState } from '../markdown/ApplyBlockHoverButtons.js';
 import { IsRunningType } from '../../../chatThreadService.js';
-import { acceptAllBg, acceptBorder, buttonFontSize, buttonTextColor, rejectAllBg, rejectBg, rejectBorder } from '../../../../common/helpers/colors.js';
-import { builtinToolNames, isABuiltinToolName, MAX_FILE_CHARS_PAGE, MAX_TERMINAL_INACTIVE_TIME } from '../../../../common/prompt/prompts.js';
-import { RawToolCallObj } from '../../../../common/sendLLMMessageTypes.js';
 import ErrorBoundary from './ErrorBoundary.js';
-import { ToolApprovalTypeSwitch } from '../void-settings-tsx/Settings.js';
-
+import { ToolApprovalTypeSwitch } from '../pinnacleai-settings-tsx/Settings.js';
 import { persistentTerminalNameOfId } from '../../../terminalToolService.js';
 import { removeMCPToolNamePrefix } from '../../../../common/mcpServiceTypes.js';
-
-
+import { acceptAllBg, acceptBorder, buttonFontSize, buttonTextColor, rejectAllBg, rejectBg, rejectBorder } from '../../../../common/helpers/colors.js';
+import { RawToolCallObj } from '../../../../common/sendLLMMessageTypes.js';
+type ChatMessageWithId = ChatMessage & { id: number };
 
 export const IconX = ({ size, className = '', ...props }: { size: number, className?: string } & React.SVGProps<SVGSVGElement>) => {
 	return (
@@ -153,11 +151,11 @@ export const IconLoading = ({ className = '' }: { className?: string }) => {
 const ReasoningOptionSlider = ({ featureName }: { featureName: FeatureName }) => {
 	const accessor = useAccessor()
 
-	const voidSettingsService = accessor.get('IVoidSettingsService')
-	const voidSettingsState = useSettingsState()
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
+	const pinnacleaiSettingsState = useSettingsState()
 
-	const modelSelection = voidSettingsState.modelSelectionOfFeature[featureName]
-	const overridesOfModel = voidSettingsState.overridesOfModel
+	const modelSelection = pinnacleaiSettingsState.modelSelectionOfFeature[featureName]
+	const overridesOfModel = pinnacleaiSettingsState.overridesOfModel
 
 	if (!modelSelection) return null
 
@@ -165,18 +163,18 @@ const ReasoningOptionSlider = ({ featureName }: { featureName: FeatureName }) =>
 	const { reasoningCapabilities } = getModelCapabilities(providerName, modelName, overridesOfModel)
 	const { canTurnOffReasoning, reasoningSlider: reasoningBudgetSlider } = reasoningCapabilities || {}
 
-	const modelSelectionOptions = voidSettingsState.optionsOfModelSelection[featureName][providerName]?.[modelName]
+	const modelSelectionOptions = pinnacleaiSettingsState.optionsOfModelSelection[featureName][providerName]?.[modelName]
 	const isReasoningEnabled = getIsReasoningEnabledState(featureName, providerName, modelName, modelSelectionOptions, overridesOfModel)
 
 	if (canTurnOffReasoning && !reasoningBudgetSlider) { // if it's just a on/off toggle without a power slider
 		return <div className='flex items-center gap-x-2'>
-			<span className='text-void-fg-3 text-xs pointer-events-none inline-block w-10 pr-1'>Thinking</span>
-			<VoidSwitch
+			<span className='text-pinnacleai-fg-3 text-xs pointer-events-none inline-block w-10 pr-1'>Thinking</span>
+			<PinnacleSwitch
 				size='xxs'
 				value={isReasoningEnabled}
 				onChange={(newVal) => {
 					const isOff = canTurnOffReasoning && !newVal
-					voidSettingsService.setOptionsOfModelSelection(featureName, modelSelection.providerName, modelSelection.modelName, { reasoningEnabled: !isOff })
+					pinnacleaiSettingsService.setOptionsOfModelSelection(featureName, modelSelection.providerName, modelSelection.modelName, { reasoningEnabled: !isOff })
 				}}
 			/>
 		</div>
@@ -190,24 +188,24 @@ const ReasoningOptionSlider = ({ featureName }: { featureName: FeatureName }) =>
 
 		const valueIfOff = min_ - stepSize
 		const min = canTurnOffReasoning ? valueIfOff : min_
-		const value = isReasoningEnabled ? voidSettingsState.optionsOfModelSelection[featureName][modelSelection.providerName]?.[modelSelection.modelName]?.reasoningBudget ?? defaultVal
+		const value = isReasoningEnabled ? pinnacleaiSettingsState.optionsOfModelSelection[featureName][modelSelection.providerName]?.[modelSelection.modelName]?.reasoningBudget ?? defaultVal
 			: valueIfOff
 
 		return <div className='flex items-center gap-x-2'>
-			<span className='text-void-fg-3 text-xs pointer-events-none inline-block w-10 pr-1'>Thinking</span>
-			<VoidSlider
+			<span className='text-pinnacleai-fg-3 text-xs pointer-events-none inline-block w-10 pr-1'>Thinking</span>
+			<PinnacleSlider
 				width={50}
 				size='xs'
 				min={min}
 				max={max}
 				step={stepSize}
 				value={value}
-				onChange={(newVal) => {
+				onChange={(newVal: number) => {
 					const isOff = canTurnOffReasoning && newVal === valueIfOff
-					voidSettingsService.setOptionsOfModelSelection(featureName, modelSelection.providerName, modelSelection.modelName, { reasoningEnabled: !isOff, reasoningBudget: newVal })
+					pinnacleaiSettingsService.setOptionsOfModelSelection(featureName, modelSelection.providerName, modelSelection.modelName, { reasoningEnabled: !isOff, reasoningBudget: newVal })
 				}}
 			/>
-			<span className='text-void-fg-3 text-xs pointer-events-none'>{isReasoningEnabled ? `${value} tokens` : 'Thinking disabled'}</span>
+			<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>{isReasoningEnabled ? `${value} tokens` : 'Thinking disabled'}</span>
 		</div>
 	}
 
@@ -218,27 +216,27 @@ const ReasoningOptionSlider = ({ featureName }: { featureName: FeatureName }) =>
 		const min = canTurnOffReasoning ? -1 : 0
 		const max = values.length - 1
 
-		const currentEffort = voidSettingsState.optionsOfModelSelection[featureName][modelSelection.providerName]?.[modelSelection.modelName]?.reasoningEffort ?? defaultVal
+		const currentEffort = pinnacleaiSettingsState.optionsOfModelSelection[featureName][modelSelection.providerName]?.[modelSelection.modelName]?.reasoningEffort ?? defaultVal
 		const valueIfOff = -1
 		const value = isReasoningEnabled && currentEffort ? values.indexOf(currentEffort) : valueIfOff
 
 		const currentEffortCapitalized = currentEffort.charAt(0).toUpperCase() + currentEffort.slice(1, Infinity)
 
 		return <div className='flex items-center gap-x-2'>
-			<span className='text-void-fg-3 text-xs pointer-events-none inline-block w-10 pr-1'>Thinking</span>
-			<VoidSlider
+			<span className='text-pinnacleai-fg-3 text-xs pointer-events-none inline-block w-10 pr-1'>Thinking</span>
+			<PinnacleSlider
 				width={30}
 				size='xs'
 				min={min}
 				max={max}
 				step={1}
 				value={value}
-				onChange={(newVal) => {
+				onChange={(newVal: number) => {
 					const isOff = canTurnOffReasoning && newVal === valueIfOff
-					voidSettingsService.setOptionsOfModelSelection(featureName, modelSelection.providerName, modelSelection.modelName, { reasoningEnabled: !isOff, reasoningEffort: values[newVal] ?? undefined })
+					pinnacleaiSettingsService.setOptionsOfModelSelection(featureName, modelSelection.providerName, modelSelection.modelName, { reasoningEnabled: !isOff, reasoningEffort: values[newVal] ?? undefined })
 				}}
 			/>
-			<span className='text-void-fg-3 text-xs pointer-events-none'>{isReasoningEnabled ? `${currentEffortCapitalized}` : 'Thinking disabled'}</span>
+			<span className='text-pinnacleai-fg-3 text-xs pointer-events-none'>{isReasoningEnabled ? `${currentEffortCapitalized}` : 'Thinking disabled'}</span>
 		</div>
 	}
 
@@ -263,16 +261,16 @@ const detailOfChatMode = {
 const ChatModeDropdown = ({ className }: { className: string }) => {
 	const accessor = useAccessor()
 
-	const voidSettingsService = accessor.get('IVoidSettingsService')
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
 	const settingsState = useSettingsState()
 
 	const options: ChatMode[] = useMemo(() => ['normal', 'gather', 'agent'], [])
 
 	const onChangeOption = useCallback((newVal: ChatMode) => {
-		voidSettingsService.setGlobalSetting('chatMode', newVal)
-	}, [voidSettingsService])
+		pinnacleaiSettingsService.setGlobalSetting('chatMode', newVal)
+	}, [pinnacleaiSettingsService])
 
-	return <VoidCustomDropdownBox
+	return <PinnacleCustomDropdownBox
 		className={className}
 		options={options}
 		selectedOption={settingsState.globalSettings.chatMode}
@@ -289,7 +287,7 @@ const ChatModeDropdown = ({ className }: { className: string }) => {
 
 
 
-interface VoidChatAreaProps {
+interface PinnacleAiChatAreaProps {
 	// Required
 	children: React.ReactNode; // This will be the input component
 
@@ -319,7 +317,7 @@ interface VoidChatAreaProps {
 	featureName: FeatureName;
 }
 
-export const VoidChatArea: React.FC<VoidChatAreaProps> = ({
+export const PinnacleAiChatArea: React.FC<PinnacleAiChatAreaProps> = ({
 	children,
 	onSubmit,
 	onAbort,
@@ -344,9 +342,9 @@ export const VoidChatArea: React.FC<VoidChatAreaProps> = ({
 				gap-x-1
                 flex flex-col p-2 relative input text-left shrink-0
                 rounded-md
-                bg-void-bg-1
+                bg-pinnacleai-bg-1
 				transition-all duration-200
-				border border-void-border-3 focus-within:border-void-border-1 hover:border-void-border-1
+				border border-pinnacleai-border-3 focus-within:border-pinnacleai-border-1 hover:border-pinnacleai-border-1
 				max-h-[80vh] overflow-y-auto
                 ${className}
             `}
@@ -373,7 +371,7 @@ export const VoidChatArea: React.FC<VoidChatAreaProps> = ({
 					<div className='absolute -top-1 -right-1 cursor-pointer z-1'>
 						<IconX
 							size={12}
-							className="stroke-[2] opacity-80 text-void-fg-3 hover:brightness-95"
+							className="stroke-[2] opacity-80 text-pinnacleai-fg-3 hover:brightness-95"
 							onClick={onClose}
 						/>
 					</div>
@@ -387,8 +385,8 @@ export const VoidChatArea: React.FC<VoidChatAreaProps> = ({
 						<ReasoningOptionSlider featureName={featureName} />
 
 						<div className='flex items-center flex-wrap gap-x-2 gap-y-1 text-nowrap '>
-							{featureName === 'Chat' && <ChatModeDropdown className='text-xs text-void-fg-3 bg-void-bg-1 border border-void-border-2 rounded py-0.5 px-1' />}
-							<ModelDropdown featureName={featureName} className='text-xs text-void-fg-3 bg-void-bg-1 rounded' />
+							{featureName === 'Chat' && <ChatModeDropdown className='text-xs text-pinnacleai-fg-3 bg-pinnacleai-bg-1 border border-pinnacleai-border-2 rounded py-0.5 px-1' />}
+							<ModelDropdown featureName={featureName} className='text-xs text-pinnacleai-fg-3 bg-pinnacleai-bg-1 rounded' />
 						</div>
 					</div>
 				)}
@@ -425,7 +423,7 @@ export const ButtonSubmit = ({ className, disabled, ...props }: ButtonProps & Re
 			${disabled ? 'bg-vscode-disabled-fg cursor-default' : 'bg-white cursor-pointer'}
 			${className}
 		`}
-		// data-tooltip-id='void-tooltip'
+		// data-tooltip-id='pinnacleai-tooltip'
 		// data-tooltip-content={'Send'}
 		// data-tooltip-place='left'
 		{...props}
@@ -536,7 +534,7 @@ export const getBasename = (pathStr: string, parts: number = 1) => {
 
 
 // Open file utility function
-export const voidOpenFileFn = (
+export const pinnacleaiOpenFileFn = (
 	uri: URI,
 	accessor: ReturnType<typeof useAccessor>,
 	range?: [number, number]
@@ -585,7 +583,7 @@ export const SelectedFiles = (
 
 	const accessor = useAccessor()
 	const commandService = accessor.get('ICommandService')
-	const modelReferenceService = accessor.get('IVoidModelService')
+	const modelReferenceService = accessor.get('IPinnacleAIModelService')
 
 
 
@@ -673,12 +671,12 @@ export const SelectedFiles = (
 							select-none
 							text-xs text-nowrap
 							border rounded-sm
-							${isThisSelectionProspective ? 'bg-void-bg-1 text-void-fg-3 opacity-80' : 'bg-void-bg-1 hover:brightness-95 text-void-fg-1'}
+							${isThisSelectionProspective ? 'bg-pinnacleai-bg-1 text-pinnacleai-fg-3 opacity-80' : 'bg-pinnacleai-bg-1 hover:brightness-95 text-pinnacleai-fg-1'}
 							${isThisSelectionProspective
-								? 'border-void-border-2'
-								: 'border-void-border-1'
+								? 'border-pinnacleai-border-2'
+								: 'border-pinnacleai-border-1'
 							}
-							hover:border-void-border-1
+							hover:border-pinnacleai-border-1
 							transition-all duration-150
 						`}
 						onClick={() => {
@@ -687,7 +685,7 @@ export const SelectedFiles = (
 								setSelections([...selections, selection])
 							}
 							else if (selection.type === 'File') { // open files
-								voidOpenFileFn(selection.uri, accessor);
+								pinnacleaiOpenFileFn(selection.uri, accessor);
 
 								const wasAddedAsCurrentFile = selection.state.wasAddedAsCurrentFile
 								if (wasAddedAsCurrentFile) {
@@ -701,7 +699,7 @@ export const SelectedFiles = (
 								}
 							}
 							else if (selection.type === 'CodeSelection') {
-								voidOpenFileFn(selection.uri, accessor, selection.range);
+								pinnacleaiOpenFileFn(selection.uri, accessor, selection.range);
 							}
 							else if (selection.type === 'Folder') {
 								// TODO!!! reveal in tree
@@ -716,7 +714,7 @@ export const SelectedFiles = (
 						}
 
 						{selection.type === 'File' && selection.state.wasAddedAsCurrentFile && messageIdx === undefined && currentURI?.fsPath === selection.uri.fsPath ?
-							<span className={`text-[8px] 'void-opacity-60 text-void-fg-4`}>
+							<span className={`text-[8px] 'pinnacleai-opacity-60 text-pinnacleai-fg-4`}>
 								{`(Current File)`}
 							</span>
 							: null
@@ -799,12 +797,12 @@ const ToolHeaderWrapper = ({
 	const isDesc1Clickable = !!desc1OnClick
 
 	const desc1HTML = <span
-		className={`text-void-fg-4 text-xs italic truncate ml-2
+		className={`text-pinnacleai-fg-4 text-xs italic truncate ml-2
 			${isDesc1Clickable ? 'cursor-pointer hover:brightness-125 transition-all duration-150' : ''}
 		`}
 		onClick={desc1OnClick}
 		{...desc1Info ? {
-			'data-tooltip-id': 'void-tooltip',
+			'data-tooltip-id': 'pinnacleai-tooltip',
 			'data-tooltip-content': desc1Info,
 			'data-tooltip-place': 'top',
 			'data-tooltip-delay-show': 1000,
@@ -812,7 +810,7 @@ const ToolHeaderWrapper = ({
 	>{desc1}</span>
 
 	return (<div className=''>
-		<div className={`w-full border border-void-border-3 rounded px-2 py-1 bg-void-bg-3 overflow-hidden ${className}`}>
+		<div className={`w-full border border-pinnacleai-border-3 rounded px-2 py-1 bg-pinnacleai-bg-3 overflow-hidden ${className}`}>
 			{/* header */}
 			<div className={`select-none flex items-center min-h-[24px]`}>
 				<div className={`flex items-center w-full gap-x-2 overflow-hidden justify-between ${isRejected ? 'line-through' : ''}`}>
@@ -832,11 +830,11 @@ const ToolHeaderWrapper = ({
 						>
 							{isDropdown && (<ChevronRight
 								className={`
-								text-void-fg-3 mr-0.5 h-4 w-4 flex-shrink-0 transition-transform duration-100 ease-[cubic-bezier(0.4,0,0.2,1)]
+								text-pinnacleai-fg-3 mr-0.5 h-4 w-4 flex-shrink-0 transition-transform duration-100 ease-[cubic-bezier(0.4,0,0.2,1)]
 								${isExpanded ? 'rotate-90' : ''}
 							`}
 							/>)}
-							<span className="text-void-fg-3 flex-shrink-0">{title}</span>
+							<span className="text-pinnacleai-fg-3 flex-shrink-0">{title}</span>
 
 							{!isDesc1Clickable && desc1HTML}
 						</div>
@@ -847,32 +845,32 @@ const ToolHeaderWrapper = ({
 					<div className="flex items-center gap-x-2 flex-shrink-0">
 
 						{info && <CircleEllipsis
-							className='ml-2 text-void-fg-4 opacity-60 flex-shrink-0'
+							className='ml-2 text-pinnacleai-fg-4 opacity-60 flex-shrink-0'
 							size={14}
-							data-tooltip-id='void-tooltip'
+							data-tooltip-id='pinnacleai-tooltip'
 							data-tooltip-content={info}
 							data-tooltip-place='top-end'
 						/>}
 
 						{isError && <AlertTriangle
-							className='text-void-warning opacity-90 flex-shrink-0'
+							className='text-pinnacleai-warning opacity-90 flex-shrink-0'
 							size={14}
-							data-tooltip-id='void-tooltip'
+							data-tooltip-id='pinnacleai-tooltip'
 							data-tooltip-content={'Error running tool'}
 							data-tooltip-place='top'
 						/>}
 						{isRejected && <Ban
-							className='text-void-fg-4 opacity-90 flex-shrink-0'
+							className='text-pinnacleai-fg-4 opacity-90 flex-shrink-0'
 							size={14}
-							data-tooltip-id='void-tooltip'
+							data-tooltip-id='pinnacleai-tooltip'
 							data-tooltip-content={'Canceled'}
 							data-tooltip-place='top'
 						/>}
-						{desc2 && <span className="text-void-fg-4 text-xs" onClick={desc2OnClick}>
+						{desc2 && <span className="text-pinnacleai-fg-4 text-xs" onClick={desc2OnClick}>
 							{desc2}
 						</span>}
 						{numResults !== undefined && (
-							<span className="text-void-fg-4 text-xs ml-auto mr-1">
+							<span className="text-pinnacleai-fg-4 text-xs ml-auto mr-1">
 								{`${numResults}${hasNextPage ? '+' : ''} result${numResults !== 1 ? 's' : ''}`}
 							</span>
 						)}
@@ -882,9 +880,9 @@ const ToolHeaderWrapper = ({
 			{/* children */}
 			{<div
 				className={`overflow-hidden transition-all duration-200 ease-in-out ${isExpanded ? 'opacity-100 py-1' : 'max-h-0 opacity-0'}
-					text-void-fg-4 rounded-sm overflow-x-auto
+					text-pinnacleai-fg-4 rounded-sm overflow-x-auto
 				  `}
-			//    bg-black bg-opacity-10 border border-void-border-4 border-opacity-50
+			//    bg-black bg-opacity-10 border border-pinnacleai-border-4 border-opacity-50
 			>
 				{children}
 			</div>}
@@ -906,13 +904,13 @@ const EditTool = ({ toolMessage, threadId, messageIdx, content }: Parameters<Res
 	const icon = null
 
 	const { rawParams, params, name } = toolMessage
-	const desc1OnClick = () => voidOpenFileFn(params.uri, accessor)
+	const desc1OnClick = () => pinnacleaiOpenFileFn(params.uri, accessor)
 	const componentParams: ToolHeaderParams = { title, desc1, desc1OnClick, desc1Info, isError, icon, isRejected, }
 
 
 	const editToolType = toolMessage.name === 'edit_file' ? 'diff' : 'rewrite'
 	if (toolMessage.type === 'running_now' || toolMessage.type === 'tool_request') {
-		componentParams.children = <ToolChildrenWrapper className='bg-void-bg-3'>
+		componentParams.children = <ToolChildrenWrapper className='bg-pinnacleai-bg-3'>
 			<EditToolChildren
 				uri={params.uri}
 				code={content}
@@ -937,7 +935,7 @@ const EditTool = ({ toolMessage, threadId, messageIdx, content }: Parameters<Res
 		/>
 
 		// add children
-		componentParams.children = <ToolChildrenWrapper className='bg-void-bg-3'>
+		componentParams.children = <ToolChildrenWrapper className='bg-pinnacleai-bg-3'>
 			<EditToolChildren
 				uri={params.uri}
 				code={content}
@@ -988,16 +986,16 @@ const SimplifiedToolHeader = ({
 				>
 					{isDropdown && (
 						<ChevronRight
-							className={`text-void-fg-3 mr-0.5 h-4 w-4 flex-shrink-0 transition-transform duration-100 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-90' : ''}`}
+							className={`text-pinnacleai-fg-3 mr-0.5 h-4 w-4 flex-shrink-0 transition-transform duration-100 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-90' : ''}`}
 						/>
 					)}
 					<div className="flex items-center w-full overflow-hidden">
-						<span className="text-void-fg-3">{title}</span>
+						<span className="text-pinnacleai-fg-3">{title}</span>
 					</div>
 				</div>
 				{/* children */}
 				{<div
-					className={`overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? 'opacity-100' : 'max-h-0 opacity-0'} text-void-fg-4`}
+					className={`overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? 'opacity-100' : 'max-h-0 opacity-0'} text-pinnacleai-fg-4`}
 				>
 					{children}
 				</div>}
@@ -1130,7 +1128,7 @@ const UserMessageComponent = ({ chatMessage, messageIdx, isCheckpointGhost, curr
 			return null
 		}
 
-		chatbubbleContents = <VoidChatArea
+		chatbubbleContents = <PinnacleAiChatArea
 			featureName='Chat'
 			onSubmit={onSubmit}
 			onAbort={onAbort}
@@ -1141,7 +1139,7 @@ const UserMessageComponent = ({ chatMessage, messageIdx, isCheckpointGhost, curr
 			selections={stagingSelections}
 			setSelections={setStagingSelections}
 		>
-			<VoidInputBox2
+			<PinnacleInputBox2
 				enableAtToMention
 				ref={setTextAreaRef}
 				className='min-h-[81px] max-h-[500px] px-0.5'
@@ -1158,7 +1156,7 @@ const UserMessageComponent = ({ chatMessage, messageIdx, isCheckpointGhost, curr
 				fnsRef={textAreaFnsRef}
 				multiline={true}
 			/>
-		</VoidChatArea>
+		</PinnacleAiChatArea>
 	}
 
 	const isMsgAfterCheckpoint = currCheckpointIdx !== undefined && currCheckpointIdx === messageIdx - 1
@@ -1181,7 +1179,7 @@ const UserMessageComponent = ({ chatMessage, messageIdx, isCheckpointGhost, curr
 			className={`
             text-left rounded-lg max-w-full
             ${mode === 'edit' ? ''
-					: mode === 'display' ? 'p-2 flex flex-col bg-void-bg-1 text-void-fg-1 overflow-x-auto cursor-pointer' : ''
+					: mode === 'display' ? 'p-2 flex flex-col bg-pinnacleai-bg-1 text-pinnacleai-fg-1 overflow-x-auto cursor-pointer' : ''
 				}
         `}
 			onClick={() => { if (mode === 'display') { onOpenEdit() } }}
@@ -1193,7 +1191,7 @@ const UserMessageComponent = ({ chatMessage, messageIdx, isCheckpointGhost, curr
 
 		<div
 			className="absolute -top-1 -right-1 translate-x-0 -translate-y-0 z-1"
-		// data-tooltip-id='void-tooltip'
+		// data-tooltip-id='pinnacleai-tooltip'
 		// data-tooltip-content='Edit message'
 		// data-tooltip-place='left'
 		>
@@ -1202,7 +1200,7 @@ const UserMessageComponent = ({ chatMessage, messageIdx, isCheckpointGhost, curr
 				className={`
                     cursor-pointer
                     p-[2px]
-                    bg-void-bg-1 border border-void-border-1 rounded-md
+                    bg-pinnacleai-bg-1 border border-pinnacleai-border-1 rounded-md
                     transition-opacity duration-200 ease-in-out
                     ${isHovered || (isFocused && mode === 'edit') ? 'opacity-100' : 'opacity-0'}
                 `}
@@ -1223,7 +1221,7 @@ const UserMessageComponent = ({ chatMessage, messageIdx, isCheckpointGhost, curr
 
 const SmallProseWrapper = ({ children }: { children: React.ReactNode }) => {
 	return <div className='
-text-void-fg-4
+text-pinnacleai-fg-4
 prose
 prose-sm
 break-words
@@ -1268,7 +1266,7 @@ marker:text-inherit
 prose-blockquote:pl-2
 prose-blockquote:my-2
 
-prose-code:text-void-fg-3
+prose-code:text-pinnacleai-fg-3
 prose-code:text-[12px]
 prose-code:before:content-none
 prose-code:after:content-none
@@ -1285,7 +1283,7 @@ prose-table:text-[13px]
 
 const ProseWrapper = ({ children }: { children: React.ReactNode }) => {
 	return <div className='
-text-void-fg-2
+text-pinnacleai-fg-2
 prose
 prose-sm
 break-words
@@ -1566,8 +1564,8 @@ const ToolRequestAcceptRejectButtons = ({ toolName }: { toolName: ToolName }) =>
 	const accessor = useAccessor()
 	const chatThreadsService = accessor.get('IChatThreadService')
 	const metricsService = accessor.get('IMetricsService')
-	const voidSettingsService = accessor.get('IVoidSettingsService')
-	const voidSettingsState = useSettingsState()
+	const pinnacleaiSettingsService = accessor.get('IPinnacleSettingsService')
+	const pinnacleaiSettingsState = useSettingsState()
 
 	const onAccept = useCallback(() => {
 		try { // this doesn't need to be wrapped in try/catch anymore
@@ -1654,7 +1652,7 @@ export const ListableToolItem = ({ name, onClick, isSmall, className, showDot }:
 		onClick={onClick}
 	>
 		{showDot === false ? null : <div className="flex-shrink-0"><svg className="w-1 h-1 opacity-60 mr-1.5 fill-current" viewBox="0 0 100 40"><rect x="0" y="15" width="100" height="10" /></svg></div>}
-		<div className={`${isSmall ? 'italic text-void-fg-4 flex items-center' : ''}`}>{name}</div>
+		<div className={`${isSmall ? 'italic text-pinnacleai-fg-4 flex items-center' : ''}`}>{name}</div>
 	</div>
 }
 
@@ -1663,7 +1661,7 @@ export const ListableToolItem = ({ name, onClick, isSmall, className, showDot }:
 const EditToolChildren = ({ uri, code, type }: { uri: URI | undefined, code: string, type: 'diff' | 'rewrite' }) => {
 
 	const content = type === 'diff' ?
-		<VoidDiffEditor uri={uri} searchReplaceBlocks={code} />
+		<PinnacleDiffEditor uri={uri} searchReplaceBlocks={code} />
 		: <ChatMarkdownRender string={`\`\`\`\n${code}\n\`\`\``} codeURI={uri} chatMessageLocation={undefined} />
 
 	return <div className='!select-text cursor-auto'>
@@ -1676,7 +1674,7 @@ const EditToolChildren = ({ uri, code, type }: { uri: URI | undefined, code: str
 
 
 const LintErrorChildren = ({ lintErrors }: { lintErrors: LintErrorItem[] }) => {
-	return <div className="text-xs text-void-fg-4 opacity-80 border-l-2 border-void-warning px-2 py-0.5 flex flex-col gap-0.5 overflow-x-auto whitespace-nowrap">
+	return <div className="text-xs text-pinnacleai-fg-4 opacity-80 border-l-2 border-pinnacleai-warning px-2 py-0.5 flex flex-col gap-0.5 overflow-x-auto whitespace-nowrap">
 		{lintErrors.map((error, i) => (
 			<div key={i}>Lines {error.startLineNumber}-{error.endLineNumber}: {error.message}</div>
 		))}
@@ -1694,14 +1692,14 @@ const BottomChildren = ({ children, title }: { children: React.ReactNode, title:
 				style={{ background: 'none' }}
 			>
 				<ChevronRight
-					className={`mr-1 h-3 w-3 flex-shrink-0 transition-transform duration-100 text-void-fg-4 group-hover:text-void-fg-3 ${isOpen ? 'rotate-90' : ''}`}
+					className={`mr-1 h-3 w-3 flex-shrink-0 transition-transform duration-100 text-pinnacleai-fg-4 group-hover:text-pinnacleai-fg-3 ${isOpen ? 'rotate-90' : ''}`}
 				/>
-				<span className="font-medium text-void-fg-4 group-hover:text-void-fg-3 text-xs">{title}</span>
+				<span className="font-medium text-pinnacleai-fg-4 group-hover:text-pinnacleai-fg-3 text-xs">{title}</span>
 			</div>
 			<div
 				className={`overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? 'opacity-100' : 'max-h-0 opacity-0'} text-xs pl-4`}
 			>
-				<div className="overflow-x-auto text-void-fg-4 opacity-90 border-l-2 border-void-warning px-2 py-0.5">
+				<div className="overflow-x-auto text-pinnacleai-fg-4 opacity-90 border-l-2 border-pinnacleai-warning px-2 py-0.5">
 					{children}
 				</div>
 			</div>
@@ -1731,7 +1729,7 @@ const InvalidTool = ({ toolName, message, mcpServerName }: { toolName: ToolName,
 	const componentParams: ToolHeaderParams = { title, desc1, isError, icon }
 
 	componentParams.children = <ToolChildrenWrapper>
-		<CodeChildren className='bg-void-bg-3'>
+		<CodeChildren className='bg-pinnacleai-bg-3'>
 			{message}
 		</CodeChildren>
 	</ToolChildrenWrapper>
@@ -1936,7 +1934,7 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 
 			if (toolMessage.type === 'success') {
 				const { result } = toolMessage
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor, range) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor, range) }
 				if (result.hasNextPage && params.pageNumber === 1)  // first page
 					componentParams.desc2 = `(truncated after ${Math.round(MAX_FILE_CHARS_PAGE) / 1000}k)`
 				else if (params.pageNumber > 1) // subsequent pages
@@ -2035,7 +2033,7 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 							name={`${child.name}${child.isDirectory ? '/' : ''}`}
 							className='w-full overflow-auto'
 							onClick={() => {
-								voidOpenFileFn(child.uri, accessor)
+								pinnacleaiOpenFileFn(child.uri, accessor)
 								// commandService.executeCommand('workbench.view.explorer'); // open in explorer folders view instead
 								// explorerService.select(child.uri, true);
 							}}
@@ -2086,7 +2084,7 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 						{result.uris.map((uri, i) => (<ListableToolItem key={i}
 							name={getBasename(uri.fsPath)}
 							className='w-full overflow-auto'
-							onClick={() => { voidOpenFileFn(uri, accessor) }}
+							onClick={() => { pinnacleaiOpenFileFn(uri, accessor) }}
 						/>))}
 						{result.hasNextPage &&
 							<ListableToolItem name={'Results truncated.'} isSmall={true} className='w-full overflow-auto' />
@@ -2141,7 +2139,7 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 						{result.uris.map((uri, i) => (<ListableToolItem key={i}
 							name={getBasename(uri.fsPath)}
 							className='w-full overflow-auto'
-							onClick={() => { voidOpenFileFn(uri, accessor) }}
+							onClick={() => { pinnacleaiOpenFileFn(uri, accessor) }}
 						/>))}
 						{result.hasNextPage &&
 							<ListableToolItem name={`Results truncated.`} isSmall={true} className='w-full overflow-auto' />
@@ -2188,7 +2186,7 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 				componentParams.numResults = result.lines.length;
 				componentParams.children = result.lines.length === 0 ? undefined :
 					<ToolChildrenWrapper>
-						<CodeChildren className='bg-void-bg-3'>
+						<CodeChildren className='bg-pinnacleai-bg-3'>
 							<pre className='font-mono whitespace-pre'>
 								{toolsService.stringOfResult['search_in_file'](params, result)}
 							</pre>
@@ -2231,7 +2229,7 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 
 			if (toolMessage.type === 'success') {
 				const { result } = toolMessage
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) }
 				if (result.lintErrors)
 					componentParams.children = <LintErrorChildren lintErrors={result.lintErrors} />
 				else
@@ -2272,14 +2270,14 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 
 			if (toolMessage.type === 'success') {
 				const { result } = toolMessage
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) }
 			}
 			else if (toolMessage.type === 'rejected') {
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) }
 			}
 			else if (toolMessage.type === 'tool_error') {
 				const { result } = toolMessage
-				if (params) { componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) } }
+				if (params) { componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) } }
 				componentParams.bottomChildren = <BottomChildren title='Error'>
 					<CodeChildren>
 						{result}
@@ -2314,14 +2312,14 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 
 			if (toolMessage.type === 'success') {
 				const { result } = toolMessage
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) }
 			}
 			else if (toolMessage.type === 'rejected') {
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) }
 			}
 			else if (toolMessage.type === 'tool_error') {
 				const { result } = toolMessage
-				if (params) { componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) } }
+				if (params) { componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) } }
 				componentParams.bottomChildren = <BottomChildren title='Error'>
 					<CodeChildren>
 						{result}
@@ -2330,11 +2328,11 @@ const builtinToolNameToComponent: { [T in BuiltinToolName]: { resultWrapper: Res
 			}
 			else if (toolMessage.type === 'running_now') {
 				const { result } = toolMessage
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) }
 			}
 			else if (toolMessage.type === 'tool_request') {
 				const { result } = toolMessage
-				componentParams.onClick = () => { voidOpenFileFn(params.uri, accessor) }
+				componentParams.onClick = () => { pinnacleaiOpenFileFn(params.uri, accessor) }
 			}
 
 			return <ToolHeaderWrapper {...componentParams} />
@@ -2457,7 +2455,7 @@ const Checkpoint = ({ message, threadId, messageIdx, isCheckpointGhost, threadIs
 		<div
 			className={`
                     text-xs
-                    text-void-fg-3
+                    text-pinnacleai-fg-3
                     select-none
                     ${isCheckpointGhost ? 'opacity-50' : 'opacity-100'}
 					${isDisabled ? 'cursor-default' : 'cursor-pointer'}
@@ -2473,7 +2471,7 @@ const Checkpoint = ({ message, threadId, messageIdx, isCheckpointGhost, threadIs
 				})
 			}}
 			{...isDisabled ? {
-				'data-tooltip-id': 'void-tooltip',
+				'data-tooltip-id': 'pinnacleai-tooltip',
 				'data-tooltip-content': `Disabled ${isRunning ? 'when running' : 'because another thread is running'}`,
 				'data-tooltip-place': 'top',
 			} : {}}
@@ -2586,7 +2584,7 @@ const CommandBarInChat = () => {
 	// 	<IconShell1
 	// 		Icon={CopyIcon}
 	// 		onClick={copyChatToClipboard}
-	// 		data-tooltip-id='void-tooltip'
+	// 		data-tooltip-id='pinnacleai-tooltip'
 	// 		data-tooltip-place='top'
 	// 		data-tooltip-content='Copy chat JSON'
 	// 	/>
@@ -2664,7 +2662,7 @@ const CommandBarInChat = () => {
 					});
 				});
 			}}
-			data-tooltip-id='void-tooltip'
+			data-tooltip-id='pinnacleai-tooltip'
 			data-tooltip-place='top'
 			data-tooltip-content='Reject all'
 		/>
@@ -2683,7 +2681,7 @@ const CommandBarInChat = () => {
 					});
 				});
 			}}
-			data-tooltip-id='void-tooltip'
+			data-tooltip-id='pinnacleai-tooltip'
 			data-tooltip-place='top'
 			data-tooltip-content='Accept all'
 		/>
@@ -2709,18 +2707,18 @@ const CommandBarInChat = () => {
 			)
 
 			const fileNameHTML = <div
-				className="flex items-center gap-1.5 text-void-fg-3 hover:brightness-125 transition-all duration-200 cursor-pointer"
-				onClick={() => voidOpenFileFn(uri, accessor)}
+				className="flex items-center gap-1.5 text-pinnacleai-fg-3 hover:brightness-125 transition-all duration-200 cursor-pointer"
+				onClick={() => pinnacleaiOpenFileFn(uri, accessor)}
 			>
-				{/* <FileIcon size={14} className="text-void-fg-3" /> */}
-				<span className="text-void-fg-3">{basename}</span>
+				{/* <FileIcon size={14} className="text-pinnacleai-fg-3" /> */}
+				<span className="text-pinnacleai-fg-3">{basename}</span>
 			</div>
 
 
 
 
 			const detailsContent = <div className='flex px-4'>
-				<span className="text-void-fg-3 opacity-80">{numDiffs} diff{numDiffs !== 1 ? 's' : ''}</span>
+				<span className="text-pinnacleai-fg-3 opacity-80">{numDiffs} diff{numDiffs !== 1 ? 's' : ''}</span>
 			</div>
 
 			const acceptRejectButtons = <div
@@ -2731,14 +2729,14 @@ const CommandBarInChat = () => {
 			>
 				{/* <JumpToFileButton
 					uri={uri}
-					data-tooltip-id='void-tooltip'
+					data-tooltip-id='pinnacleai-tooltip'
 					data-tooltip-place='top'
 					data-tooltip-content='Go to file'
 				/> */}
 				<IconShell1 // RejectAllButtonWrapper
 					Icon={X}
 					onClick={() => { editCodeService.acceptOrRejectAllDiffAreas({ uri, removeCtrlKs: true, behavior: "reject", _addToHistory: true, }); }}
-					data-tooltip-id='void-tooltip'
+					data-tooltip-id='pinnacleai-tooltip'
 					data-tooltip-place='top'
 					data-tooltip-content='Reject file'
 
@@ -2746,7 +2744,7 @@ const CommandBarInChat = () => {
 				<IconShell1 // AcceptAllButtonWrapper
 					Icon={Check}
 					onClick={() => { editCodeService.acceptOrRejectAllDiffAreas({ uri, removeCtrlKs: true, behavior: "accept", _addToHistory: true, }); }}
-					data-tooltip-id='void-tooltip'
+					data-tooltip-id='pinnacleai-tooltip'
 					data-tooltip-place='top'
 					data-tooltip-content='Accept file'
 				/>
@@ -2797,8 +2795,8 @@ const CommandBarInChat = () => {
 				<div
 					className={`
 						select-none
-						flex w-full rounded-t-lg bg-void-bg-3
-						text-void-fg-3 text-xs text-nowrap
+						flex w-full rounded-t-lg bg-pinnacleai-bg-3
+						text-pinnacleai-fg-3 text-xs text-nowrap
 
 						overflow-hidden transition-all duration-200 ease-in-out
 						${isFileDetailsOpened ? 'max-h-24' : 'max-h-0'}
@@ -2811,8 +2809,8 @@ const CommandBarInChat = () => {
 			<div
 				className={`
 					select-none
-					flex w-full rounded-t-lg bg-void-bg-3
-					text-void-fg-3 text-xs text-nowrap
+					flex w-full rounded-t-lg bg-pinnacleai-bg-3
+					text-pinnacleai-fg-3 text-xs text-nowrap
 					border-t border-l border-r border-zinc-300/10
 
 					px-2 py-1
@@ -2851,7 +2849,7 @@ const EditToolSoFar = ({ toolCallSoFar, }: { toolCallSoFar: RawToolCallObj }) =>
 		<IconLoading />
 	</span>
 
-	const desc1OnClick = () => { uri && voidOpenFileFn(uri, accessor) }
+	const desc1OnClick = () => { uri && pinnacleaiOpenFileFn(uri, accessor) }
 
 	// If URI has not been specified
 	return <ToolHeaderWrapper
@@ -2936,7 +2934,7 @@ export const SidebarChat = () => {
 		await chatThreadsService.abortRunning(threadId)
 	}
 
-	const keybindingString = accessor.get('IKeybindingService').lookupKeybinding(VOID_CTRL_L_ACTION_ID)?.getLabel()
+	const keybindingString = accessor.get('IKeybindingService').lookupKeybinding(PINNACLEAI_CTRL_L_ACTION_ID)?.getLabel()
 
 	const threadId = currentThread.id
 	const currCheckpointIdx = chatThreadsState.allThreads[threadId]?.state?.currCheckpointIdx ?? undefined  // if not exist, treat like checkpoint is last message (infinity)
@@ -3038,7 +3036,7 @@ export const SidebarChat = () => {
 					showDismiss={true}
 				/>
 
-				<WarningBox className='text-sm my-2 mx-4' onClick={() => { commandService.executeCommand(VOID_OPEN_SETTINGS_ACTION_ID) }} text='Open settings' />
+				<WarningBox className='text-sm my-2 mx-4' onClick={() => { commandService.executeCommand(PINNACLEAI_OPEN_SETTINGS_ACTION_ID) }} text='Open settings' />
 			</div>
 		}
 	</ScrollToBottomContainer>
@@ -3055,7 +3053,7 @@ export const SidebarChat = () => {
 		}
 	}, [onSubmit, onAbort, isRunning])
 
-	const inputChatArea = <VoidChatArea
+	const inputChatArea = <PinnacleAiChatArea
 		featureName='Chat'
 		onSubmit={() => onSubmit()}
 		onAbort={onAbort}
@@ -3067,7 +3065,7 @@ export const SidebarChat = () => {
 		setSelections={setSelections}
 		onClickAnywhere={() => { textAreaRef.current?.focus() }}
 	>
-		<VoidInputBox2
+		<PinnacleInputBox2
 			enableAtToMention
 			className={`min-h-[81px] px-0.5 py-0.5`}
 			placeholder={`@ to mention, ${keybindingString ? `${keybindingString} to add a selection. ` : ''}Enter instructions...`}
@@ -3079,17 +3077,17 @@ export const SidebarChat = () => {
 			multiline={true}
 		/>
 
-	</VoidChatArea>
+	</PinnacleAiChatArea>
 
 
 	const isLandingPage = previousMessages.length === 0
 
 
-	const initiallySuggestedPromptsHTML = <div className='flex flex-col gap-2 w-full text-nowrap text-void-fg-3 select-none'>
+	const initiallySuggestedPromptsHTML = <div className='flex flex-col gap-2 w-full text-nowrap text-pinnacleai-fg-3 select-none'>
 		{[
 			'Summarize my codebase',
 			'How do types work in Rust?',
-			'Create a .voidrules file for me'
+			'Create a .pinnacleairules file for me'
 		].map((text, index) => (
 			<div
 				key={index}
@@ -3128,12 +3126,12 @@ export const SidebarChat = () => {
 
 		{Object.keys(chatThreadsState.allThreads).length > 1 ? // show if there are threads
 			<ErrorBoundary>
-				<div className='pt-8 mb-2 text-void-fg-3 text-root select-none pointer-events-none'>Previous Threads</div>
+				<div className='pt-8 mb-2 text-pinnacleai-fg-3 text-root select-none pointer-events-none'>Previous Threads</div>
 				<PastThreadsList />
 			</ErrorBoundary>
 			:
 			<ErrorBoundary>
-				<div className='pt-8 mb-2 text-void-fg-3 text-root select-none pointer-events-none'>Suggestions</div>
+				<div className='pt-8 mb-2 text-pinnacleai-fg-3 text-root select-none pointer-events-none'>Suggestions</div>
 				{initiallySuggestedPromptsHTML}
 			</ErrorBoundary>
 		}

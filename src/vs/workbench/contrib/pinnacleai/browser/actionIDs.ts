@@ -24,3 +24,5 @@ export const PINNACLEAI_REJECT_FILE_ACTION_ID = 'pinnacleai.rejectFile'
 export const PINNACLEAI_ACCEPT_ALL_DIFFS_ACTION_ID = 'pinnacleai.acceptAllDiffs'
 
 export const PINNACLEAI_REJECT_ALL_DIFFS_ACTION_ID = 'pinnacleai.rejectAllDiffs'
+
+export const PINNACLEAI_OPEN_SETTINGS_ACTION_ID = 'workbench.action.openPinnacleAISettings'

@@ -4,6 +4,6 @@
  *--------------------------------------------------------------------------------------*/
 
 import { mountFnGenerator } from '../util/mountFnGenerator.js'
-import { VoidTooltip } from './PinnacleAiTooltip.js'
+import { PinnacleAiTooltip } from './PinnacleAiTooltip.js'
 
-export const mountVoidTooltip = mountFnGenerator(VoidTooltip)
+export const mountPinnacleAiTooltip = mountFnGenerator(PinnacleAiTooltip)

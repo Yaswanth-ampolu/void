@@ -255,7 +255,7 @@ export class MCPChannel implements IServerChannel {
 		const client = this.infoOfClientId[serverName]?._client
 		if (client) {
 			try {
-				await client.disconnect()
+				await client.close()
 			} catch (err) {
 				console.error(`❌ Error disconnecting from server "${serverName}":`, err)
 			}
@@ -296,24 +296,30 @@ export class MCPChannel implements IServerChannel {
 		// Remove the unique prefix from the tool name
 		const actualToolName = removeMCPToolNamePrefix(toolName)
 
-		// Call the tool
-		const result = await clientInfo._client.callTool(actualToolName, params)
+		// Call the tool with the provided parameters
+		const response = await clientInfo._client.callTool({
+			name: actualToolName,
+			arguments: params
+		})
+		const { content } = response as CallToolResult
+		const returnValue = content[0]
 
-		// Format the result
-		if (result.type === 'success') {
+		if (returnValue.type === 'text') {
+			// handle text response
 			return {
-				type: 'success',
-				result: result.result,
+				toolName: actualToolName,
+				serverName: serverName,
+				event: 'text',
+				text: returnValue.text,
 			}
 		} else {
-			const error: MCPToolErrorResponse = {
-				type: 'error',
-				error: {
-					message: result.error.message,
-					code: result.error.code,
-				}
+			// handle other types or errors
+			return {
+				toolName: actualToolName,
+				serverName: serverName,
+				event: 'error',
+				text: 'Unsupported response type',
 			}
-			return error
 		}
 	}
 
@@ -323,13 +329,12 @@ export class MCPChannel implements IServerChannel {
 		} catch (err) {
 			console.error(`❌ Error calling tool "${toolName}" on server "${serverName}":`, err)
 			const error: MCPToolErrorResponse = {
-				type: 'error',
-				error: {
-					message: err + '',
-					code: 'UNKNOWN_ERROR',
-				}
+				toolName: toolName,
+				serverName: serverName,
+				event: 'error',
+				text: err + '',
 			}
 			return error
 		}
 	}
-} 
+}

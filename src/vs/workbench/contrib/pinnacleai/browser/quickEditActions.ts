@@ -41,7 +41,7 @@ registerAction2(class extends Action2 {
 			title: localize2('pinnacleaiQuickEditAction', 'Pinnacleai: Quick Edit'),
 			keybinding: {
 				primary: KeyMod.CtrlCmd | KeyCode.KeyK,
-				weight: KeybindingWeight.PinnacleaiExtension,
+				weight: KeybindingWeight.PinnacleAIExtension,
 				when: ContextKeyExpr.deserialize('editorFocus && !terminalFocus'),
 			}
 		});

@@ -17,7 +17,7 @@ import { IMarkerService, MarkerSeverity } from '../../../../platform/markers/com
 import { timeout } from '../../../../base/common/async.js'
 import { RawToolParamsObj } from '../common/sendLLMMessageTypes.js'
 import { MAX_CHILDREN_URIs_PAGE, MAX_FILE_CHARS_PAGE, MAX_TERMINAL_BG_COMMAND_TIME, MAX_TERMINAL_INACTIVE_TIME } from '../common/prompt/prompts.js'
-import { IPinnacleAISettingsService } from '../common/pinnacleaiSettingsService.js'
+import { IPinnacleSettingsService } from '../common/pinnacleaiSettingsService.js'
 import { generateUuid } from '../../../../base/common/uuid.js'
 
 
@@ -152,7 +152,7 @@ export class ToolsService implements IToolsService {
 		@IPinnacleAICommandBarService private readonly commandBarService: IPinnacleAICommandBarService,
 		@IDirectoryStrService private readonly directoryStrService: IDirectoryStrService,
 		@IMarkerService private readonly markerService: IMarkerService,
-		@IPinnacleAISettingsService private readonly pinnacleaiSettingsService: IPinnacleAISettingsService,
+		@IPinnacleSettingsService private readonly pinnacleaiSettingsService: IPinnacleSettingsService,
 	) {
 		const queryBuilder = instantiationService.createInstance(QueryBuilder);
 
@@ -590,4 +590,4 @@ export class ToolsService implements IToolsService {
 
 }
 
-registerSingleton(IToolsService, ToolsService, InstantiationType.Eager); 
+registerSingleton(IToolsService, ToolsService, InstantiationType.Eager);

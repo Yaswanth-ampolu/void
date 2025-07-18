@@ -7,7 +7,7 @@ import { Disposable, toDisposable } from '../../../../base/common/lifecycle.js';
 import { IInstantiationService } from '../../../../platform/instantiation/common/instantiation.js';
 import { IWorkbenchContribution, registerWorkbenchContribution2, WorkbenchPhase } from '../../../common/contributions.js';
 import { ServicesAccessor } from '../../../../editor/browser/editorExtensions.js';
-import { mountPinnacleAIOnboarding } from './react/out/pinnacleai-onboarding/index.js'
+import { mountPinnacleAiOnboarding } from './react/out/pinnacleai-onboarding/index.js'
 import { h, getActiveWindow } from '../../../../base/browser/dom.js';
 
 // Onboarding contribution that mounts the component at startup
@@ -33,7 +33,7 @@ export class OnboardingContribution extends Disposable implements IWorkbenchCont
 			const onboardingContainer = h('div.pinnacleai-onboarding-container').root;
 			workbench.appendChild(onboardingContainer);
 			this.instantiationService.invokeFunction((accessor: ServicesAccessor) => {
-				const result = mountPinnacleAIOnboarding(onboardingContainer, accessor);
+				const result = mountPinnacleAiOnboarding(onboardingContainer, accessor);
 				if (result && typeof result.dispose === 'function') {
 					this._register(toDisposable(result.dispose));
 				}
@@ -49,4 +49,4 @@ export class OnboardingContribution extends Disposable implements IWorkbenchCont
 }
 
 // Register the contribution to be initialized during the AfterRestored phase
-registerWorkbenchContribution2(OnboardingContribution.ID, OnboardingContribution, WorkbenchPhase.AfterRestored); 
+registerWorkbenchContribution2(OnboardingContribution.ID, OnboardingContribution, WorkbenchPhase.AfterRestored);

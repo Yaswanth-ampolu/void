@@ -268,7 +268,7 @@ export const extractXMLToolsWrapper = (
 	mcpTools: InternalToolInfo[] | undefined,
 ): { newOnText: OnText, newOnFinalMessage: OnFinalMessage } => {
 
-	const tools = availableTools(chatMode, mcpTools)
+	const tools = availableTools(chatMode, mcpTools) || []
 	const toolNames = tools.map(t => t.name)
 	const toolTags = toolNames.map(t => `<${t}>`)
 	const toolOfToolName: ToolOfToolName = {}
@@ -292,7 +292,7 @@ export const extractXMLToolsWrapper = (
 			if (closeTagIndex === -1) {
 				// keep waiting
 				fullTextSoFar = fullText_
-				onText({ ...p, fullText: fullTextSoFar, toolCalls: [...doneToolCalls, ...activeToolCalls] })
+				onText({ ...p, fullText: fullTextSoFar, toolCall: activeToolCalls[0] })
 				return
 			}
 			// found close tag
@@ -305,7 +305,7 @@ export const extractXMLToolsWrapper = (
 				activeToolCalls = activeToolCalls.filter(tc => tc.id !== toolId)
 			}
 			fullTextSoFar = fullText_
-			onText({ ...p, fullText: fullTextSoFar, toolCalls: [...doneToolCalls, ...activeToolCalls] })
+			onText({ ...p, fullText: fullTextSoFar, toolCall: activeToolCalls[0] })
 			return
 		}
 
@@ -313,14 +313,14 @@ export const extractXMLToolsWrapper = (
 		const partialToolTag = findPartiallyWrittenToolTagAtEnd(fullText_, toolTags)
 		if (partialToolTag) {
 			// don't update fullTextSoFar yet
-			onText({ ...p, fullText: fullTextSoFar, toolCalls: [...doneToolCalls, ...activeToolCalls] })
+			onText({ ...p, fullText: fullTextSoFar, toolCall: activeToolCalls[0] })
 			return
 		}
 
 		// find any tool tags
 		const toolTagIndex = findIndexOfAny(fullText_, toolTags)
 		if (toolTagIndex) {
-			const [index, tag] = toolTagIndex
+			const [_index, tag] = toolTagIndex
 			const toolName = tag.substring(1, tag.length - 1) as ToolName
 			const toolId = generateUuid()
 
@@ -336,7 +336,7 @@ export const extractXMLToolsWrapper = (
 
 		// update fullTextSoFar
 		fullTextSoFar = fullText_
-		onText({ ...p, fullText: fullTextSoFar, toolCalls: [...doneToolCalls, ...activeToolCalls] })
+		onText({ ...p, fullText: fullTextSoFar, toolCall: activeToolCalls[0] })
 	}
 
 	const newOnFinalMessage: OnFinalMessage = (params) => {
@@ -347,7 +347,7 @@ export const extractXMLToolsWrapper = (
 		doneToolCalls = [...doneToolCalls, ...activeToolCalls.map(tc => ({ ...tc, isDone: true }))]
 		activeToolCalls = []
 
-		onFinalMessage({ ...params, fullText: fullTextSoFar, toolCalls: doneToolCalls })
+		onFinalMessage({ ...params, fullText: fullTextSoFar, toolCall: doneToolCalls[0] })
 	}
 
 	return { newOnText, newOnFinalMessage }
@@ -362,4 +362,4 @@ const trimBeforeAndAfterNewLines = (s: string) => {
 	lines[0] = lines[0].trimStart()
 	lines[lines.length - 1] = lines[lines.length - 1].trimEnd()
 	return lines.join('\n')
-} 
+}

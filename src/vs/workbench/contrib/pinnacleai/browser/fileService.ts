@@ -7,7 +7,7 @@ import { IFileService } from '../../../../platform/files/common/files.js';
 import { IClipboardService } from '../../../../platform/clipboard/common/clipboardService.js';
 import { IDirectoryStrService } from '../common/directoryStrService.js';
 import { messageOfSelection } from '../common/prompt/prompts.js';
-import { IPinnacleaiModelService } from '../common/pinnacleaiModelService.js';
+import { IPinnacleAIModelService } from '../common/pinnacleaiModelService.js';
 
 
 
@@ -31,7 +31,7 @@ class FilePromptActionService extends Action2 {
 			const fileService = accessor.get(IFileService);
 			const clipboardService = accessor.get(IClipboardService)
 			const directoryStrService = accessor.get(IDirectoryStrService)
-			const pinnacleaiModelService = accessor.get(IPinnacleaiModelService)
+			const pinnacleaiModelService = accessor.get(IPinnacleAIModelService)
 
 			const stat = await fileService.stat(uri)
 

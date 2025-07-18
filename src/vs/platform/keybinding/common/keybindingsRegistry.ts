@@ -66,6 +66,7 @@ export const enum KeybindingWeight {
 	BuiltinExtension = 300,
 	ExternalExtension = 400,
 	VoidExtension = 605, // Void -  must trump any external extension
+	PinnacleAIExtension = 605, // PinnacleAI - must trump any external extension
 }
 
 export interface ICommandAndKeybindingRule extends IKeybindingRule {
