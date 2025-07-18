@@ -1,8 +1,8 @@
 {
 	"nameShort": "PinnacleAI",
 	"nameLong": "PinnacleAI",
-	"voidVersion": "1.4.4",
-	"voidRelease": "0039",
+	"PinnacleAIVersion": "1.4.4",
+	"PinnacleAIReleas": "0039",
 	"applicationName": "pinnacleai",
 	"dataFolderName": ".pinnacleai-editor",
 	"win32MutexName": "pinnaclaieditor",

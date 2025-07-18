@@ -13,7 +13,7 @@ import './browser/workbench.contribution.js';
 //#endregion
 
 //#region --- Void
-import './contrib/void/browser/void.contribution.js'; // Void added this
+import './contrib/pinnacleai/browser/pinnacleai.contribution.js'; // Pinnacle AI added this
 //#endregion
 
 //#region --- workbench actions
