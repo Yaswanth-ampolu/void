@@ -1240,15 +1240,15 @@ export class CodeApplication extends Disposable {
 		const metricsChannel = ProxyChannel.fromService(accessor.get(IMetricsService), disposables);
 		mainProcessElectronServer.registerChannel('pinnacleai-channel-metrics', metricsChannel);
 
-		const voidUpdatesChannel = ProxyChannel.fromService(accessor.get(IPinnacleAIUpdateService), disposables);
-		mainProcessElectronServer.registerChannel('pinnacleai-channel-update', voidUpdatesChannel);
+		const pinnacleaiUpdatesChannel = ProxyChannel.fromService(accessor.get(IPinnacleAIUpdateService), disposables);
+		mainProcessElectronServer.registerChannel('pinnacleai-channel-update', pinnacleaiUpdatesChannel);
 
 		const sendLLMMessageChannel = new LLMMessageChannel(accessor.get(IMetricsService));
 		mainProcessElectronServer.registerChannel('pinnacleai-channel-llmMessage', sendLLMMessageChannel);
 
-		// Void added this
-		const voidSCMChannel = ProxyChannel.fromService(accessor.get(IPinnacleAISCMService), disposables);
-		mainProcessElectronServer.registerChannel('pinnacleai-channel-scm', voidSCMChannel);
+		// PinnacleAI added this
+		const pinnacleaiSCMChannel = ProxyChannel.fromService(accessor.get(IPinnacleAISCMService), disposables);
+		mainProcessElectronServer.registerChannel('pinnacleai-channel-scm', pinnacleaiSCMChannel);
 
 		// Void added this
 		const mcpChannel = new MCPChannel();

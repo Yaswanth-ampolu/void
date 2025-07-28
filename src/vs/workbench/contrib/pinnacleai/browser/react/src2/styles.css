@@ -560,6 +560,2366 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   display: none;
 }
 
+.pinnacleai-scope .pinnacleai-prose {
+  color: var(--tw-prose-body);
+  max-width: 65ch;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where([class~="lead"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-lead);
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(a):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-links);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-bold);
+  font-weight: 600;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(a strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(blockquote strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(thead th strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: decimal;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-inline-start: 1.625em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="A"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: upper-alpha;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="a"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: lower-alpha;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="A" s]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: upper-alpha;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="a" s]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: lower-alpha;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="I"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: upper-roman;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="i"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: lower-roman;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="I" s]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: upper-roman;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="i" s]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: lower-roman;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol[type="1"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: decimal;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  list-style-type: disc;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-inline-start: 1.625em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::marker {
+  font-weight: 400;
+  color: var(--tw-prose-counters);
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ul > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::marker {
+  color: var(--tw-prose-bullets);
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(dt):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  margin-top: 1.25em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(hr):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  border-color: var(--tw-prose-hr);
+  border-top-width: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(blockquote):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--tw-prose-quotes);
+  border-inline-start-width: 0.25rem;
+  border-inline-start-color: var(--tw-prose-quote-borders);
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-inline-start: 1em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(blockquote p:first-of-type):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::before {
+  content: open-quote;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(blockquote p:last-of-type):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::after {
+  content: close-quote;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h1):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h1 strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-weight: 900;
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h2):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3333333;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h2 strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-weight: 800;
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h3):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  font-size: 1.25em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h3 strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-weight: 700;
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h4):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h4 strong):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-weight: 700;
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(img):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(picture):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(video):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(kbd):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--tw-prose-kbd);
+  box-shadow: 0 0 0 1px rgb(var(--tw-prose-kbd-shadows) / 10%), 0 3px 0 rgb(var(--tw-prose-kbd-shadows) / 10%);
+  font-size: 0.875em;
+  border-radius: 0.3125rem;
+  padding-top: 0.1875em;
+  padding-inline-end: 0.375em;
+  padding-bottom: 0.1875em;
+  padding-inline-start: 0.375em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-code);
+  font-weight: 600;
+  font-size: 0.875em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::before {
+  content: "`";
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::after {
+  content: "`";
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(a code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h1 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h2 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+  font-size: 0.875em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h3 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+  font-size: 0.9em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h4 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(blockquote code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(thead th code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(pre):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-pre-code);
+  background-color: var(--tw-prose-pre-bg);
+  overflow-x: auto;
+  font-weight: 400;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+  border-radius: 0.375rem;
+  padding-top: 0.8571429em;
+  padding-inline-end: 1.1428571em;
+  padding-bottom: 0.8571429em;
+  padding-inline-start: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(pre code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(pre code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::before {
+  content: none;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(pre code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))::after {
+  content: none;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(table):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  width: 100%;
+  table-layout: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(thead):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--tw-prose-th-borders);
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(thead th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  vertical-align: bottom;
+  padding-inline-end: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-inline-start: 0.5714286em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tbody tr):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--tw-prose-td-borders);
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tbody tr:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  border-bottom-width: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tbody td):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  vertical-align: baseline;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tfoot):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  border-top-width: 1px;
+  border-top-color: var(--tw-prose-th-borders);
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tfoot td):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  vertical-align: top;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(th, td):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  text-align: start;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(figure > *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(figcaption):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  color: var(--tw-prose-captions);
+  font-size: 0.875em;
+  line-height: 1.4285714;
+  margin-top: 0.8571429em;
+}
+
+.pinnacleai-scope .pinnacleai-prose {
+  --tw-prose-body: var(--pinnacleai-fg-1);
+  --tw-prose-headings: var(--pinnacleai-fg-1);
+  --tw-prose-lead: var(--pinnacleai-fg-2);
+  --tw-prose-links: var(--pinnacleai-link-color);
+  --tw-prose-bold: var(--pinnacleai-fg-1);
+  --tw-prose-counters: var(--pinnacleai-fg-3);
+  --tw-prose-bullets: var(--pinnacleai-fg-3);
+  --tw-prose-hr: var(--pinnacleai-border-4);
+  --tw-prose-quotes: var(--pinnacleai-fg-1);
+  --tw-prose-quote-borders: var(--pinnacleai-border-2);
+  --tw-prose-captions: var(--pinnacleai-fg-3);
+  --tw-prose-kbd: #111827;
+  --tw-prose-kbd-shadows: 17 24 39;
+  --tw-prose-code: var(--pinnacleai-fg-0);
+  --tw-prose-pre-code: var(--pinnacleai-fg-0);
+  --tw-prose-pre-bg: var(--pinnacleai-bg-1);
+  --tw-prose-th-borders: var(--pinnacleai-border-4);
+  --tw-prose-td-borders: var(--pinnacleai-border-4);
+  --tw-prose-invert-body: #d1d5db;
+  --tw-prose-invert-headings: #fff;
+  --tw-prose-invert-lead: #9ca3af;
+  --tw-prose-invert-links: #fff;
+  --tw-prose-invert-bold: #fff;
+  --tw-prose-invert-counters: #9ca3af;
+  --tw-prose-invert-bullets: #4b5563;
+  --tw-prose-invert-hr: #374151;
+  --tw-prose-invert-quotes: #f3f4f6;
+  --tw-prose-invert-quote-borders: #374151;
+  --tw-prose-invert-captions: #9ca3af;
+  --tw-prose-invert-kbd: #fff;
+  --tw-prose-invert-kbd-shadows: 255 255 255;
+  --tw-prose-invert-code: #fff;
+  --tw-prose-invert-pre-code: #d1d5db;
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: #4b5563;
+  --tw-prose-invert-td-borders: #374151;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(picture > img):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ol > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0.375em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ul > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0.375em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(.pinnacleai-prose > ul > li p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(.pinnacleai-prose > ul > li > p:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.25em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(.pinnacleai-prose > ul > li > p:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 1.25em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(.pinnacleai-prose > ol > li > p:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.25em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(.pinnacleai-prose > ol > li > p:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 1.25em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(dl):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(dd):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.5em;
+  padding-inline-start: 1.625em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(hr + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h2 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h3 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(h4 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(thead th:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(thead th:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tbody td, tfoot td):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-top: 0.5714286em;
+  padding-inline-end: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-inline-start: 0.5714286em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(figure):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(.pinnacleai-prose > :first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose :where(.pinnacleai-prose > :last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm {
+  font-size: 0.875rem;
+  line-height: 1.7142857;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where([class~="lead"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 1.2857143em;
+  line-height: 1.5555556;
+  margin-top: 0.8888889em;
+  margin-bottom: 0.8888889em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(blockquote):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.3333333em;
+  margin-bottom: 1.3333333em;
+  padding-inline-start: 1.1111111em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h1):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 2.1428571em;
+  margin-top: 0;
+  margin-bottom: 0.8em;
+  line-height: 1.2;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h2):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 1.4285714em;
+  margin-top: 1.6em;
+  margin-bottom: 0.8em;
+  line-height: 1.4;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h3):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 1.2857143em;
+  margin-top: 1.5555556em;
+  margin-bottom: 0.4444444em;
+  line-height: 1.5555556;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h4):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.4285714em;
+  margin-bottom: 0.5714286em;
+  line-height: 1.4285714;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(img):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(picture):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(picture > img):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(video):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(kbd):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  border-radius: 0.3125rem;
+  padding-top: 0.1428571em;
+  padding-inline-end: 0.3571429em;
+  padding-bottom: 0.1428571em;
+  padding-inline-start: 0.3571429em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h2 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.9em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h3 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8888889em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(pre):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  line-height: 1.6666667;
+  margin-top: 1.6666667em;
+  margin-bottom: 1.6666667em;
+  border-radius: 0.25rem;
+  padding-top: 0.6666667em;
+  padding-inline-end: 1em;
+  padding-bottom: 0.6666667em;
+  padding-inline-start: 1em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+  padding-inline-start: 1.5714286em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+  padding-inline-start: 1.5714286em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.2857143em;
+  margin-bottom: 0.2857143em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(ol > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0.4285714em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(ul > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0.4285714em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(.pinnacleai-prose-sm > ul > li p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.5714286em;
+  margin-bottom: 0.5714286em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(.pinnacleai-prose-sm > ul > li > p:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(.pinnacleai-prose-sm > ul > li > p:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(.pinnacleai-prose-sm > ol > li > p:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(.pinnacleai-prose-sm > ol > li > p:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.5714286em;
+  margin-bottom: 0.5714286em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(dl):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(dt):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(dd):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.2857143em;
+  padding-inline-start: 1.5714286em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(hr):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 2.8571429em;
+  margin-bottom: 2.8571429em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(hr + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h2 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h3 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(h4 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(table):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  line-height: 1.5;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(thead th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 1em;
+  padding-bottom: 0.6666667em;
+  padding-inline-start: 1em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(thead th:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(thead th:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(tbody td, tfoot td):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-top: 0.6666667em;
+  padding-inline-end: 1em;
+  padding-bottom: 0.6666667em;
+  padding-inline-start: 1em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(figure):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(figure > *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(figcaption):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  line-height: 1.3333333;
+  margin-top: 0.6666667em;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(.pinnacleai-prose-sm > :first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .pinnacleai-prose-sm :where(.pinnacleai-prose-sm > :last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .pinnacleai-pointer-events-none {
+  pointer-events: none;
+}
+
+.pinnacleai-scope .pinnacleai-pointer-events-auto {
+  pointer-events: auto;
+}
+
+.pinnacleai-scope .pinnacleai-fixed {
+  position: fixed;
+}
+
+.pinnacleai-scope .pinnacleai-absolute {
+  position: absolute;
+}
+
+.pinnacleai-scope .pinnacleai-relative {
+  position: relative;
+}
+
+.pinnacleai-scope .pinnacleai-sticky {
+  position: sticky;
+}
+
+.pinnacleai-scope .pinnacleai-inset-0 {
+  inset: 0px;
+}
+
+.pinnacleai-scope .-pinnacleai-left-\[999999px\] {
+  left: -999999px;
+}
+
+.pinnacleai-scope .-pinnacleai-right-1 {
+  right: -0.25rem;
+}
+
+.pinnacleai-scope .-pinnacleai-top-1 {
+  top: -0.25rem;
+}
+
+.pinnacleai-scope .-pinnacleai-top-\[999999px\] {
+  top: -999999px;
+}
+
+.pinnacleai-scope .pinnacleai-bottom-0 {
+  bottom: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-left-0 {
+  left: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-right-0 {
+  right: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-top-0 {
+  top: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-top-1\/2 {
+  top: 50%;
+}
+
+.pinnacleai-scope .pinnacleai-z-0 {
+  z-index: 0;
+}
+
+.pinnacleai-scope .pinnacleai-z-10 {
+  z-index: 10;
+}
+
+.pinnacleai-scope .pinnacleai-z-\[1000\] {
+  z-index: 1000;
+}
+
+.pinnacleai-scope .pinnacleai-z-\[100\] {
+  z-index: 100;
+}
+
+.pinnacleai-scope .pinnacleai-z-\[9999999\] {
+  z-index: 9999999;
+}
+
+.pinnacleai-scope .pinnacleai-z-\[99999\] {
+  z-index: 99999;
+}
+
+.pinnacleai-scope .pinnacleai-mx-0\.5 {
+  margin-left: 0.125rem;
+  margin-right: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pinnacleai-scope .pinnacleai-my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.pinnacleai-scope .pinnacleai-mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-mb-32 {
+  margin-bottom: 8rem;
+}
+
+.pinnacleai-scope .pinnacleai-mb-4 {
+  margin-bottom: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-mb-auto {
+  margin-bottom: auto;
+}
+
+.pinnacleai-scope .pinnacleai-ml-1 {
+  margin-left: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-ml-2 {
+  margin-left: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-ml-auto {
+  margin-left: auto;
+}
+
+.pinnacleai-scope .pinnacleai-mr-0\.5 {
+  margin-right: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-mr-1 {
+  margin-right: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-mr-1\.5 {
+  margin-right: 0.375rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-0\.5 {
+  margin-top: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-1 {
+  margin-top: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-12 {
+  margin-top: 3rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-2 {
+  margin-top: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-3 {
+  margin-top: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-4 {
+  margin-top: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-8 {
+  margin-top: 2rem;
+}
+
+.pinnacleai-scope .pinnacleai-mt-auto {
+  margin-top: auto;
+}
+
+.pinnacleai-scope .pinnacleai-block {
+  display: block;
+}
+
+.pinnacleai-scope .pinnacleai-inline-block {
+  display: inline-block;
+}
+
+.pinnacleai-scope .pinnacleai-flex {
+  display: flex;
+}
+
+.pinnacleai-scope .pinnacleai-inline-flex {
+  display: inline-flex;
+}
+
+.pinnacleai-scope .pinnacleai-hidden {
+  display: none;
+}
+
+.pinnacleai-scope .pinnacleai-size-1\.5 {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.pinnacleai-scope .pinnacleai-size-3 {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-size-3\.5 {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.pinnacleai-scope .pinnacleai-size-4 {
+  width: 1rem;
+  height: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-size-5 {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-size-\[11px\] {
+  width: 11px;
+  height: 11px;
+}
+
+.pinnacleai-scope .pinnacleai-size-\[18px\] {
+  width: 18px;
+  height: 18px;
+}
+
+.pinnacleai-scope .pinnacleai-h-0\.5 {
+  height: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-1 {
+  height: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-1\.5 {
+  height: 0.375rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-2 {
+  height: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-2\.5 {
+  height: 0.625rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-3 {
+  height: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-3\.5 {
+  height: 0.875rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-4 {
+  height: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-5 {
+  height: 1.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-6 {
+  height: 1.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-h-\[1px\] {
+  height: 1px;
+}
+
+.pinnacleai-scope .pinnacleai-h-\[300px\] {
+  height: 300px;
+}
+
+.pinnacleai-scope .pinnacleai-h-\[30vh\] {
+  height: 30vh;
+}
+
+.pinnacleai-scope .pinnacleai-h-\[80vh\] {
+  height: 80vh;
+}
+
+.pinnacleai-scope .pinnacleai-h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.pinnacleai-scope .pinnacleai-h-full {
+  height: 100%;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-0 {
+  max-height: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-24 {
+  max-height: 6rem;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-32 {
+  max-height: 8rem;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-80 {
+  max-height: 20rem;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-\[400px\] {
+  max-height: 400px;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-\[500px\] {
+  max-height: 500px;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-\[80vh\] {
+  max-height: 80vh;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-\[90vh\] {
+  max-height: 90vh;
+}
+
+.pinnacleai-scope .pinnacleai-max-h-full {
+  max-height: 100%;
+}
+
+.pinnacleai-scope .pinnacleai-min-h-\[200px\] {
+  min-height: 200px;
+}
+
+.pinnacleai-scope .pinnacleai-min-h-\[24px\] {
+  min-height: 24px;
+}
+
+.pinnacleai-scope .pinnacleai-min-h-\[81px\] {
+  min-height: 81px;
+}
+
+.pinnacleai-scope .pinnacleai-w-1 {
+  width: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-10 {
+  width: 2.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-11 {
+  width: 2.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-2 {
+  width: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-2\.5 {
+  width: 0.625rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-3 {
+  width: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-3\.5 {
+  width: 0.875rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-4 {
+  width: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-48 {
+  width: 12rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-5 {
+  width: 1.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-7 {
+  width: 1.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-9 {
+  width: 2.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-w-\[0\.5px\] {
+  width: 0.5px;
+}
+
+.pinnacleai-scope .pinnacleai-w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.pinnacleai-scope .pinnacleai-w-full {
+  width: 100%;
+}
+
+.pinnacleai-scope .pinnacleai-w-max {
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.pinnacleai-scope .pinnacleai-min-w-0 {
+  min-width: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-min-w-full {
+  min-width: 100%;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-32 {
+  max-width: 8rem;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-3xl {
+  max-width: 48rem;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-48 {
+  max-width: 12rem;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-\[20px\] {
+  max-width: 20px;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-\[300px\] {
+  max-width: 300px;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-\[400px\] {
+  max-width: 400px;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-\[600px\] {
+  max-width: 600px;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-\[900px\] {
+  max-width: 900px;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-full {
+  max-width: 100%;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-md {
+  max-width: 28rem;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-none {
+  max-width: none;
+}
+
+.pinnacleai-scope .pinnacleai-max-w-xl {
+  max-width: 36rem;
+}
+
+.pinnacleai-scope .pinnacleai-flex-1 {
+  flex: 1 1 0%;
+}
+
+.pinnacleai-scope .pinnacleai-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.pinnacleai-scope .pinnacleai-shrink-0 {
+  flex-shrink: 0;
+}
+
+.pinnacleai-scope .pinnacleai-flex-grow {
+  flex-grow: 1;
+}
+
+.pinnacleai-scope .pinnacleai-flex-grow-0 {
+  flex-grow: 0;
+}
+
+.pinnacleai-scope .pinnacleai-grow {
+  flex-grow: 1;
+}
+
+.pinnacleai-scope .-pinnacleai-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .-pinnacleai-translate-y-0 {
+  --tw-translate-y: -0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .-pinnacleai-translate-y-1\/2 {
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-translate-x-0 {
+  --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-translate-x-0\.5 {
+  --tw-translate-x: 0.125rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-translate-x-1 {
+  --tw-translate-x: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-translate-x-2\.5 {
+  --tw-translate-x: 0.625rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-translate-x-3\.5 {
+  --tw-translate-x: 0.875rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-translate-x-5 {
+  --tw-translate-x: 1.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-translate-x-6 {
+  --tw-translate-x: 1.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-rotate-90 {
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes pinnacleai-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pinnacleai-scope .pinnacleai-animate-spin {
+  animation: pinnacleai-spin 1s linear infinite;
+}
+
+.pinnacleai-scope .pinnacleai-cursor-auto {
+  cursor: auto;
+}
+
+.pinnacleai-scope .pinnacleai-cursor-default {
+  cursor: default;
+}
+
+.pinnacleai-scope .pinnacleai-cursor-grab {
+  cursor: grab;
+}
+
+.pinnacleai-scope .pinnacleai-cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.pinnacleai-scope .pinnacleai-cursor-pointer {
+  cursor: pointer;
+}
+
+.pinnacleai-scope .pinnacleai-select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.pinnacleai-scope .\!pinnacleai-select-text {
+  -webkit-user-select: text !important;
+     -moz-user-select: text !important;
+          user-select: text !important;
+}
+
+.pinnacleai-scope .pinnacleai-select-text {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+.pinnacleai-scope .pinnacleai-resize-none {
+  resize: none;
+}
+
+.pinnacleai-scope .pinnacleai-list-decimal {
+  list-style-type: decimal;
+}
+
+.pinnacleai-scope .pinnacleai-flex-row {
+  flex-direction: row;
+}
+
+.pinnacleai-scope .pinnacleai-flex-col {
+  flex-direction: column;
+}
+
+.pinnacleai-scope .pinnacleai-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.pinnacleai-scope .pinnacleai-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.pinnacleai-scope .pinnacleai-items-start {
+  align-items: flex-start;
+}
+
+.pinnacleai-scope .pinnacleai-items-end {
+  align-items: flex-end;
+}
+
+.pinnacleai-scope .pinnacleai-items-center {
+  align-items: center;
+}
+
+.pinnacleai-scope .pinnacleai-justify-start {
+  justify-content: flex-start;
+}
+
+.pinnacleai-scope .pinnacleai-justify-end {
+  justify-content: flex-end;
+}
+
+.pinnacleai-scope .pinnacleai-justify-center {
+  justify-content: center;
+}
+
+.pinnacleai-scope .pinnacleai-justify-between {
+  justify-content: space-between;
+}
+
+.pinnacleai-scope .pinnacleai-gap-0 {
+  gap: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-gap-0\.5 {
+  gap: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-1 {
+  gap: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-1\.5 {
+  gap: 0.375rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-12 {
+  gap: 3rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-2 {
+  gap: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-3 {
+  gap: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-4 {
+  gap: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-6 {
+  gap: 1.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-8 {
+  gap: 2rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-x-0\.5 {
+  -moz-column-gap: 0.125rem;
+       column-gap: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-x-1 {
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-y-1 {
+  row-gap: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-gap-y-8 {
+  row-gap: 2rem;
+}
+
+.pinnacleai-scope .pinnacleai-space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+
+.pinnacleai-scope .pinnacleai-space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.pinnacleai-scope .pinnacleai-space-y-\[1px\] > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1px * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1px * var(--tw-space-y-reverse));
+}
+
+.pinnacleai-scope .pinnacleai-self-end {
+  align-self: flex-end;
+}
+
+.pinnacleai-scope .pinnacleai-self-stretch {
+  align-self: stretch;
+}
+
+.pinnacleai-scope .pinnacleai-overflow-auto {
+  overflow: auto;
+}
+
+.pinnacleai-scope .pinnacleai-overflow-hidden {
+  overflow: hidden;
+}
+
+.pinnacleai-scope .pinnacleai-overflow-x-auto {
+  overflow-x: auto;
+}
+
+.pinnacleai-scope .pinnacleai-overflow-y-auto {
+  overflow-y: auto;
+}
+
+.pinnacleai-scope .pinnacleai-overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.pinnacleai-scope .pinnacleai-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pinnacleai-scope .pinnacleai-text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.pinnacleai-scope .pinnacleai-whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.pinnacleai-scope .pinnacleai-whitespace-pre {
+  white-space: pre;
+}
+
+.pinnacleai-scope .pinnacleai-whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+
+.pinnacleai-scope .pinnacleai-text-nowrap {
+  text-wrap: nowrap;
+}
+
+.pinnacleai-scope .pinnacleai-break-words {
+  overflow-wrap: break-word;
+}
+
+.pinnacleai-scope .pinnacleai-rounded {
+  border-radius: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-rounded-full {
+  border-radius: 9999px;
+}
+
+.pinnacleai-scope .pinnacleai-rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-rounded-md {
+  border-radius: 0.375rem;
+}
+
+.pinnacleai-scope .pinnacleai-rounded-none {
+  border-radius: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-rounded-sm {
+  border-radius: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-rounded-t-lg {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-border {
+  border-width: 1px;
+}
+
+.pinnacleai-scope .pinnacleai-border-b {
+  border-bottom-width: 1px;
+}
+
+.pinnacleai-scope .pinnacleai-border-l {
+  border-left-width: 1px;
+}
+
+.pinnacleai-scope .pinnacleai-border-l-2 {
+  border-left-width: 2px;
+}
+
+.pinnacleai-scope .pinnacleai-border-r {
+  border-right-width: 1px;
+}
+
+.pinnacleai-scope .pinnacleai-border-t {
+  border-top-width: 1px;
+}
+
+.pinnacleai-scope .pinnacleai-border-none {
+  border-style: none;
+}
+
+.pinnacleai-scope .pinnacleai-border-\[var\(--vscode-keybindingLabel-border\)\] {
+  border-color: var(--vscode-keybindingLabel-border);
+}
+
+.pinnacleai-scope .pinnacleai-border-green-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 197 94 / var(--tw-border-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-border-orange-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(249 115 22 / var(--tw-border-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-border-pinnacleai-border-1 {
+  border-color: var(--pinnacleai-border-1);
+}
+
+.pinnacleai-scope .pinnacleai-border-pinnacleai-border-2 {
+  border-color: var(--pinnacleai-border-2);
+}
+
+.pinnacleai-scope .pinnacleai-border-pinnacleai-border-3 {
+  border-color: var(--pinnacleai-border-3);
+}
+
+.pinnacleai-scope .pinnacleai-border-pinnacleai-border-4 {
+  border-color: var(--pinnacleai-border-4);
+}
+
+.pinnacleai-scope .pinnacleai-border-pinnacleai-fg-1 {
+  border-color: var(--pinnacleai-fg-1);
+}
+
+.pinnacleai-scope .pinnacleai-border-pinnacleai-warning {
+  border-color: var(--pinnacleai-warning);
+}
+
+.pinnacleai-scope .pinnacleai-border-red-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 202 202 / var(--tw-border-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-border-yellow-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(234 179 8 / var(--tw-border-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-border-zinc-300\/10 {
+  border-color: rgb(212 212 216 / 0.1);
+}
+
+.pinnacleai-scope .pinnacleai-bg-\[\#0e70c0\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 112 192 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-\[\#0e70c0\]\/80 {
+  background-color: rgb(14 112 192 / 0.8);
+}
+
+.pinnacleai-scope .pinnacleai-bg-\[rgba\(0\,0\,0\,0\)\] {
+  background-color: rgba(0,0,0,0);
+}
+
+.pinnacleai-scope .pinnacleai-bg-\[var\(--vscode-button-background\)\] {
+  background-color: var(--vscode-button-background);
+}
+
+.pinnacleai-scope .pinnacleai-bg-\[var\(--vscode-button-secondaryBackground\)\] {
+  background-color: var(--vscode-button-secondaryBackground);
+}
+
+.pinnacleai-scope .pinnacleai-bg-\[var\(--vscode-keybindingLabel-background\)\] {
+  background-color: var(--vscode-keybindingLabel-background);
+}
+
+.pinnacleai-scope .pinnacleai-bg-black\/10 {
+  background-color: rgb(0 0 0 / 0.1);
+}
+
+.pinnacleai-scope .pinnacleai-bg-black\/50 {
+  background-color: rgb(0 0 0 / 0.5);
+}
+
+.pinnacleai-scope .pinnacleai-bg-black\/90 {
+  background-color: rgb(0 0 0 / 0.9);
+}
+
+.pinnacleai-scope .pinnacleai-bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-orange-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 247 237 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-orange-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-bg-1 {
+  background-color: var(--pinnacleai-bg-1);
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-bg-2 {
+  background-color: var(--pinnacleai-bg-2);
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-bg-2-alt {
+  background-color: var(--pinnacleai-bg-2-alt);
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-bg-3 {
+  background-color: var(--pinnacleai-bg-3);
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-border-1 {
+  background-color: var(--pinnacleai-border-1);
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-border-3 {
+  background-color: var(--pinnacleai-border-3);
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-fg-1 {
+  background-color: var(--pinnacleai-fg-1);
+}
+
+.pinnacleai-scope .pinnacleai-bg-pinnacleai-fg-3 {
+  background-color: var(--pinnacleai-fg-3);
+}
+
+.pinnacleai-scope .pinnacleai-bg-red-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-transparent {
+  background-color: transparent;
+}
+
+.pinnacleai-scope .pinnacleai-bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-white\/70 {
+  background-color: rgb(255 255 255 / 0.7);
+}
+
+.pinnacleai-scope .pinnacleai-bg-yellow-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-zinc-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 245 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-zinc-100\/40 {
+  background-color: rgb(244 244 245 / 0.4);
+}
+
+.pinnacleai-scope .pinnacleai-bg-zinc-700\/5 {
+  background-color: rgb(63 63 70 / 0.05);
+}
+
+.pinnacleai-scope .pinnacleai-bg-zinc-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
+}
+
+.pinnacleai-scope .pinnacleai-bg-none {
+  background-image: none;
+}
+
+.pinnacleai-scope .pinnacleai-fill-current {
+  fill: currentColor;
+}
+
+.pinnacleai-scope .pinnacleai-stroke-green-500 {
+  stroke: #22c55e;
+}
+
+.pinnacleai-scope .pinnacleai-stroke-red-500 {
+  stroke: #ef4444;
+}
+
+.pinnacleai-scope .pinnacleai-stroke-\[2\] {
+  stroke-width: 2;
+}
+
+.pinnacleai-scope .pinnacleai-stroke-\[3\] {
+  stroke-width: 3;
+}
+
+.pinnacleai-scope .pinnacleai-p-0\.5 {
+  padding: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-p-1 {
+  padding: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-p-2 {
+  padding: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-p-3 {
+  padding: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-p-4 {
+  padding: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-p-6 {
+  padding: 1.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-p-\[2px\] {
+  padding: 2px;
+}
+
+.pinnacleai-scope .pinnacleai-p-\[7px\] {
+  padding: 7px;
+}
+
+.pinnacleai-scope .\!pinnacleai-px-0 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.pinnacleai-scope .\!pinnacleai-py-0 {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.pinnacleai-scope .pinnacleai-px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-px-0\.5 {
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.pinnacleai-scope .pinnacleai-px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.pinnacleai-scope .pinnacleai-py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pinnacleai-scope .pinnacleai-pb-0\.5 {
+  padding-bottom: 0.125rem;
+}
+
+.pinnacleai-scope .pinnacleai-pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-pb-8 {
+  padding-bottom: 2rem;
+}
+
+.pinnacleai-scope .pinnacleai-pl-0 {
+  padding-left: 0px;
+}
+
+.pinnacleai-scope .pinnacleai-pl-2 {
+  padding-left: 0.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-pl-4 {
+  padding-left: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-pl-6 {
+  padding-left: 1.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-pr-1 {
+  padding-right: 0.25rem;
+}
+
+.pinnacleai-scope .pinnacleai-pr-4 {
+  padding-right: 1rem;
+}
+
+.pinnacleai-scope .pinnacleai-pt-16 {
+  padding-top: 4rem;
+}
+
+.pinnacleai-scope .pinnacleai-pt-3 {
+  padding-top: 0.75rem;
+}
+
+.pinnacleai-scope .pinnacleai-pt-8 {
+  padding-top: 2rem;
+}
+
+.pinnacleai-scope .pinnacleai-text-left {
+  text-align: left;
+}
+
+.pinnacleai-scope .pinnacleai-text-center {
+  text-align: center;
+}
+
+.pinnacleai-scope .pinnacleai-align-top {
+  vertical-align: top;
+}
+
+.pinnacleai-scope .pinnacleai-align-text-top {
+  vertical-align: text-top;
+}
+
+.pinnacleai-scope .pinnacleai-font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.pinnacleai-scope .pinnacleai-text-2xl {
+  font-size: 18px;
+}
+
+.pinnacleai-scope .pinnacleai-text-3xl {
+  font-size: 20px;
+}
+
+.pinnacleai-scope .pinnacleai-text-4xl {
+  font-size: 24px;
+}
+
+.pinnacleai-scope .pinnacleai-text-5xl {
+  font-size: 30px;
+}
+
+.pinnacleai-scope .pinnacleai-text-\[11px\] {
+  font-size: 11px;
+}
+
+.pinnacleai-scope .pinnacleai-text-\[13px\] {
+  font-size: 13px;
+}
+
+.pinnacleai-scope .pinnacleai-text-\[8px\] {
+  font-size: 8px;
+}
+
+.pinnacleai-scope .pinnacleai-text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.pinnacleai-scope .pinnacleai-text-lg {
+  font-size: 14px;
+}
+
+.pinnacleai-scope .pinnacleai-text-root {
+  font-size: 13px;
+}
+
+.pinnacleai-scope .pinnacleai-text-sm {
+  font-size: 11px;
+}
+
+.pinnacleai-scope .pinnacleai-text-xl {
+  font-size: 16px;
+}
+
+.pinnacleai-scope .pinnacleai-text-xs {
+  font-size: 10px;
+}
+
+.pinnacleai-scope .pinnacleai-font-light {
+  font-weight: 300;
+}
+
+.pinnacleai-scope .pinnacleai-font-medium {
+  font-weight: 500;
+}
+
+.pinnacleai-scope .pinnacleai-font-semibold {
+  font-weight: 600;
+}
+
+.pinnacleai-scope .pinnacleai-italic {
+  font-style: italic;
+}
+
+.pinnacleai-scope .pinnacleai-not-italic {
+  font-style: normal;
+}
+
+.pinnacleai-scope .pinnacleai-leading-snug {
+  line-height: 1.375;
+}
+
+.pinnacleai-scope .\!pinnacleai-text-pinnacleai-fg-3 {
+  color: var(--pinnacleai-fg-3) !important;
+}
+
+.pinnacleai-scope .pinnacleai-text-\[\#0e70c0\] {
+  --tw-text-opacity: 1;
+  color: rgb(14 112 192 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-\[var\(--vscode-button-foreground\)\] {
+  color: var(--vscode-button-foreground);
+}
+
+.pinnacleai-scope .pinnacleai-text-\[var\(--vscode-button-secondaryForeground\)\] {
+  color: var(--vscode-button-secondaryForeground);
+}
+
+.pinnacleai-scope .pinnacleai-text-\[var\(--vscode-keybindingLabel-foreground\)\] {
+  color: var(--vscode-keybindingLabel-foreground);
+}
+
+.pinnacleai-scope .pinnacleai-text-amber-300 {
+  --tw-text-opacity: 1;
+  color: rgb(252 211 77 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-amber-400 {
+  --tw-text-opacity: 1;
+  color: rgb(251 191 36 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-emerald-500 {
+  --tw-text-opacity: 1;
+  color: rgb(16 185 129 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-orange-500 {
+  --tw-text-opacity: 1;
+  color: rgb(249 115 22 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-pinnacleai-fg-1 {
+  color: var(--pinnacleai-fg-1);
+}
+
+.pinnacleai-scope .pinnacleai-text-pinnacleai-fg-2 {
+  color: var(--pinnacleai-fg-2);
+}
+
+.pinnacleai-scope .pinnacleai-text-pinnacleai-fg-3 {
+  color: var(--pinnacleai-fg-3);
+}
+
+.pinnacleai-scope .pinnacleai-text-pinnacleai-fg-4 {
+  color: var(--pinnacleai-fg-4);
+}
+
+.pinnacleai-scope .pinnacleai-text-pinnacleai-warning {
+  color: var(--pinnacleai-warning);
+}
+
+.pinnacleai-scope .pinnacleai-text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-rose-600 {
+  --tw-text-opacity: 1;
+  color: rgb(225 29 72 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-text-white\/80 {
+  color: rgb(255 255 255 / 0.8);
+}
+
+.pinnacleai-scope .pinnacleai-text-zinc-900 {
+  --tw-text-opacity: 1;
+  color: rgb(24 24 27 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .pinnacleai-underline {
+  text-decoration-line: underline;
+}
+
+.pinnacleai-scope .pinnacleai-line-through {
+  text-decoration-line: line-through;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-0 {
+  opacity: 0;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-100 {
+  opacity: 1;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-25 {
+  opacity: 0.25;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-50 {
+  opacity: 0.5;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-60 {
+  opacity: 0.6;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-70 {
+  opacity: 0.7;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-80 {
+  opacity: 0.8;
+}
+
+.pinnacleai-scope .pinnacleai-opacity-90 {
+  opacity: 0.9;
+}
+
+.pinnacleai-scope .pinnacleai-shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-shadow-\[0_0_4px_0px_rgba\(22\,163\,74\,0\.6\)\] {
+  --tw-shadow: 0 0 4px 0px rgba(22,163,74,0.6);
+  --tw-shadow-colored: 0 0 4px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-shadow-\[0_0_4px_0px_rgba\(234\,88\,12\,0\.6\)\] {
+  --tw-shadow: 0 0 4px 0px rgba(234,88,12,0.6);
+  --tw-shadow-colored: 0 0 4px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-brightness-90 {
+  --tw-brightness: brightness(.9);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.pinnacleai-scope .pinnacleai-transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.pinnacleai-scope .pinnacleai-transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.pinnacleai-scope .pinnacleai-transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.pinnacleai-scope .pinnacleai-transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.pinnacleai-scope .pinnacleai-duration-100 {
+  transition-duration: 100ms;
+}
+
+.pinnacleai-scope .pinnacleai-duration-1000 {
+  transition-duration: 1000ms;
+}
+
+.pinnacleai-scope .pinnacleai-duration-150 {
+  transition-duration: 150ms;
+}
+
+.pinnacleai-scope .pinnacleai-duration-200 {
+  transition-duration: 200ms;
+}
+
+.pinnacleai-scope .pinnacleai-duration-300 {
+  transition-duration: 300ms;
+}
+
+.pinnacleai-scope .pinnacleai-ease-\[cubic-bezier\(0\.4\,0\,0\.2\,1\)\] {
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+}
+
+.pinnacleai-scope .pinnacleai-ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .pinnacleai-scope {
   --pinnacleai-bg-1: var(--vscode-input-background);
   --pinnacleai-bg-1-alt: var(--vscode-badge-background);
@@ -606,4 +2966,671 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .pinnacleai-scope .bg-editor-style-override {
   --vscode-sideBar-background: var(--vscode-editor-background);
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 0.875rem;
+  line-height: 1.7142857;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where([class~="lead"]):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 1.2857143em;
+  line-height: 1.5555556;
+  margin-top: 0.8888889em;
+  margin-bottom: 0.8888889em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(blockquote):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.3333333em;
+  margin-bottom: 1.3333333em;
+  padding-inline-start: 1.1111111em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h1):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 2.1428571em;
+  margin-top: 0;
+  margin-bottom: 0.8em;
+  line-height: 1.2;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h2):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 1.4285714em;
+  margin-top: 1.6em;
+  margin-bottom: 0.8em;
+  line-height: 1.4;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h3):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 1.2857143em;
+  margin-top: 1.5555556em;
+  margin-bottom: 0.4444444em;
+  line-height: 1.5555556;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h4):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.4285714em;
+  margin-bottom: 0.5714286em;
+  line-height: 1.4285714;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(img):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(picture):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(picture > img):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(video):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(kbd):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  border-radius: 0.3125rem;
+  padding-top: 0.1428571em;
+  padding-inline-end: 0.3571429em;
+  padding-bottom: 0.1428571em;
+  padding-inline-start: 0.3571429em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h2 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.9em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h3 code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8888889em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(pre):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  line-height: 1.6666667;
+  margin-top: 1.6666667em;
+  margin-bottom: 1.6666667em;
+  border-radius: 0.25rem;
+  padding-top: 0.6666667em;
+  padding-inline-end: 1em;
+  padding-bottom: 0.6666667em;
+  padding-inline-start: 1em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+  padding-inline-start: 1.5714286em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+  padding-inline-start: 1.5714286em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.2857143em;
+  margin-bottom: 0.2857143em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(ol > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0.4285714em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(ul > li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0.4285714em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(.prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) > ul > li p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.5714286em;
+  margin-bottom: 0.5714286em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(.prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) > ul > li > p:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(.prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) > ul > li > p:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(.prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) > ol > li > p:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(.prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) > ol > li > p:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.5714286em;
+  margin-bottom: 0.5714286em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(dl):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+  margin-bottom: 1.1428571em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(dt):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.1428571em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(dd):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0.2857143em;
+  padding-inline-start: 1.5714286em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(hr):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 2.8571429em;
+  margin-bottom: 2.8571429em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(hr + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h2 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h3 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(h4 + *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(table):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  line-height: 1.5;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(thead th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 1em;
+  padding-bottom: 0.6666667em;
+  padding-inline-start: 1em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(thead th:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(thead th:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(tbody td, tfoot td):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-top: 0.6666667em;
+  padding-inline-end: 1em;
+  padding-bottom: 0.6666667em;
+  padding-inline-start: 1em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-start: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  padding-inline-end: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(figure):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(figure > *):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(figcaption):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  font-size: 0.8571429em;
+  line-height: 1.3333333;
+  margin-top: 0.6666667em;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(.prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) > :first-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-top: 0;
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) :where(.prose-headings\:pinnacleai-prose-sm :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) > :last-child):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)) {
+  margin-bottom: 0;
+}
+
+.pinnacleai-scope .marker\:pinnacleai-text-inherit *::marker {
+  color: inherit;
+}
+
+.pinnacleai-scope .marker\:pinnacleai-text-inherit::marker {
+  color: inherit;
+}
+
+.pinnacleai-scope .placeholder\:pinnacleai-text-pinnacleai-fg-3::-moz-placeholder {
+  color: var(--pinnacleai-fg-3);
+}
+
+.pinnacleai-scope .placeholder\:pinnacleai-text-pinnacleai-fg-3::placeholder {
+  color: var(--pinnacleai-fg-3);
+}
+
+.pinnacleai-scope .focus-within\:pinnacleai-border-pinnacleai-border-1:focus-within {
+  border-color: var(--pinnacleai-border-1);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.pinnacleai-scope .hover\:pinnacleai-border-pinnacleai-border-1:hover {
+  border-color: var(--pinnacleai-border-1);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-bg-\[\#1177cb\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 119 203 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .hover\:pinnacleai-bg-\[var\(--vscode-button-hoverBackground\)\]:hover {
+  background-color: var(--vscode-button-hoverBackground);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-bg-\[var\(--vscode-button-secondaryHoverBackground\)\]:hover {
+  background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-bg-black\/10:hover {
+  background-color: rgb(0 0 0 / 0.1);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-bg-blue-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .hover\:pinnacleai-bg-zinc-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 245 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .hover\:pinnacleai-bg-zinc-700\/10:hover {
+  background-color: rgb(63 63 70 / 0.1);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-text-pinnacleai-fg-1:hover {
+  color: var(--pinnacleai-fg-1);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-text-red-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .hover\:pinnacleai-text-white\/80:hover {
+  color: rgb(255 255 255 / 0.8);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-opacity-100:hover {
+  opacity: 1;
+}
+
+.pinnacleai-scope .hover\:pinnacleai-opacity-90:hover {
+  opacity: 0.9;
+}
+
+.pinnacleai-scope .hover\:pinnacleai-brightness-110:hover {
+  --tw-brightness: brightness(1.1);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-brightness-125:hover {
+  --tw-brightness: brightness(1.25);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-brightness-75:hover {
+  --tw-brightness: brightness(.75);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-brightness-90:hover {
+  --tw-brightness: brightness(.9);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.pinnacleai-scope .hover\:pinnacleai-brightness-95:hover {
+  --tw-brightness: brightness(.95);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.pinnacleai-scope .focus\:pinnacleai-border-pinnacleai-border-1:focus {
+  border-color: var(--pinnacleai-border-1);
+}
+
+.pinnacleai-scope .active\:pinnacleai-cursor-grabbing:active {
+  cursor: grabbing;
+}
+
+.pinnacleai-scope .disabled\:pinnacleai-cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
+
+.pinnacleai-scope .disabled\:pinnacleai-opacity-50:disabled {
+  opacity: 0.5;
+}
+
+.pinnacleai-scope .pinnacleai-group:hover .group-hover\:pinnacleai-translate-x-1 {
+  --tw-translate-x: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .pinnacleai-group:hover .group-hover\:pinnacleai-text-pinnacleai-fg-3 {
+  color: var(--pinnacleai-fg-3);
+}
+
+.pinnacleai-scope .pinnacleai-group:hover .group-hover\:pinnacleai-opacity-100 {
+  opacity: 1;
+}
+
+.pinnacleai-scope .pinnacleai-group:active .group-active\:pinnacleai-translate-x-1 {
+  --tw-translate-x: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.pinnacleai-scope .prose-headings\:pinnacleai-font-bold :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-weight: 700;
+}
+
+.pinnacleai-scope .prose-h1\:pinnacleai-my-4 :is(:where(h1):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pinnacleai-scope .prose-h1\:pinnacleai-text-\[14px\] :is(:where(h1):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 14px;
+}
+
+.pinnacleai-scope .prose-h2\:pinnacleai-my-4 :is(:where(h2):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pinnacleai-scope .prose-h2\:pinnacleai-text-\[13px\] :is(:where(h2):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 13px;
+}
+
+.pinnacleai-scope .prose-h3\:pinnacleai-my-3 :is(:where(h3):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.pinnacleai-scope .prose-h3\:pinnacleai-text-\[13px\] :is(:where(h3):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 13px;
+}
+
+.pinnacleai-scope .prose-h4\:pinnacleai-my-2 :is(:where(h4):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .prose-h4\:pinnacleai-text-\[13px\] :is(:where(h4):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 13px;
+}
+
+.pinnacleai-scope .prose-p\:pinnacleai-my-0 :is(:where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.pinnacleai-scope .prose-p\:pinnacleai-my-2 :is(:where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .prose-p\:pinnacleai-block :is(:where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  display: block;
+}
+
+.pinnacleai-scope .prose-p\:pinnacleai-py-0 :is(:where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.pinnacleai-scope .prose-p\:pinnacleai-leading-normal :is(:where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  line-height: 1.5;
+}
+
+.pinnacleai-scope .prose-p\:pinnacleai-leading-snug :is(:where(p):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  line-height: 1.375;
+}
+
+.pinnacleai-scope .prose-blockquote\:pinnacleai-my-2 :is(:where(blockquote):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .prose-blockquote\:pinnacleai-pl-2 :is(:where(blockquote):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  padding-left: 0.5rem;
+}
+
+.pinnacleai-scope .prose-code\:pinnacleai-text-\[12px\] :is(:where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 12px;
+}
+
+.pinnacleai-scope .prose-code\:pinnacleai-text-pinnacleai-fg-3 :is(:where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  color: var(--pinnacleai-fg-3);
+}
+
+.pinnacleai-scope .prose-code\:before\:pinnacleai-content-none :is(:where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)))::before {
+  --tw-content: none;
+  content: var(--tw-content);
+}
+
+.pinnacleai-scope .prose-code\:after\:pinnacleai-content-none :is(:where(code):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *)))::after {
+  --tw-content: none;
+  content: var(--tw-content);
+}
+
+.pinnacleai-scope .prose-pre\:pinnacleai-my-2 :is(:where(pre):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .prose-pre\:pinnacleai-p-2 :is(:where(pre):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  padding: 0.5rem;
+}
+
+.pinnacleai-scope .prose-pre\:pinnacleai-text-\[12px\] :is(:where(pre):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 12px;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-my-0 :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-my-2 :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-list-outside :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  list-style-position: outside;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-list-decimal :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  list-style-type: decimal;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-py-0 :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-pl-4 :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  padding-left: 1rem;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-leading-normal :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  line-height: 1.5;
+}
+
+.pinnacleai-scope .prose-ol\:pinnacleai-leading-snug :is(:where(ol):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  line-height: 1.375;
+}
+
+.pinnacleai-scope .prose-ul\:pinnacleai-my-2 :is(:where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .prose-ul\:pinnacleai-list-outside :is(:where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  list-style-position: outside;
+}
+
+.pinnacleai-scope .prose-ul\:pinnacleai-list-disc :is(:where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  list-style-type: disc;
+}
+
+.pinnacleai-scope .prose-ul\:pinnacleai-pl-4 :is(:where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  padding-left: 1rem;
+}
+
+.pinnacleai-scope .prose-ul\:pinnacleai-leading-normal :is(:where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  line-height: 1.5;
+}
+
+.pinnacleai-scope .prose-ul\:pinnacleai-leading-snug :is(:where(ul):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  line-height: 1.375;
+}
+
+.pinnacleai-scope .prose-li\:pinnacleai-my-0 :is(:where(li):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.pinnacleai-scope .prose-table\:pinnacleai-text-\[13px\] :is(:where(table):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  font-size: 13px;
+}
+
+.pinnacleai-scope .prose-hr\:pinnacleai-my-2 :is(:where(hr):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pinnacleai-scope .prose-hr\:pinnacleai-my-4 :is(:where(hr):not(:where([class~="pinnacleai-not-prose"],[class~="pinnacleai-not-prose"] *))) {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .pinnacleai-scope .md\:pinnacleai-w-1\/4 {
+    width: 25%;
+  }
+
+  .pinnacleai-scope .md\:pinnacleai-flex-row {
+    flex-direction: row;
+  }
+
+  .pinnacleai-scope .md\:pinnacleai-flex-col {
+    flex-direction: column;
+  }
+}
+
+.pinnacleai-scope .dark\:pinnacleai-bg-white:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .dark\:pinnacleai-bg-white\/10:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+.pinnacleai-scope .dark\:pinnacleai-bg-white\/90:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  background-color: rgb(255 255 255 / 0.9);
+}
+
+.pinnacleai-scope .dark\:pinnacleai-bg-zinc-300\/5:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  background-color: rgb(212 212 216 / 0.05);
+}
+
+.pinnacleai-scope .dark\:pinnacleai-bg-zinc-600:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 82 91 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .dark\:pinnacleai-bg-zinc-900:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity, 1));
+}
+
+.pinnacleai-scope .dark\:pinnacleai-text-black:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.pinnacleai-scope .dark\:hover\:pinnacleai-bg-gray-300\/10:hover:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  background-color: rgb(209 213 219 / 0.1);
+}
+
+.pinnacleai-scope .dark\:hover\:pinnacleai-bg-zinc-300\/10:hover:where(.pinnacleai-dark, .pinnacleai-dark *) {
+  background-color: rgb(212 212 216 / 0.1);
+}
+
+.pinnacleai-scope .\[\&\>\*\:first-child\]\:pinnacleai-pl-3>*:first-child {
+  padding-left: 0.75rem;
+}
+
+.pinnacleai-scope .\[\&\>\*\:last-child\]\:pinnacleai-border-r-0>*:last-child {
+  border-right-width: 0px;
+}
+
+.pinnacleai-scope .\[\&\>\*\:last-child\]\:pinnacleai-pr-3>*:last-child {
+  padding-right: 0.75rem;
+}
+
+.pinnacleai-scope .\[\&\>\*\]\:pinnacleai-border-r>* {
+  border-right-width: 1px;
+}
+
+.pinnacleai-scope .\[\&\>\*\]\:pinnacleai-border-pinnacleai-border-2>* {
+  border-color: var(--pinnacleai-border-2);
+}
+
+.pinnacleai-scope .\[\&\>\*\]\:pinnacleai-px-3>* {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.pinnacleai-scope .\[\&\>\:first-child\]\:\!pinnacleai-mt-0>:first-child {
+  margin-top: 0px !important;
+}
+
+.pinnacleai-scope .\[\&\>\:last-child\]\:\!pinnacleai-mb-0>:last-child {
+  margin-bottom: 0px !important;
+}
+
+.pinnacleai-scope .\[\&_select\]\:\!pinnacleai-text-xs select {
+  font-size: 10px !important;
+}
+
+.pinnacleai-scope .\[\&_select\]\:\!pinnacleai-text-pinnacleai-fg-3 select {
+  color: var(--pinnacleai-fg-3) !important;
 }

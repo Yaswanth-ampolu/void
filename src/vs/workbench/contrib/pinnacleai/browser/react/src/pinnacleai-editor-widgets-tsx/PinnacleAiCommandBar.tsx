@@ -7,10 +7,10 @@
 import { useAccessor, useCommandBarState, useIsDark } from '../util/services.js';
 
 import '../styles.css'
-import { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { ScrollType } from '../../../../../../../editor/common/editorCommon.js';
 import { acceptAllBg, acceptBorder, buttonFontSize, buttonTextColor, rejectAllBg, rejectBg, rejectBorder } from '../../../../common/helpers/colors.js';
-import { PinnacleAiCommandBarProps } from '../../../pinnacleaiCommandBarService.js';
+import { PinnacleAICommandBarProps } from '../../../pinnacleaiCommandBarService.js';
 import { Check, EllipsisVertical, Menu, MoveDown, MoveLeft, MoveRight, MoveUp, X } from 'lucide-react';
 import {
 	PINNACLEAI_GOTO_NEXT_DIFF_ACTION_ID,
@@ -23,7 +23,7 @@ import {
 	PINNACLEAI_REJECT_ALL_DIFFS_ACTION_ID
 } from '../../../actionIDs.js';
 
-export const PinnacleAiCommandBarMain = ({ uri, editor }: PinnacleAiCommandBarProps) => {
+export const PinnacleAiCommandBarMain = ({ uri, editor }: PinnacleAICommandBarProps) => {
 	const isDark = useIsDark()
 
 	return <div
@@ -83,13 +83,13 @@ export const RejectAllButtonWrapper = ({ text, onClick, className, ...props }: {
 
 
 
-export const PinnacleAiCommandBar = ({ uri, editor }: PinnacleAiCommandBarProps) => {
+export const PinnacleAiCommandBar = ({ uri, editor }: PinnacleAICommandBarProps) => {
 	const accessor = useAccessor()
 	const editCodeService = accessor.get('IEditCodeService')
 	const editorService = accessor.get('ICodeEditorService')
 	const metricsService = accessor.get('IMetricsService')
 	const commandService = accessor.get('ICommandService')
-	const commandBarService = accessor.get('IPinnacleAiCommandBarService')
+	const commandBarService = accessor.get('IPinnacleAICommandBarService')
 	const pinnacleaiModelService = accessor.get('IPinnacleAIModelService')
 	const keybindingService = accessor.get('IKeybindingService')
 	const { stateOfURI: commandBarState, sortedURIs: sortedCommandBarURIs } = useCommandBarState()
@@ -115,6 +115,8 @@ export const PinnacleAiCommandBar = ({ uri, editor }: PinnacleAiCommandBarProps)
 		setTimeout(() => {
 			// check undefined
 			if (!uri) return
+			if (!commandBarService) return
+			if (!commandBarService.stateOfURI) return
 			const s = commandBarService.stateOfURI[uri.fsPath]
 			if (!s) return
 			const { diffIdx } = s
